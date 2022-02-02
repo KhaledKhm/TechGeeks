@@ -4,5 +4,5 @@
 - @louatisahar - Sahar Louati
 - Ahmed Bannour
 - @kridhamza - Hamza Krid
-- @soltaniamal - Amal Soltani
+- @Amal-Soltani - Amal Soltani
 - Hamza Touam
