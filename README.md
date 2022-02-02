@@ -1,4 +1,8 @@
 #  **4SAE4**
- Women Empowerment
-## **PiDev**
+## **PiDev Women Empowerment developers**
 - @KhaledKhm - Khaled Maammar
+- @louatisahar - Sahar Louati
+- Ahmed Bannour
+- @kridhamza - Hamza Krid
+- @soltaniamal - Amal Soltani
+- Hamza Touam
