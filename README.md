@@ -5,4 +5,4 @@
 - Ahmed Bannour
 - @kridhamza - Hamza Krid
 - @Amal-Soltani - Amal Soltani
-- Hamza Touam
+- @hamzatouam - Hamza Touam
