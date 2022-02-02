@@ -1,6 +1,4 @@
 #  **4SAE4**
-# Women Empowerment
-#
-## **PiDev Project encadré par ESPRIT**
-## CodeBrigade
+ Women Empowerment
+## **PiDev**
 - @KhaledKhm - Khaled Maammar
