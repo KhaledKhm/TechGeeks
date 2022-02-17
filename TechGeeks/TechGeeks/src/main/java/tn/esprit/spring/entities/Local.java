@@ -50,7 +50,6 @@ public class Local implements Serializable{
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Event> events;
 	
-	private Set<Donation> donations;
 	
 	@OneToMany(mappedBy="local")
 	private Set<Training> trainings;

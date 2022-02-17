@@ -58,6 +58,7 @@ public class User implements Serializable{
 	
 	private String photo; //a revoir
 	
+	@OneToMany
 	private Set<Role> roles;
 
 	private ExpertRole expertRole;
@@ -69,6 +70,7 @@ public class User implements Serializable{
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Event> events;
+	
 	
 	@OneToMany
 	private Set<Offre> offres;
@@ -95,7 +97,7 @@ public class User implements Serializable{
 	private Set<Appointment> appointments;
 	
 	@ManyToOne
-	private Local local;
+	private Local localUser;
 	
 	@ManyToOne
 	private Chat chat;
