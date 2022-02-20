@@ -1,13 +1,11 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Local;
 import tn.esprit.spring.repository.LocalRepository;
 
