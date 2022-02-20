@@ -1,5 +1,6 @@
 package tn.esprit.spring.service;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class LocalServiceImpl implements ILocalService{
 	LocalRepository localRepository;
 
 	@Override
-	public Set<Local> retrieveAllLocals() {
-		Set<Local> localList = (Set<Local>) localRepository.findAll();
+	public List<Local> retrieveAllLocals() {
+		List<Local> localList =  localRepository.findAll();
 		for (Local local : localList){
 			log.info(" Local: " +local);
 		}

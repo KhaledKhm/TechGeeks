@@ -22,8 +22,8 @@ public class DonationServiceImpl implements IDonationService{
 	DonationRepository donationRepository;
 
 	@Override
-	public Set<Donation> retrieveAllDonations() {
-		Set<Donation> donationList = (Set<Donation>) donationRepository.findAll();
+	public List<Donation> retrieveAllDonations() {
+		List<Donation> donationList = donationRepository.findAll();
 		for (Donation donation : donationList){
 			log.info(" Donation: " +donation);
 		}

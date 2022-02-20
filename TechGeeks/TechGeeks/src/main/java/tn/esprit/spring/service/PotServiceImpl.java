@@ -1,5 +1,6 @@
 package tn.esprit.spring.service;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class PotServiceImpl implements IPotService{
 	PotRepository potRepository;
 	
 	@Override
-	public Set<Pot> retrieveAllPots() {
-		Set<Pot> potList = (Set<Pot>) potRepository.findAll();
+	public List<Pot> retrieveAllPots() {
+		List<Pot> potList =  potRepository.findAll();
 		for (Pot pot : potList){
 			log.info(" Pot: " +pot);
 		}

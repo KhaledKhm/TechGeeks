@@ -1,5 +1,6 @@
 package tn.esprit.spring.service;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ import tn.esprit.spring.repository.EventRepository;
 	EventRepository eventRepository;
 	
 	@Override
-	public Set<Event> retrieveAllEvents() {
-		Set<Event> eventList = (Set<Event>) eventRepository.findAll();
+	public List<Event> retrieveAllEvents() {
+		List<Event> eventList =  eventRepository.findAll();
 		for (Event event : eventList){
 			log.info(" Event: " +event);
 		}
