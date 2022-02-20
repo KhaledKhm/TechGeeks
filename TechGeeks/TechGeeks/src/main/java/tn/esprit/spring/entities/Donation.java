@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -29,6 +31,7 @@ public class Donation implements Serializable{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idDonation;
 	
+	@Temporal(TemporalType.DATE)
 	private Date dateDonation;
 	
 	private String bankAccount;
