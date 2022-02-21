@@ -3,6 +3,7 @@ package tn.esprit.spring.entities;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,7 +36,8 @@ public class Pot implements Serializable{
 	@Size(min=5, max=30)
 	private String libelle;
 	
-	@Size(min=5, max=30)
+	
+	@Column(length=8)
 	private String bankAccount;
 	
 	@JsonIgnore
