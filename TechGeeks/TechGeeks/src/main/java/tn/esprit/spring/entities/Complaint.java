@@ -4,10 +4,14 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -30,10 +34,11 @@ public class Complaint implements Serializable{
 	
 	private String title;
 	
+	@Enumerated(EnumType.STRING)
+	private Type type;
 	private String description;
 	
-	private Type type;
-	
 	@ManyToOne
+	@JsonIgnore
 	private User userComplaint;
 }

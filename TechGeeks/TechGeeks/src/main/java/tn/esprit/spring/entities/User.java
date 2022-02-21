@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -90,10 +92,12 @@ public class User implements Serializable{
 	@OneToOne(mappedBy="user")
 	private PostComment postComment;
 	
-	@ManyToOne
-	private Appointment appointment;
+	@OneToMany(mappedBy="women")
+	@JsonIgnore
+	private Set<Appointment> appointmentss;
 	
 	@OneToMany(mappedBy="expert")
+	@JsonIgnore
 	private Set<Appointment> appointments;
 	
 	@ManyToOne

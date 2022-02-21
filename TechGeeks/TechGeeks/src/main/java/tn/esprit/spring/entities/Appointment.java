@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -29,14 +33,16 @@ public class Appointment implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idAppointment;
-	
+ @Temporal(TemporalType.DATE)
 	private Date date;
 	
 	private String local;
 	
-	@OneToMany
-	private Set<User> users;
+	@ManyToOne
+	@JsonIgnore
+	private User women;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User expert;
 }
