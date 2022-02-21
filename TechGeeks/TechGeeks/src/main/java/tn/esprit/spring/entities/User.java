@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -73,7 +74,12 @@ public class User implements Serializable{
 	
 	
 	@OneToMany
+	@JoinColumn(name="idOffer")
 	private Set<Offre> offres;
+	
+	@ManyToMany
+	@JoinColumn(name="idOffer")
+	private Set<Offre> postulant;
 	
 	@ManyToOne
 	private Postulant postulantUser;
