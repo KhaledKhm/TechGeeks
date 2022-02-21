@@ -36,6 +36,13 @@ public class LocalController {
 		return localService.retrieveAllLocals();
 	}
 	
+	@GetMapping("/get-Local/{idLocal}")
+	@ResponseBody
+	Local getLocalById(@PathVariable("idLocal") int idLocal){
+		return localService.retrieveLocal(idLocal);
+		
+	}
+	
 	@PutMapping("modify-local")
 	@ResponseBody
 	Local updateLocal(@RequestBody Local l){

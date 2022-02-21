@@ -34,6 +34,13 @@ public class DonationController {
 		return donationService.retrieveAllDonations();
 	}
 	
+	@GetMapping("/get-Donation/{idDonation}")
+	@ResponseBody
+	Donation getDonationById(@PathVariable("idDonation") int idDonation){
+		return donationService.retrieveDonation(idDonation);
+		
+	}
+	
 	@PutMapping("modify-donation")
 	@ResponseBody
 	Donation updateDonation(@RequestBody Donation d){
