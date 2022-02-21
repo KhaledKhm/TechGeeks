@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,7 +43,7 @@ public class Event implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateEnd;
 	
-	@Enumerated(EnumType.STRING)
+	@JsonIgnore
 	private Local local;
 	
 

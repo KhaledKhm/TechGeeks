@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,9 +38,11 @@ public class Donation implements Serializable{
 	
 	private String bankAccount;
 
+	@JsonIgnore
 	@ManyToOne
 	private Pot pot;
 	
+	@JsonIgnore
 	@ManyToOne
 	private User user;
 }

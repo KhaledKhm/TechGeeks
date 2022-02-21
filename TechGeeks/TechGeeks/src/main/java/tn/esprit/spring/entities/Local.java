@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,13 +53,15 @@ public class Local implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateEnd;
 	
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Event> events;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="local")
 	private Set<Training> trainings;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="localUser")
 	private Set<User> users;
 }
