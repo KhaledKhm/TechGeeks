@@ -58,6 +58,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
+		
+		<dependency>
+    <groupId>javax.validation</groupId>
+    <artifactId>validation-api</artifactId>
+    <version>2.0.1.Final</version>
+</dependency>
+
+<dependency>
+<groupId>org.springframework.batch</groupId>
+<artifactId>spring-batch-test</artifactId>
+</dependency>
+		
 	</dependencies>
 
 	<build>

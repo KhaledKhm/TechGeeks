@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Event;
-import tn.esprit.spring.entities.Local;
 import tn.esprit.spring.service.IEventService;
 
 @RestController
