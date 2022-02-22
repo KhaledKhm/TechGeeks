@@ -23,6 +23,8 @@ public class DonationServiceImpl implements IDonationService{
 	DonationRepository donationRepository;
 	@Autowired
 	PotRepository potRepository;
+//	@Autowired
+//	UserRepository userRepository;
 
 	@Override
 	public List<Donation> retrieveAllDonations() {
@@ -58,12 +60,23 @@ public class DonationServiceImpl implements IDonationService{
 	}
 
 	@Override
-	public Donation affecterDonation(Donation d, int idPot) {
+	public Donation assignDonation(Donation d, int idPot) {
 		Pot p = potRepository.findById(idPot).orElse(null);	
 		d.setPot(p);
 		
 		donationRepository.save(d);
 		return d;
+	}
+
+	@Override
+	public void addAndAssignPotAndUser(Donation donation, int idPot, int idUser) {
+		Pot p = potRepository.findById(idPot).orElse(null);	
+//		User u = userRepository.findById(idUser).orElse(null);	
+		
+		donation.setPot(p);
+				
+		donationRepository.save(donation);
+		
 	}
 
 }

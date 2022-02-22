@@ -11,5 +11,6 @@ public interface IDonationService {
 	Donation updateDonation(Donation d);
 	Donation retrieveDonation(int id);
 	void deleteDonation(int id);
-	Donation affecterDonation(Donation d, int idPot);
+	Donation assignDonation(Donation d, int idPot);
+	void addAndAssignPotAndUser(Donation donation, int idPot, int idUser);
 }

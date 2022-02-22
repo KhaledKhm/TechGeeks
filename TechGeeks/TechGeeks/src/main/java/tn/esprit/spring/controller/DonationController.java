@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+/*import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;*/
 
 import tn.esprit.spring.entities.Donation;
 import tn.esprit.spring.service.IDonationService;
@@ -26,6 +29,7 @@ public class DonationController {
 	Donation addDonation(@RequestBody Donation d){
 		return donationService.addDonation(d);
 	}
+	
 	
 	@GetMapping("/retrieve-allDonations")
 	@ResponseBody
@@ -53,4 +57,24 @@ public class DonationController {
 		donationService.deleteDonation(idDonation);
 		
 	}
+	/*
+	  @Autowired
+	    public JavaMailSender emailSender;
+
+	    @ResponseBody
+	    @RequestMapping("/sendSimpleEmail")
+	    public String sendSimpleEmail() {
+
+	        // Create a Simple MailMessage.
+	        SimpleMailMessage message = new SimpleMailMessage();
+	        
+	        message.setTo("khmthe@gmail.com");
+	        message.setSubject("Test Simple Email");
+	        message.setText("Hello, Im testing Simple Email");
+
+	        // Send Message!
+	        this.emailSender.send(message);
+
+	        return "Email Sent!";
+	    }*/
 }
