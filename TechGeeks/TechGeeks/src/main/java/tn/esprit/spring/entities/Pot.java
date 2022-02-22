@@ -37,7 +37,7 @@ public class Pot implements Serializable{
 	private String libelle;
 	
 	
-	@Column(length=8)
+	@Column(length=8/*, message="bank account should only have 8 numbers"*/)
 	private String bankAccount;
 	
 	@JsonIgnore

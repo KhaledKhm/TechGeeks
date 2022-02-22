@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import tn.esprit.spring.entities.Donation;
+import tn.esprit.spring.entities.Pot;
 import tn.esprit.spring.repository.DonationRepository;
+import tn.esprit.spring.repository.PotRepository;
 
 @Service
 @Slf4j
@@ -19,6 +21,8 @@ public class DonationServiceImpl implements IDonationService{
 	
 	@Autowired
 	DonationRepository donationRepository;
+	@Autowired
+	PotRepository potRepository;
 
 	@Override
 	public List<Donation> retrieveAllDonations() {
@@ -51,6 +55,15 @@ public class DonationServiceImpl implements IDonationService{
 	public void deleteDonation(int id) {
 		donationRepository.deleteById(id);
 		
+	}
+
+	@Override
+	public Donation affecterDonation(Donation d, int idPot) {
+		Pot p = potRepository.findById(idPot).orElse(null);	
+		d.setPot(p);
+		
+		donationRepository.save(d);
+		return d;
 	}
 
 }
