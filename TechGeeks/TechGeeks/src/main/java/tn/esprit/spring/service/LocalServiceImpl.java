@@ -1,12 +1,18 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Local;
+import tn.esprit.spring.entities.User;
+import tn.esprit.spring.repository.EventRepository;
 import tn.esprit.spring.repository.LocalRepository;
 
 @Service
@@ -18,6 +24,10 @@ public class LocalServiceImpl implements ILocalService{
 	}
 	@Autowired
 	LocalRepository localRepository;
+	@Autowired
+	EventRepository eventRepository;
+	@Autowired
+	IEventService eventService;
 
 	@Override
 	public List<Local> retrieveAllLocals() {
@@ -48,6 +58,31 @@ public class LocalServiceImpl implements ILocalService{
 	@Override
 	public void deleteLocal(int id) {
 		localRepository.deleteById(id);
+	}
+
+	@Override
+	@Transactional
+	public Local assignUserToLocal(int idLocal, int idUser, int idEvent) {
+		Local l=retrieveLocal(idLocal);
+//		l.setUsers();
+//		l.setEvents();
+		
+		Set<Event> events =  l.getEvents();
+		Set<User> users = l.getUsers();
+		if (events.size() == 0){
+			events.add(eventService.retrieveEvent(idEvent));
+			l.setEvents(events);
+		}else{
+			for (int i = 0; i<events.size();i++){
+				
+			}
+		}
+//		if (users.size() == 0){
+//			users.add(userService.retrieveUser(idUser));
+//		}
+		
+		localRepository.save(l);
+		return l;
 	}
 
 }

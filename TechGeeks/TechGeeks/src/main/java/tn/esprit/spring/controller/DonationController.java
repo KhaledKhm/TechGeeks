@@ -30,6 +30,12 @@ public class DonationController {
 		return donationService.addDonation(d);
 	}
 	
+	@PostMapping("/assign-donation-to-pot/{idPot}")
+	@ResponseBody
+	Donation assignDonationtoPot(@RequestBody Donation d, @PathVariable("idPot") int idPot){
+		return donationService.addDonationAndAssignPot(d,idPot);
+	}
+	
 	
 	@GetMapping("/retrieve-allDonations")
 	@ResponseBody

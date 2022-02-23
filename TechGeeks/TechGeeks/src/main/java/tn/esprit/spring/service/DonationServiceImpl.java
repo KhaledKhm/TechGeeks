@@ -45,15 +45,7 @@ public class DonationServiceImpl implements IDonationService{
 		return d;
 	}
 	
-	@Override
-	@Transactional
-	public Donation addDonationAndAssignPot(Donation d, int idPot) {
-		Pot p=potRepository.findById(idPot).orElse(null);
-		d.setPot(p);
-		donationRepository.save(d);
-		return d;
-		
-	}
+	
 	
 
 	@Override
@@ -83,11 +75,13 @@ public class DonationServiceImpl implements IDonationService{
 	}
 
 	@Override
+	@Transactional
 	public void addAndAssignPotAndUser(Donation donation, int idPot, int idUser) {
 		Pot p = potRepository.findById(idPot).orElse(null);	
 //		User u = userRepository.findById(idUser).orElse(null);	
 		
 		donation.setPot(p);
+//		donation.setUser(u);
 				
 		donationRepository.save(donation);
 		
@@ -107,7 +101,16 @@ public class DonationServiceImpl implements IDonationService{
 		}
 		
 	}
-
+	
+	@Override
+	@Transactional
+	public Donation addDonationAndAssignPot(Donation d, int idPot) {
+		Pot p=potRepository.findById(idPot).orElse(null);
+		d.setPot(p);
+		donationRepository.save(d);
+		return d;
+		
+	}
 
 	
 
