@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,5 +37,6 @@ public class Advertising implements Serializable{
 	private String image;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User userAdvertising;
 }

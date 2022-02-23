@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,9 +34,11 @@ public class Chat implements Serializable{
 	private String text;
 	
 	@OneToMany(mappedBy="chat")
+	@JsonIgnore
 	private Set<User> receivers;
 	
 	@ManyToOne 
+	@JsonIgnore
 	private User sender;
 
 }

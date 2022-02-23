@@ -44,4 +44,9 @@ public class AppointmentController {
 	void deleteAppointment(@PathVariable(name="id")Integer id){
 		as.deleteAppointment(id);
 	}
+	@PostMapping("/assign-Appointment/{idAppointment}/{idexpert}/{iduser}")
+	@ResponseBody
+	public void assignComplaintToUser(@PathVariable("idAppointment") int  idAppointment ,@PathVariable("idexpert")int idexpert,@PathVariable("iduser")int iduser){
+		as.assignAppointmentToUser(idAppointment, idexpert,iduser);
+	}
 }

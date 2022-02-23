@@ -68,44 +68,53 @@ public class User implements Serializable{
 	private String document;
 	
 	@OneToMany
+	
 	private Set<Donation> donations;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
+	
 	private Set<Event> events;
 	
 	
 	@OneToMany
+	
 	private Set<Offre> offres;
 	
 	@ManyToOne
 	private Postulant postulantUser;
 	
 	@OneToMany(mappedBy="userAdvertising")
+	
 	private Set<Advertising> advertisings;
 	
 	@OneToMany(mappedBy="userComplaint")
 	private Set<Complaint> complaints;
 	
 	@OneToMany(mappedBy="userPost")
+	
 	private Set<Post> posts;
 	
 	@OneToOne(mappedBy="user")
+	
 	private PostComment postComment;
 	
 	@OneToMany(mappedBy="women")
-	@JsonIgnore
+	
 	private Set<Appointment> appointmentss;
 	
 	@OneToMany(mappedBy="expert")
-	@JsonIgnore
+	
 	private Set<Appointment> appointments;
 	
 	@ManyToOne
+	
 	private Local localUser;
 	
 	@ManyToOne
+	
 	private Chat chat;
 	
 	@ManyToOne
+	
 	private Certificate userCertificate;
 }

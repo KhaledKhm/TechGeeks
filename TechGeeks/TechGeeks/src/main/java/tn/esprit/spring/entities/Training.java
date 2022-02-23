@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,14 +43,18 @@ public class Training implements Serializable{
 	private String feedback;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Sector sector;
 	
 	@OneToMany(mappedBy="training")
+	@JsonIgnore
 	private Set<Document> documents;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Local local;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Certificate certificate;
 }

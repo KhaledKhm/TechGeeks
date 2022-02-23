@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +36,7 @@ public class Interview implements Serializable{
 	private Etat type;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Postulant postulantInterview;
 	
 	

@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,8 +36,10 @@ public class Donation implements Serializable{
 	private String bankAccount;
 
 	@ManyToOne
+	@JsonIgnore
 	private Pot pot;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 }

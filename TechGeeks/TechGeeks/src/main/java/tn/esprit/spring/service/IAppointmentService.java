@@ -10,5 +10,7 @@ public interface IAppointmentService {
 	Appointment addAppointement(Appointment a);
 	Appointment updateAppointment (Appointment a);
 	Optional<Appointment> retrieveAppointment(Integer id);
+	void assignAppointmentToUser(int idAppointment, int idexpert ,int iduser);
+
 	void deleteAppointment(Integer id);
 }

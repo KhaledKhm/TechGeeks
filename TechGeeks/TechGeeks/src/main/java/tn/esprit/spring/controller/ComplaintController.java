@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entities.Type;
 import tn.esprit.spring.entities.Complaint;
 import tn.esprit.spring.service.IComplaintSerivce;
 
@@ -31,6 +32,11 @@ public class ComplaintController {
 	public Optional<Complaint> retrieveComplaint(Integer id) {
 	return cs.retrieveComplaint(id);
 	}
+	@GetMapping("/find-Complaint")
+	@ResponseBody
+	public Optional<Complaint> findComplaintbytype(Type type) {
+	return cs.findComplaintBytype(type);
+	}
 	
 	@PutMapping("/modify-Complaint")
 	@ResponseBody
@@ -41,5 +47,10 @@ public class ComplaintController {
 	@DeleteMapping("/delete-Complaint/{id}")
 	void deleteComplaint(@PathVariable(name="id")Integer id){
 		cs.deleteComplaint(id);
+	}
+	@PostMapping("/assign-Complaint/{idcomplaint}/{iduser}")
+	@ResponseBody
+	public void assignComplaintToUser(@PathVariable("idcomplaint") int  idComplaint ,@PathVariable("iduser")int id){
+		cs.assignComplaintToUser(idComplaint, id);
 	}
 }

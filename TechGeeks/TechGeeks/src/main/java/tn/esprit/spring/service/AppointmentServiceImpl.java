@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Appointment;
 import tn.esprit.spring.entities.Complaint;
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.AppointmentRepository;
+import tn.esprit.spring.repository.UserRepository;
 @Service
 public class AppointmentServiceImpl implements IAppointmentService {
 @Autowired 
 AppointmentRepository apprepo;
+@Autowired 
+UserRepository urepo;
 	@Override
 	public Appointment addAppointement(Appointment a) {
 		// TODO Auto-generated method stub
@@ -35,6 +39,17 @@ AppointmentRepository apprepo;
 		// TODO Auto-generated method stub
 		apprepo.deleteById(id);
 
+	}
+
+	@Override
+	public void assignAppointmentToUser(int idAppointment,int idexpert, int iduser) {
+		// TODO Auto-generated method stub
+		User u = urepo.findById(iduser).orElse(null);
+		Appointment a= apprepo.findById(idAppointment).orElse(null);
+		a.setExpert(u);
+		a.setWomen(u);
+		apprepo.save(a);
+		
 	}
 
 }
