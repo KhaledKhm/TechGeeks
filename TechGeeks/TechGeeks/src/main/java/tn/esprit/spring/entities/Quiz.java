@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -32,6 +35,11 @@ public class Quiz implements Serializable{
 	
 	private float mark;
 
-	@OneToMany
+	@OneToMany(mappedBy="quiz")
+	@JsonIgnore
 	private Set<Question> questions;
+	
+	@OneToOne(mappedBy="quiz")
+	@JsonIgnore
+	private Certificate certificate;
 }

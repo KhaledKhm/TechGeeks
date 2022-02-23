@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,12 +38,15 @@ public class Certificate implements Serializable{
 	private Punishment punishment;
 	
 	@OneToOne
+	@JsonIgnore
 	private Quiz quiz;
 	
 	@OneToMany(mappedBy="certificate")
+	@JsonIgnore
 	private Set<Training> trainings;
 	
 	@OneToMany(mappedBy="userCertificate")
+	@JsonIgnore
 	private Set<User> users;
 
 }

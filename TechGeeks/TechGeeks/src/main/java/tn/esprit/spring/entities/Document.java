@@ -7,6 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+
+import org.mapstruct.Named;
+import org.springframework.boot.context.properties.bind.Name;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -29,7 +35,10 @@ public class Document implements Serializable{
 	private int idDocument;
 	
 	private String description;
+	private String document;
+	
 	
 	@ManyToOne
+	@JsonIgnore
 	private Training training;
 }
