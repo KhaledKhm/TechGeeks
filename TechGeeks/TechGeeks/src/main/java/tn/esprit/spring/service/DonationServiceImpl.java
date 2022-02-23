@@ -2,7 +2,10 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +44,17 @@ public class DonationServiceImpl implements IDonationService{
 		donationRepository.save(d);
 		return d;
 	}
+	
+	@Override
+	@Transactional
+	public Donation addDonationAndAssignPot(Donation d, int idPot) {
+		Pot p=potRepository.findById(idPot).orElse(null);
+		d.setPot(p);
+		donationRepository.save(d);
+		return d;
+		
+	}
+	
 
 	@Override
 	public Donation updateDonation(Donation d) {
@@ -78,5 +92,23 @@ public class DonationServiceImpl implements IDonationService{
 		donationRepository.save(donation);
 		
 	}
+
+	@Override
+	@Scheduled(cron = "* * * 1 * *")
+	public void numberDonationsByUser() {
+		for(Donation donation:retrieveAllDonations()){		
+		log.info("--- User: "
+				+ donation.getUser().getFirstName()
+				+ " " 
+				+ donation.getUser().getLastName()
+				+ "has made a total of "
+				+ donationRepository.nbreByUser(donation.getUser().getLogin())
+				+ " donations ---" );
+		}
+		
+	}
+
+
+	
 
 }

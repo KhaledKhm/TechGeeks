@@ -10,4 +10,6 @@ public interface IPotService {
 	Pot updatePot(Pot p);
 	Pot retrievePot(int id);
 	void deletePot(int id);
+	void monthlyPotSum();
+	void takeMoney(int idPot, float money);
 }

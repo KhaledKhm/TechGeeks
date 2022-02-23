@@ -2,7 +2,10 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +52,36 @@ public class PotServiceImpl implements IPotService{
 	@Override
 	public void deletePot(int id) {
 		potRepository.deleteById(id);	
+	}
+
+	@Override
+	@Scheduled(cron = "* * * 1 * *")
+	public void monthlyPotSum() {
+		for (Pot pot:retrieveAllPots()){
+			log.info("Pot " 
+					+ pot.getLibelle() 
+					+ " with the id " 
+					+ pot.getIdPot() 
+					+ " has a sum of " 
+					+ pot.getSum()
+					);
+		}
+		
+	}
+
+	@Override
+	@Transactional
+	public void takeMoney(int idPot, float money) {
+		Pot p=retrievePot(idPot);
+		float sum;
+		sum=p.getSum();
+		sum-=money;
+		p.setSum(sum);
+		
+		potRepository.save(p);
+		
+		
+		
 	}
 
 }
