@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Offre;
 import tn.esprit.spring.repository.OffreRepository;
+import tn.esprit.spring.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -15,6 +16,8 @@ public class OffreServiceImpl implements IOffreService  {
 	
 	@Autowired
 	OffreRepository offreRepository; 
+	@Autowired
+	UserRepository userRepository; 
 	@Override
 	public List<Offre> retrieveAllOffres() {
 		List<Offre> offreList =  offreRepository.findAll();
@@ -25,7 +28,8 @@ public class OffreServiceImpl implements IOffreService  {
 	}
 
 	@Override
-	public Offre addOffre(Offre o) {
+	public Offre addOffre(Offre o , int id) {
+		o.setUser(userRepository.findById(id).get());
 		offreRepository.save(o);
 		return o;
 	}

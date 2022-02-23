@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.AccessLevel;
@@ -32,11 +33,12 @@ public class Postulant implements Serializable{
 	
 	private Etat etat;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="postulantUser")
-	private Set<User> users;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private User users;
+
 	
-	@OneToMany
-	private Set<Offre> offres;
+	@ManyToOne
+	private Offre offres;
 	
 	@OneToMany(mappedBy="postulantInterview")
 	private Set<Interview> interviews;

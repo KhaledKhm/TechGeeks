@@ -26,10 +26,10 @@ public class OffreController {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@PostMapping("/add-offre")
+	@PostMapping("/add-offre/{id_user}")
 	@ResponseBody
-	Offre addOffre(@RequestBody Offre o){
-		return offreService.addOffre(o);
+	Offre addOffre(@RequestBody Offre o , @PathVariable("id_user")Integer id ){
+		return offreService.addOffre(o , id);
 	}
 	
 	@GetMapping("/retrieve-allOffres")
@@ -39,21 +39,21 @@ public class OffreController {
 		return offreService.retrieveAllOffres();
 	}
 	
-	@GetMapping("/get-Offre/{idOffre}")
+	@GetMapping("/get-offre/{idOffre}")
 	@ResponseBody
 	Offre getOffreById(@PathVariable("idOffre") int idOffre){
 		return offreService.retrieveOffre(idOffre);
 		
 	}
 	
-	@PutMapping("modify-offre")
+	@PutMapping("/modify-offre")
 	@ResponseBody
 	Offre updateOffre(@RequestBody Offre o){
 		
 		return offreService.updateOffre(o);
 	}
 	
-	@DeleteMapping("delete-offre/{id}")
+	@DeleteMapping("/delete-offre/{id}")
 	void deleteEvent(@PathVariable("id") int idOffre){
 		offreService.deleteOffre(idOffre);
 		

@@ -74,15 +74,11 @@ public class User implements Serializable{
 	
 	
 	@OneToMany
-	@JoinColumn(name="idOffer")
 	private Set<Offre> offres;
 	
-	@ManyToMany
-	@JoinColumn(name="idOffer")
-	private Set<Offre> postulant;
-	
-	@ManyToOne
-	private Postulant postulantUser;
+
+	@OneToMany
+	private Set<Postulant> postulantUser;
 	
 	@OneToMany(mappedBy="userAdvertising")
 	private Set<Advertising> advertisings;
