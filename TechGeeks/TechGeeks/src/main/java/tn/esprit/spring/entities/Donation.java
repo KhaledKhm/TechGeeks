@@ -36,6 +36,8 @@ public class Donation implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateDonation;
 	
+	private float sum;
+	
 	private String bankAccount;
 
 	@JsonIgnore
