@@ -25,15 +25,15 @@ public class CertificateServiceImp implements ICertificateService{
 		certificateRepository.save(certificat);
 	}
 	
-	/*@Override
+	@Override
 	public void AffecterUser(int idCertificate, List<User> users) {
 		userRepository.saveAll(users);
 		Certificate c =certificateRepository.findById(idCertificate).orElse(null);
 		for (User user : users) {
 			user.setUserCertificate(c);
 		}
-		certificateRepository.saveAll(users);
-	}*/
+		userRepository.saveAll(users);
+	}
 
 	@Override
 	public Certificate updateCertificate(Certificate certificate) {
