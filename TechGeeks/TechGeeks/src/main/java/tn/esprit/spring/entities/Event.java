@@ -16,7 +16,9 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
@@ -24,12 +26,11 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Event implements Serializable{
 
-	public Event() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)

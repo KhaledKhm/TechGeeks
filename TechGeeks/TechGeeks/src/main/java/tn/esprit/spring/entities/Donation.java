@@ -15,20 +15,21 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Donation implements Serializable{
 
-	public Donation() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idDonation;
