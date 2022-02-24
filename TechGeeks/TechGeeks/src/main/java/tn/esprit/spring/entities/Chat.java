@@ -10,25 +10,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Chat implements Serializable{
 
-	public Chat() {
-		// TODO Auto-generated constructor stub
-	}
+	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idChat;
-	
+	@NotNull
 	private String text;
 	
 	@OneToMany(mappedBy="chat")
