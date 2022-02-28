@@ -16,19 +16,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class User implements Serializable{
-
-	public User() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)

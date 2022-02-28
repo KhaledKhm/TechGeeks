@@ -1,10 +1,13 @@
 package tn.esprit.spring.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import tn.esprit.spring.entities.Document;
 import tn.esprit.spring.entities.Training;
@@ -24,18 +27,33 @@ public class DocumentServiceImp implements IDocumentService{
 		documentRepository.save(document);	
 	}
 	
-	@Override
+	/*@Override
 	public void addDocumentByTraining(Document document,int idTraining){
 		Training t = trainingRepository.findById(idTraining).orElse(null);
 		document.setTraining(t);
 		documentRepository.save(document);	
+	}*/
+	
+	@Override
+	public Document addDocumentByTraining(int idTraining,String description, MultipartFile file){
+		Training t = trainingRepository.findById(idTraining).orElse(null);
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		try {	
+			Document document = new Document (fileName,file.getContentType(),file.getBytes());
+			document.setTraining(t);
+			document.setDescription(description);
+			
+			return documentRepository.save(document);
+		}catch (IOException e) {
+			return null ;
+		}	
 	}
 	
 	@Override
 	public Document updateDocument(Document document) {
 		Document d = documentRepository.findById(document.getIdDocument()).orElse(null);
 		d.setDescription(document.getDescription());
-		d.setDocument(document.getDocument());
+		d.setFileName(document.getFileName());
 		return documentRepository.save(d);
 	}
 	
