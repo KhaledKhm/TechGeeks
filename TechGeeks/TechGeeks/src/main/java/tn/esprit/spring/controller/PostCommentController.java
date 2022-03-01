@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Post;
 import tn.esprit.spring.entities.PostComment;
 import tn.esprit.spring.service.IPostCommentService;
+import tn.esprit.spring.service.IPostService;
 
 @RestController
 @RequestMapping("/PostComment")
@@ -22,7 +24,9 @@ public class PostCommentController {
 
 	@Autowired
 	IPostCommentService pc;
-	@PostMapping("/AjoutPost")
+	@Autowired 
+	IPostService postservice;
+	@PostMapping("/AjoutComment")
 	public PostComment AjoutPostComment(@RequestBody List<PostComment> p) {
 		return pc.AjoutPostComment((PostComment) p);
 	}
@@ -54,4 +58,12 @@ public class PostCommentController {
 	public void affecterLikePost(@RequestBody Post p,@PathVariable int idpl) {
 		iPostService.affecterLikePost(p, idpl);
 	}*/
+	
+	@PostMapping("/AjoutCommentairePost/{idPost}")
+	@ResponseBody
+	public void AjoutCommentairePost(@PathVariable("idPost") int idPost ,@RequestBody PostComment po ) {
+		
+		pc.AjoutCommentinpost(po, idPost);
+	}
+
 }

@@ -52,22 +52,22 @@ public class PostService implements IPostService{
 		postrepo.save(a);
 	}
 
-	@Override
-	public Post affecterCommentairePost(Post p, int idco) {
+/*	@Override
+	public Post affecterCommentairePost(int p, PostComment idco) {
 		// TODO Auto-generated method stub
-		PostComment pc =pr.findById(idco).orElse(null);
-		p.setPostComments((Set<PostComment>) pc);
-		postrepo.save(p);
-		return p;
+		Post pc =postrepo.findById(p).orElse(null);
+		pc.setPostComments((Set<PostComment>) idco);
+		postrepo.save(pc);
+		return pc;
 	}
-
-	@Override
+*/
+	/*@Override
 	public Post affecterLikePost(Post p, int plike) {
 		// TODO Auto-generated method stub
 		PostLike pl= postlike.findById(plike).orElse(null);
 		p.setPostLikes((Set<PostLike>) pl);
 		postrepo.save(p);
 		return p;
-	}
+	}*/
 
 }

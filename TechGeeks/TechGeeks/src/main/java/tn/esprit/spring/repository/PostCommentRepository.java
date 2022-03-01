@@ -6,4 +6,5 @@ import tn.esprit.spring.entities.PostComment;
 
 public interface PostCommentRepository extends JpaRepository<PostComment,Integer>{
 
+	
 }

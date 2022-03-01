@@ -38,7 +38,7 @@ public class PostLikeController {
 		return iPostLikeService.PostLikeGetAll();
 	}
 	@PutMapping("/Modifier/{id}")
-	public void PostCommentModifier(@RequestBody PostLike a,@PathVariable int id) {
+	public void PostLikeModifier(@RequestBody PostLike a,@PathVariable int id) {
 		PostLike pl=iPostLikeService.PostLikeById(id);
 		a.setPost(pl.getPost());
 		iPostLikeService.PostLikeModifier(pl, id);;

@@ -13,7 +13,7 @@ public interface IPostService {
 	public Post PostById(int id);
 	public List<Post> PostGetAll();
 	public void PostModifier(Post a, int id);
-	public Post affecterCommentairePost(Post p,int pc);
-	public Post affecterLikePost(Post p,int pl);
+//	public Post affecterCommentairePost(int p,PostComment pc);
+//	public Post affecterLikePost(int p,PostComment pl);
 
 }

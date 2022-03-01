@@ -2,7 +2,12 @@ package tn.esprit.spring.controller;
 
 import java.util.List;
 
+import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,5 +51,17 @@ public class ChatController {
 		chat.setSender(a.getSender());
 		chat.setText(a.getText());
 		chatservice.ChatModifier(chat, id);
+	}
+	@MessageMapping("/chat.sender")
+	@SendTo("/topic/messages")
+	public Chat sendMessage(@Payload Chat chatMessage){
+	    return chatMessage;
+	}
+	
+	@MessageMapping("/chat.newUser")
+	@SendTo("/topic/messages")
+	public Chat newUser(@Payload Chat chatMessage ,SimpMessageHeaderAccessor headeraccessor) {
+		headeraccessor.getSessionAttributes().put("username", chatMessage.getSender());
+		return chatMessage;
 	}
 }

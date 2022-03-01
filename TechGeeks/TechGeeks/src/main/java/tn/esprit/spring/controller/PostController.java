@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Post;
+import tn.esprit.spring.entities.PostComment;
 import tn.esprit.spring.service.IPostService;
 
 @RestController
@@ -54,12 +55,12 @@ public class PostController {
 		iPostService.PostModifier(post, id);;
 	}
 	@PostMapping("/AffecterCommentaire/{idpc}")
-	public void affecterCommentairePost(@RequestBody Post p,@PathVariable int idpc) {
-		iPostService.affecterCommentairePost(p, idpc);
+	public void affecterCommentairePost(@PathVariable int p,@RequestBody PostComment idpc) {
+	//	iPostService.affecterCommentairePost(p, idpc);
 	}
 	
 	@PostMapping("/AffecterLike/{idpl}")
 	public void affecterLikePost(@RequestBody Post p,@PathVariable int idpl) {
-		iPostService.affecterLikePost(p, idpl);
+		//iPostService.affecterLikePost(p, idpl);
 	}
 }
