@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +34,14 @@ public class ComplaintController {
 	public Optional<Complaint> retrieveComplaint(Integer id) {
 	return cs.retrieveComplaint(id);
 	}
+	@GetMapping("/retrieve-Complaints")
+	@ResponseBody
+	public List<Complaint> retrieveAllComplaints() {
+		return cs.retrieveAllComplaints();
+	}
 	@GetMapping("/find-Complaint")
 	@ResponseBody
-	public Optional<Complaint> findComplaintbytype(Type type) {
+	public List<Complaint> findComplaintbytype(Type type) {
 	return cs.findComplaintBytype(type);
 	}
 	
@@ -47,6 +54,12 @@ public class ComplaintController {
 	@DeleteMapping("/delete-Complaint/{id}")
 	void deleteComplaint(@PathVariable(name="id")Integer id){
 		cs.deleteComplaint(id);
+	}
+	@GetMapping("/find-Complaintwithpagination/{offset}/{pagesize}")
+	@ResponseBody
+	public Page<Complaint> findComplaintwithPagination(@PathVariable ("offset")int offset,@PathVariable("pagesize")int pagesize ){
+		return cs.findComplaintwithPagination(offset, pagesize);
+		
 	}
 	@PostMapping("/assign-Complaint/{idcomplaint}/{iduser}")
 	@ResponseBody

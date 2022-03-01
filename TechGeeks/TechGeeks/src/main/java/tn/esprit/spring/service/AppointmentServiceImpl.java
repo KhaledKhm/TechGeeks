@@ -1,9 +1,11 @@
 package tn.esprit.spring.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Appointment;
@@ -51,5 +53,17 @@ UserRepository urepo;
 		apprepo.save(a);
 		
 	}
+
+	@Override
+	public List<Appointment> retrieveAllAppointments() {
+		// TODO Auto-generated method stub
+		return (List<Appointment>) apprepo.findAll() ;
+	}
+
+	@Override
+	public List<Appointment> retrieveAllAppointmentwithsorting(String field) {
+		// TODO Auto-generated method stub
+		return (List<Appointment>) apprepo.findAll(Sort.by(Sort.Direction.DESC,field));
+				}
 
 }

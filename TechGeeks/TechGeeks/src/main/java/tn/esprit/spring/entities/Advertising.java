@@ -20,6 +20,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PUBLIC)
+
 public class Advertising implements Serializable{
 
 	public Advertising() {

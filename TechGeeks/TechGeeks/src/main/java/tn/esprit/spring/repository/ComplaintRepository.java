@@ -13,7 +13,7 @@ import tn.esprit.spring.entities.Type;
 @Repository
 public interface ComplaintRepository extends 	JpaRepository<Complaint, Integer>{
 
-	Optional<Complaint> findByType( Type type );
+	List<Complaint> findByType( Type type );
 
 
 }

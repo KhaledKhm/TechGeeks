@@ -33,6 +33,18 @@ public class AppointmentController {
 	Optional<Appointment> retrieveAppointment(Integer id){
 	return as.retrieveAppointment(id);
 	}
+	@GetMapping("/retrieve-Appointments")
+	@ResponseBody
+	 public List<Appointment> retrieveAppointments() {
+	return as.retrieveAllAppointments();
+	}
+	@GetMapping("/retrieve-Appointmentswithsorting/{field}")
+	@ResponseBody
+	public List<Appointment> retrieveAllAppointmentwithsorting(@PathVariable("field")String field) {
+		return as.retrieveAllAppointmentwithsorting(field);
+	}
+	
+
 	
 	@PutMapping("/modify-Appointment")
 	@ResponseBody
