@@ -25,8 +25,8 @@ import tn.esprit.spring.service.JwtUserDetailsService;
 @CrossOrigin
 public class JwtAuthenticationController {
 
-	@Autowired
-	private AuthenticationManager authenticationManager;
+//	@Autowired
+//	private AuthenticationManager authenticationManager;
 
 /*	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
