@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Offre;
+import tn.esprit.spring.repository.OffreRepository;
+import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.service.IOffreService;
+import tn.esprit.spring.service.OffreServiceImpl;
 
 
 @RestController
@@ -21,6 +24,8 @@ public class OffreController {
 
 	@Autowired
 	IOffreService offreService;
+	@Autowired
+	UserRepository userRepository;
 	
 	public OffreController() {
 		// TODO Auto-generated constructor stub
@@ -29,7 +34,7 @@ public class OffreController {
 	@PostMapping("/add-offre/{id_user}")
 	@ResponseBody
 	Offre addOffre(@RequestBody Offre o , @PathVariable("id_user")Integer id ){
-		return offreService.addOffre(o , id);
+		return offreService.addOffre(o, id);
 	}
 	
 	@GetMapping("/retrieve-allOffres")

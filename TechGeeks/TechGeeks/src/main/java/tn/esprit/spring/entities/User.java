@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +35,7 @@ public class User implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int idUser;
+	private int id;
 
 	private String login;
 	
@@ -72,13 +74,13 @@ public class User implements Serializable{
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Event> events;
 	
-	
+	@JsonIgnore
 	@OneToMany
 	private Set<Offre> offres;
-	
+	@JsonIgnore
+	@OneToMany(mappedBy="users")
+	private Set<Postulant> postulants;
 
-	@OneToMany
-	private Set<Postulant> postulantUser;
 	
 	@OneToMany(mappedBy="userAdvertising")
 	private Set<Advertising> advertisings;

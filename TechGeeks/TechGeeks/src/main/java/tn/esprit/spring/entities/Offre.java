@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,6 +39,7 @@ public class Offre implements Serializable{
 	private String description;
 	
 	private Date creationDate;
+	@JsonIgnore
 	@ManyToOne
 	private User User;
 	
