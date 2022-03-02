@@ -75,6 +75,7 @@ public class DonationServiceImpl implements IDonationService{
 		Pot p = potRepository.findById(idPot).orElse(null);	
 		User u = userRepository.findById(idUser).orElse(null);	
 		
+		p.setSum(p.getSum()+donation.getSum());
 		donation.setPot(p);
 		donation.setUser(u);
 				

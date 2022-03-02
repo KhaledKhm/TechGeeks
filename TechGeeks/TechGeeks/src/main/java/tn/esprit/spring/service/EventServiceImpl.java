@@ -1,8 +1,10 @@
 package tn.esprit.spring.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +59,26 @@ import tn.esprit.spring.repository.LocalRepository;
 		e.setLocal(l);
 		eventRepository.save(e);
 		return e;
+		
+	}
+	
+
+	@Override
+	public void newestEvent() {
+		List<Event> events = retrieveAllEvents();
+		for (int i = 0; i<events.size();i++){
+			if(events.get(i).getDateStart().before(events.get(i+1).getDateStart())){
+				log.info(i
+						+"-Event "
+						+events.get(i).getIdEvent()
+						+" "
+						+events.get(i).getLibelle()
+						+" will take place on " 
+						+events.get(i).getDateStart()
+						+" and end on "
+						+events.get(i).getDateEnd());
+			}
+		}
 		
 	}
 
