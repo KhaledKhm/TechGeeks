@@ -49,8 +49,11 @@ public class PostLikeService implements IPostLikeService{
 
 	@Override
 	public String AjoutLikeinpost(PostLike po, int idpost) {
+	//	po.setNbLike(nbLike);
+		//postLikeRep.nblike(po, idpost);
+		return null;
 		// TODO Auto-generated method stub
-		Post p=ipostservice.PostById(idpost);
+		/*Post p=ipostservice.PostById(idpost);
 		po.setPost(p);
 		if (p.getIdPost()==idpost) {
 			int nb=0;
@@ -59,7 +62,8 @@ public class PostLikeService implements IPostLikeService{
 		
 		postLikeRep.save(po);
 		}
-		return "like dans post ajouter";
+		return "like dans post ajouter";*/
+		
 
 	}
 
