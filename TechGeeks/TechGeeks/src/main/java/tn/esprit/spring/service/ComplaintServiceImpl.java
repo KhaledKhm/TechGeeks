@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import tn.esprit.spring.Entity.Stock;
+
 import tn.esprit.spring.entities.Complaint;
 import tn.esprit.spring.entities.Type;
 import tn.esprit.spring.entities.User;
@@ -69,6 +69,12 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 			Complaint C= comprepo.findById(idComplaint).orElse(null);
 			C.setUserComplaint(u);
 			comprepo.save(C);
+	}
+
+	@Override
+   public int nbreCompParUser(int iduser) {
+		// TODO Auto-generated method stub
+		return comprepo.nbreCompParUser(iduser);
 	}
 	
 

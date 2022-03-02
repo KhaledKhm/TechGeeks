@@ -61,4 +61,9 @@ public class AppointmentController {
 	public void assignComplaintToUser(@PathVariable("idAppointment") int  idAppointment ,@PathVariable("idexpert")int idexpert,@PathVariable("iduser")int iduser){
 		as.assignAppointmentToUser(idAppointment, idexpert,iduser);
 	}
+	@GetMapping("/get-AppointmentByuser/{iduser}")
+	@ResponseBody
+	List<Appointment>  AppointementByuser(@PathVariable("iduser") int iduser) {
+	return as.findAppointmentByUser(iduser);
+	}
 }

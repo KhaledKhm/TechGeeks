@@ -40,6 +40,5 @@ public class Complaint implements Serializable{
 	private String description;
 	
 	@ManyToOne
-	@JsonIgnore
 	private User userComplaint;
 }

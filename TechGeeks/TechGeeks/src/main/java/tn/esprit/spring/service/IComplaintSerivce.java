@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 
 import tn.esprit.spring.entities.Complaint;
 import tn.esprit.spring.entities.Type;
@@ -20,6 +21,6 @@ public interface IComplaintSerivce {
 	void assignComplaintToUser(int idComplaint, int iduser);
 	void deleteComplaint(Integer id);
 
-
+	int nbreCompParUser(@Param("offre") int iduser);
 
 }

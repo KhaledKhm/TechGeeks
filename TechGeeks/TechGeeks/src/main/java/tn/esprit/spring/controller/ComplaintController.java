@@ -66,4 +66,10 @@ public class ComplaintController {
 	public void assignComplaintToUser(@PathVariable("idcomplaint") int  idComplaint ,@PathVariable("iduser")int id){
 		cs.assignComplaintToUser(idComplaint, id);
 	}
+	@GetMapping("/get-ComplaintByuser/{iduser}")
+	@ResponseBody
+	int  nbrcompparUser(@PathVariable("iduser") int iduser) {
+	return cs.nbreCompParUser(iduser);
+	}
+	
 }

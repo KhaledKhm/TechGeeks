@@ -66,4 +66,10 @@ UserRepository urepo;
 		return (List<Appointment>) apprepo.findAll(Sort.by(Sort.Direction.DESC,field));
 				}
 
+	@Override
+	public List<Appointment> findAppointmentByUser(int iduser) {
+		// TODO Auto-generated method stub
+		return apprepo.findAppointmentByUser(iduser);
+	}
+
 }
