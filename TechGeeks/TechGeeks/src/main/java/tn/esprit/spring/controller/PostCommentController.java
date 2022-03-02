@@ -1,8 +1,10 @@
 package tn.esprit.spring.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Post;
 import tn.esprit.spring.entities.PostComment;
+import tn.esprit.spring.entities.PostLike;
 import tn.esprit.spring.service.IPostCommentService;
+import tn.esprit.spring.service.IPostLikeService;
 import tn.esprit.spring.service.IPostService;
 
 @RestController
@@ -26,9 +30,11 @@ public class PostCommentController {
 	IPostCommentService pc;
 	@Autowired 
 	IPostService postservice;
+	
+	
 	@PostMapping("/AjoutComment")
-	public PostComment AjoutPostComment(@RequestBody List<PostComment> p) {
-		return pc.AjoutPostComment((PostComment) p);
+	public PostComment AjoutPostComment(@RequestBody PostComment p) {
+		return pc.AjoutPostComment(p);
 	}
 	
 	@DeleteMapping("/Supprimer/{id}")
@@ -65,5 +71,22 @@ public class PostCommentController {
 		
 		pc.AjoutCommentinpost(po, idPost);
 	}
+	
+	
+	
+	
+	@Scheduled(cron="*/60 * * * * *")
+	@GetMapping("/interdit")
+	@ResponseBody
+	public void motinterdit() {
+		//sList<PostComment> p= pc.PostCommentGetAll();
+		//pc.SupprimerMotInterdit(p);
+		//   System.out.println("supprimer");
+		
+		
+		
+	}
+	
+	
 
 }

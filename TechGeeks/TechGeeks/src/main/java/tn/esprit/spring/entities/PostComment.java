@@ -39,9 +39,11 @@ public class PostComment implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy="postComment")
 	private Set<CommentLike> commentLikes;
+	
 	@JsonIgnore
 	@ManyToOne
 	private Post post;
+	
 	@JsonIgnore
 	@OneToOne
 	private User user;

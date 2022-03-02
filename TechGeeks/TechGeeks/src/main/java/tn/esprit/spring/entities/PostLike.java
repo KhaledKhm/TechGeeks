@@ -30,6 +30,7 @@ public class PostLike implements Serializable{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idPostLike;
 	
+	private int nbLike;
 	@ManyToOne
 	private Post post;
 

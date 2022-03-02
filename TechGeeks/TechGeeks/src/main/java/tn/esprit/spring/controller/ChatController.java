@@ -28,8 +28,8 @@ public class ChatController {
 	IChatService chatservice;
 	
 	@PostMapping("/AjoutChat")
-	public String AjoutChat(@RequestBody List<Chat> c) {
-		chatservice.AjoutChat((Chat) c);
+	public String AjoutChat(@RequestBody Chat c) {
+		chatservice.AjoutChat(c);
 		return "chat Ajouter";
 	}
 	@DeleteMapping("/SupprimerChat/{id}")

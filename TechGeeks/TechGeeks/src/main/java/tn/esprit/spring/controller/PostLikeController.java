@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.PostLike;
@@ -20,10 +21,11 @@ import tn.esprit.spring.service.IPostLikeService;
 public class PostLikeController {
 	@Autowired 
 	IPostLikeService iPostLikeService;
-	
+	@Autowired 
+	IPostLikeService pl;
 	@PostMapping("/AjoueLike")
-	public PostLike AjoutPostLike(@RequestBody List<PostLike> p) {
-		return iPostLikeService.AjoutPostLike((PostLike) p);
+	public PostLike AjoutPostLike(@RequestBody PostLike p) {
+		return iPostLikeService.AjoutPostLike( p);
 	}
 	@DeleteMapping("/SupprimerLike/{id}")
 	public void SupprimerPostLike(@PathVariable int Id) {
@@ -42,5 +44,11 @@ public class PostLikeController {
 		PostLike pl=iPostLikeService.PostLikeById(id);
 		a.setPost(pl.getPost());
 		iPostLikeService.PostLikeModifier(pl, id);;
+	}
+	
+	@PostMapping("/AjoutlikePost/{idPost}")
+	@ResponseBody
+	public void AjoutlikePost(@PathVariable("idPost") int idPost ,@RequestBody PostLike po ) {
+		pl.AjoutLikeinpost(po, idPost);
 	}
 }

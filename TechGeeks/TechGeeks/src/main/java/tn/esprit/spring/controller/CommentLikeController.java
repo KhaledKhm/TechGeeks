@@ -22,8 +22,8 @@ public class CommentLikeController {
 	ICommentLikeService cs;
 	
 	@PostMapping("/AjoutCommentLike")
-	public CommentLike AjoutCommentLike(@RequestBody List<CommentLike> c) {
-		return cs.AjoutCommentLike((CommentLike) c);
+	public CommentLike AjoutCommentLike(@RequestBody CommentLike c) {
+		return cs.AjoutCommentLike(c);
 	}
 	
 	@DeleteMapping("/supprimer/{id}")
