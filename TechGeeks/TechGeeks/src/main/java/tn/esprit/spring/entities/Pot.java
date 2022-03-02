@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -35,7 +34,6 @@ public class Pot implements Serializable{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idPot;
 
-	@Size(min=5, max=30)
 	private String libelle;
 	
 	private float sum;
