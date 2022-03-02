@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,9 +35,9 @@ public class User implements Serializable{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idUser;
 
-	private String login;
+	private String username;
 	
-	private String pwd;
+	private String password;
 	
 	private String firstName;
 	
@@ -58,7 +59,8 @@ public class User implements Serializable{
 	
 	private String photo; //a revoir
 	
-	@OneToMany
+	private Boolean active;
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch= FetchType.EAGER)
 	private Set<Role> roles;
 
 	private ExpertRole expertRole;
