@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+/*
 import tn.esprit.spring.config.JwtTokenUtil;
 import tn.esprit.spring.entities.JwtRequest;
-import tn.esprit.spring.entities.JwtResponse;
+import tn.esprit.spring.entities.JwtResponse;*/
 import tn.esprit.spring.service.JwtUserDetailsService;
 
 
@@ -28,7 +28,7 @@ public class JwtAuthenticationController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-	@Autowired
+/*	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
 	@Autowired
@@ -55,5 +55,5 @@ public class JwtAuthenticationController {
 		} catch (BadCredentialsException e) {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
-	}
+	}*/
 }

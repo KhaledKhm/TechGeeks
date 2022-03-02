@@ -96,7 +96,7 @@ public class DonationServiceImpl implements IDonationService{
 				+ " " 
 				+ donation.getUser().getLastName()
 				+ "has made a total of "
-				+ donationRepository.nbreByUser(donation.getUser().getLogin())
+				+ donationRepository.nbreByUser(donation.getUser().getUsername())
 				+ " donations ---" );
 		}
 		
