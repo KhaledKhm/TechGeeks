@@ -1,6 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
@@ -17,16 +20,17 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PUBLIC)
+@NoArgsConstructor
+@AllArgsConstructor
 public class CommentLike implements Serializable{
 
-	public CommentLike() {
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idCommentLike;
 	
+	private int commentLike;
 	@ManyToOne
 	private PostComment postComment;
 
