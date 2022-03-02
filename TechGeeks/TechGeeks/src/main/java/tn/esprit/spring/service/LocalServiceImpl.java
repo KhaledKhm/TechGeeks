@@ -28,6 +28,8 @@ public class LocalServiceImpl implements ILocalService{
 	EventRepository eventRepository;
 	@Autowired
 	IEventService eventService;
+	@Autowired
+	IUserService userService;
 
 	@Override
 	public List<Local> retrieveAllLocals() {
@@ -77,9 +79,9 @@ public class LocalServiceImpl implements ILocalService{
 				
 			}
 		}
-//		if (users.size() == 0){
-//			users.add(userService.retrieveUser(idUser));
-//		}
+		if (users.size() == 0){
+		users.add(userService.retrieveUser(idUser));
+		}
 		
 		localRepository.save(l);
 		return l;

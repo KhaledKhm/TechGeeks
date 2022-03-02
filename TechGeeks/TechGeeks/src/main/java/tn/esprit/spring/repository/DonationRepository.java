@@ -8,6 +8,6 @@ import tn.esprit.spring.entities.Donation;
 
 public interface DonationRepository extends JpaRepository<Donation,Integer>{
 
-	@Query("Select COUNT(*) FROM User u where u.username = :username")
-	int nbreByUser(@Param("username") String username);
+	@Query("Select COUNT(*) FROM Donation d where d.user.idUser = :id")
+	int nbreByUser(@Param("id") int id);
 }

@@ -10,4 +10,5 @@ public interface IEventService {
 	Event updateEvent(Event e);
 	Event retrieveEvent(int id);
 	void deleteEvent(int id);
+	Event addEventAndAssignLocal(Event e, int idLocal);
 }

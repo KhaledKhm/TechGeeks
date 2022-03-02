@@ -57,5 +57,11 @@ public class EventController {
 		eventService.deleteEvent(idEvent);
 		
 	}
+	
+	@PostMapping("/assign-local-to-event/{idLocal}")
+	@ResponseBody
+	Event assignLocalTovent(@RequestBody Event e, @PathVariable("idLocal") int idLocal){
+		return eventService.addEventAndAssignLocal(e, idLocal);
+	}
 
 }

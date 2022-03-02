@@ -67,14 +67,7 @@ public class DonationServiceImpl implements IDonationService{
 		
 	}
 
-	@Override
-	public Donation assignDonation(Donation d, int idPot) {
-		Pot p = potRepository.findById(idPot).orElse(null);	
-		d.setPot(p);
-		
-		donationRepository.save(d);
-		return d;
-	}
+
 
 	@Override
 	@Transactional
@@ -94,15 +87,17 @@ public class DonationServiceImpl implements IDonationService{
 	public void numberDonationsByUser() {
 		for(Donation donation:retrieveAllDonations()){		
 		log.info("--- User: "
+				+ " First Name: "
 				+ donation.getUser().getFirstName()
-				+ " " 
+				+ " Last Name: " 
 				+ donation.getUser().getLastName()
-				+ "has made a total of "
-				+ donationRepository.nbreByUser(donation.getUser().getUsername())
+				+ " has made a total of "
+				+ donationRepository.nbreByUser(donation.getUser().getIdUser())
 				+ " donations ---" );
 		}
 		
 	}
+	
 	
 	@Override
 	@Transactional
