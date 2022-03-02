@@ -63,58 +63,24 @@ public class PostCommentService implements IPostCommentService{
 	}
 
 	@Override
-	public void SupprimerMotInterdit(List<PostComment> p) {
+	public void SupprimerMotInterdit(List<PostComment> p) throws Exception {
 		// TODO Auto-generated method stub
-		//String fichier ="dictionaire.txt";
-		//ClassLoader classLoader = getClass().getClassLoader();
-		//File file = new File(classLoader.getResource("dictionaire.txt").getFile());
-		
-		/*InputStream ips;
-		try {
-			ips = new FileInputStream(file);
-			InputStreamReader ipsr=new InputStreamReader(ips);
-			BufferedReader br=new BufferedReader(ipsr);
-			String ligne;
-			while ((ligne=br.readLine())!=null){
-				
-				System.out.println("buffer contiain "+ br.readLine());
-
-				for(int i =0;i<p.size();i++) {
-					if(p.equals(ligne)){
-					postCommentrep.delete((PostComment) p);
-					System.out.println(" a supprimer");
-				}
-				}
-			}
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		*/
-		String file = "dictionaire.txt";
-        try(BufferedReader br = new BufferedReader(new FileReader(file))) 
-        {
+				String file = "dictionaire.txt";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        
             String line;
             while ((line=br.readLine())  != null) {
             System.out.println(line);
           // p= postCommentrep.findAll();
            for (int i=0;i<p.size();i++) {
-        	   for(int j=0;i<br.readLine().indexOf(j);j++)
+        	   for(int j=0;i<br.readLine().indexOf(j);j++) {
         	   if(p.equals(br.readLine())) {
         		   postCommentrep.delete((PostComment) p);
         	   }
            }
             }
         }
-        catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }	
-        }
+	}
 
 	public void getDictionaire() throws IOException {
 		String file = "dictionaire.txt";

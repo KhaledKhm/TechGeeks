@@ -78,10 +78,10 @@ public class PostCommentController {
 	@Scheduled(cron="*/60 * * * * *")
 	@GetMapping("/interdit")
 	@ResponseBody
-	public void motinterdit() {
-		//sList<PostComment> p= pc.PostCommentGetAll();
-		//pc.SupprimerMotInterdit(p);
-		//   System.out.println("supprimer");
+	public void motinterdit() throws Exception {
+		List<PostComment> p= pc.PostCommentGetAll();
+		pc.SupprimerMotInterdit(p);
+		   System.out.println("supprimer");
 		
 		
 		
