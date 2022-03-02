@@ -1,6 +1,7 @@
 HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -12,7 +13,12 @@ target/
 .settings
 .springBeans
 .sts4-cache
-.application.properties
+src/main/resources/application.properties
+application.properties
+mvnw
+mvnw.cmd
+pom.xml
+src/main/java/tn/esprit/spring/controller/LocalController.java
 
 ### IntelliJ IDEA ###
 .idea
