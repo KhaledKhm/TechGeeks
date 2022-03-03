@@ -1,6 +1,9 @@
 package tn.esprit.spring.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -91,12 +94,15 @@ public class PostulantController {
 	
 	@GetMapping("/get-statistiqueOffreAll")
 	@ResponseBody
-	void nbrPosParOffreAll(){
+	HashMap<Integer, Integer> nbrPosParOffreAll(){
+        HashMap<Integer, Integer> map1 = new HashMap<Integer, Integer>();
 		List<Offre> offres = offreService.retrieveAllOffres();
 		offres.forEach(o->{
 			System.out.println(o.getIdOffer()+" : ");
 			System.out.println(postulationRepository.nbrePosParOffre(o.getIdOffer())+"/n");
+			map1.put(o.getIdOffer()  , postulationRepository.nbrePosParOffre(o.getIdOffer()));
 		});
+		return map1;
 	}
 
 }
