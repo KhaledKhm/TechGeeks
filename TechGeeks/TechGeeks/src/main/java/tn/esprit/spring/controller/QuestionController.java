@@ -55,12 +55,6 @@ public class QuestionController {
 		questionService.deleteAllQuestions();
 	}
 	
-	/*@DeleteMapping("/deleteQuestionWithAnswer/{idQuestion}")
-	@ResponseBody
-	public void deleteQuestionWithAnswer(@PathVariable("idQuestion") int idQuestion) {
-		questionService.deleteQuestionWithAnswer(idQuestion);
-	}*/
-	
 	
 	@DeleteMapping("/deleteQuestionById/{idQuestion}")
 	@ResponseBody

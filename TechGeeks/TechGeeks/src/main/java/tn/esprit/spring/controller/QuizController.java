@@ -13,13 +13,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entities.Answer;
+import tn.esprit.spring.entities.Question;
 import tn.esprit.spring.entities.Quiz;
+import tn.esprit.spring.repository.AnswerRepository;
+import tn.esprit.spring.repository.QuestionRepository;
+import tn.esprit.spring.repository.QuizRepository;
 import tn.esprit.spring.service.IQuizService;
 
 @RestController
 public class QuizController {
 	@Autowired
 	IQuizService quizService;
+	@Autowired
+	QuizRepository quizRepo;
+	@Autowired
+	QuestionRepository questionRepo;
+	@Autowired
+	AnswerRepository answerRepo;
+	
 	
 	@PostMapping("/addQuiz")
 	@ResponseBody
@@ -48,7 +60,20 @@ public class QuizController {
 	@DeleteMapping("/deleteQuizById/{idQuiz}")
 	@ResponseBody
 	public void deleteQuizById(@PathVariable("idQuiz") int idQuiz) {
-		quizService.deleteQuizById(idQuiz);
+			Quiz quiz = quizRepo.findById(idQuiz).get();
+			List<Question> questions = questionRepo.findAll();
+			List<Answer> answers = answerRepo.findAll();
+			questions.forEach(q->{
+				if(quiz.getIdQuiz() == q.getQuiz().getIdQuiz()){
+					answers.forEach(a->{
+						if(q.getIdQuestion() == a.getQuestion().getIdQuestion()){
+							answerRepo.delete(a);
+						}
+					});
+					questionRepo.delete(q);
+				}
+			});
+			quizRepo.deleteById(idQuiz);
 	}
 	
 	@GetMapping("/getAllQuizs")
