@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.entities.Post;
 import tn.esprit.spring.entities.PostComment;
 import tn.esprit.spring.entities.PostLike;
+import tn.esprit.spring.repository.PostCommentRepository;
 import tn.esprit.spring.service.IPostCommentService;
 import tn.esprit.spring.service.IPostLikeService;
 import tn.esprit.spring.service.IPostService;
@@ -30,7 +31,8 @@ public class PostCommentController {
 	IPostCommentService pc;
 	@Autowired 
 	IPostService postservice;
-	
+	@Autowired 
+	IPostLikeService pl;
 	
 	@PostMapping("/AjoutComment")
 	public PostComment AjoutPostComment(@RequestBody PostComment p) {
@@ -73,17 +75,19 @@ public class PostCommentController {
 	}
 	
 	
-	
+	@Autowired 
+	PostCommentRepository pr;
 	
 	@Scheduled(cron="*/60 * * * * *")
 	@GetMapping("/interdit")
 	@ResponseBody
 	public void motinterdit() throws Exception {
-		List<PostComment> p= pc.PostCommentGetAll();
-		pc.SupprimerMotInterdit(p);
-		   System.out.println("supprimer");
+		//List<PostComment> p= pc.PostCommentGetAll();
 		
-		
+		//pc.SupprimerMotInterdit(p);
+		pc.getDictionaire();
+		System.out.print("chaque 60 seconde verifier");
+		 
 		
 	}
 	

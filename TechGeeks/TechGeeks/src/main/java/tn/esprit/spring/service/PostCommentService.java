@@ -63,30 +63,25 @@ public class PostCommentService implements IPostCommentService{
 	}
 
 	@Override
-	public void SupprimerMotInterdit(List<PostComment> p) throws Exception {
-		// TODO Auto-generated method stub
-				String file = "dictionaire.txt";
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        
-            String line;
-            while ((line=br.readLine())  != null) {
-            System.out.println(line);
-          // p= postCommentrep.findAll();
-           for (int i=0;i<p.size();i++) {
-        	   for(int j=0;i<br.readLine().indexOf(j);j++) {
-        	   if(p.equals(br.readLine())) {
-        		   postCommentrep.delete((PostComment) p);
-        	   }
-           }
-            }
-        }
-	}
-
-	public void getDictionaire() throws IOException {
+		public void getDictionaire() throws IOException {
+		List<PostComment> p=postCommentrep.findAll();
+		
 		String file = "dictionaire.txt";
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line;
-        while ((line=br.readLine())  != null) {
-        System.out.println(line);}
+        while ((line=br.readLine())!= null) {
+        System.out.println("contiain : "+ line);
+        for(int i=0;i<p.size();i++) {
+        	if(!(br.equals(p.get(i).getComment()))) {
+     		   postCommentrep.deleteById(p.get(i).getIdComment());
+     		   System.out.println("supp");
+     		   return;
+        	}
+        	else {
+        		System.out.print ("mafamech kelma zeyda");
+        	}}
+        	
+        }
+        
 	}
 }
