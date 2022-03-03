@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,5 +58,22 @@ public class TariningController {
 	public Optional <Training> getTrainingById(@PathVariable("idTraining") int idTraining) {
 		return trainingService.getTrainingById(idTraining);
 	}
-
+	@GetMapping("/sortAllTrainingDESC/{attribut}") 
+	@ResponseBody
+	public List<Training> sortAllTrainingDESC (@PathVariable("attribut")String attribut){
+	    return trainingService.sortAllTrainingDESC(attribut);
+	}
+	
+	@GetMapping("/sortAllTrainingASC/{attribut}") 
+	@ResponseBody
+	public List<Training> sortAllTrainingASC (@PathVariable("attribut")String attribut){
+	    return trainingService.sortAllTrainingASC(attribut);
+	}
+	
+	@GetMapping("/TrainingPagination/{offset}/{pagesize}")
+	@ResponseBody
+	public Page<Training> TrainingPagination(@PathVariable ("offset")int offset,@PathVariable("pagesize")int pagesize ){
+	    return trainingService.TrainingPagination(offset, pagesize);
+	}
+		               
 }

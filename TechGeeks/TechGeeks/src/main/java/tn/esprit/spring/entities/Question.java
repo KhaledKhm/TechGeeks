@@ -35,11 +35,9 @@ public class Question implements Serializable{
 	private String question;
 	
 	@OneToMany
-	@JsonIgnore
 	private Set<Answer> answers;
 	
 	@ManyToOne
-	@JsonIgnore
 	private Quiz quiz;
 
 }

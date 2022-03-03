@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.spring.entities.Question;
 import tn.esprit.spring.entities.Quiz;
 import tn.esprit.spring.repository.QuizRepository;
+import tn.esprit.spring.repository.AnswerRepository;
 import tn.esprit.spring.repository.QuestionRepository;
 
 @Service
@@ -16,6 +17,8 @@ public class QuestionServiceImp implements IQuestionService{
 
 	@Autowired
 	QuizRepository quizRepository ;
+	@Autowired
+	AnswerRepository answerRepository ;
 	@Autowired
 	QuestionRepository questionRepository ;
 	
@@ -39,8 +42,12 @@ public class QuestionServiceImp implements IQuestionService{
 	@Override
 	public void deleteQuestionById(int idQuestion) {
 		questionRepository.deleteById(idQuestion);
-		
 	}
+	/*@Override
+	public void deleteQuestionWithAnswer(int idQuestion) {
+		questionRepository.deleteById(idQuestion);
+		answerRepository.deleteByIdQuestion(idQuestion);
+	}*/
 
 	@Override
 	public List<Question> getAllQuestions() {

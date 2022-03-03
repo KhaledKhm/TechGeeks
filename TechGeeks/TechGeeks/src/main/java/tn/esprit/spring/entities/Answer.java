@@ -2,7 +2,7 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +33,6 @@ public class Answer implements Serializable{
 	private String answer;
 	
 	@ManyToOne
-	@JsonIgnore
 	private Question question;
 
 }

@@ -13,4 +13,5 @@ public interface IQuestionService {
 	public void deleteQuestionById(int idQuestion);
 	public List<Question> getAllQuestions();
 	public Optional<Question> getQuestionById(int idQuestion);
+	//public void deleteQuestionWithAnswer(int idQuestion);
 }

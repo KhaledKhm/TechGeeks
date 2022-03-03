@@ -13,14 +13,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import tn.esprit.spring.entities.Answer;
 import tn.esprit.spring.entities.Question;
+import tn.esprit.spring.repository.AnswerRepository;
+import tn.esprit.spring.repository.QuestionRepository;
+import tn.esprit.spring.service.IAnswerService;
 import tn.esprit.spring.service.IQuestionService;
 
 @RestController
 public class QuestionController {
 	@Autowired
 	IQuestionService questionService;
+	@Autowired
+	IAnswerService answerService;
+	@Autowired
+	AnswerRepository answerRepo;
+	@Autowired
+	QuestionRepository questionRepo;
 	
 	@PostMapping("/addQuestion")
 	@ResponseBody
@@ -46,10 +55,24 @@ public class QuestionController {
 		questionService.deleteAllQuestions();
 	}
 	
+	/*@DeleteMapping("/deleteQuestionWithAnswer/{idQuestion}")
+	@ResponseBody
+	public void deleteQuestionWithAnswer(@PathVariable("idQuestion") int idQuestion) {
+		questionService.deleteQuestionWithAnswer(idQuestion);
+	}*/
+	
+	
 	@DeleteMapping("/deleteQuestionById/{idQuestion}")
 	@ResponseBody
 	public void deleteQuestionById(@PathVariable("idQuestion") int idQuestion) {
-		questionService.deleteQuestionById(idQuestion);
+		Question ques = questionRepo.findById(idQuestion).get();
+		List<Answer> answers = answerRepo.findAll();
+		answers.forEach(a->{
+			if(ques.getIdQuestion() == a.getQuestion().getIdQuestion()){
+				answerRepo.delete(a);
+			}
+		});
+		questionRepo.deleteById(idQuestion);
 	}
 	
 	@GetMapping("/getAllQuestions")

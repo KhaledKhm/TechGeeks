@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import tn.esprit.spring.entities.Sector;
 import tn.esprit.spring.entities.Training;
@@ -62,5 +65,22 @@ public class TrainingServiceImp implements ITrainingService{
 	public Optional<Training> getTrainingById(int idTraining) {
 		return trainingRepository.findById(idTraining);
 	}
+
+	@Override
+	public List<Training> sortAllTrainingDESC( String attribut) {
+		return (List<Training>) trainingRepository.findAll(Sort.by(Sort.Direction.DESC, attribut));
+	}
+
+	@Override
+	public List<Training> sortAllTrainingASC(String attribut) {
+		return (List<Training>) trainingRepository.findAll(Sort.by(Sort.Direction.ASC, attribut));
+	}
+	
+	@Override
+	public Page<Training> TrainingPagination(int offset, int pagesize ){
+		   Page<Training> training= trainingRepository.findAll(PageRequest.of(offset, pagesize));
+		   return training;
+	}
+	
 
 }

@@ -52,8 +52,8 @@ public class DocumentServiceImp implements IDocumentService{
 	@Override
 	public Document updateDocument(Document document) {
 		Document d = documentRepository.findById(document.getIdDocument()).orElse(null);
-		d.setDescription(document.getDescription());
-		d.setFileName(document.getFileName());
+			d.setDescription(document.getDescription());
+			d.setFileName(document.getFileName());
 		return documentRepository.save(d);
 	}
 	

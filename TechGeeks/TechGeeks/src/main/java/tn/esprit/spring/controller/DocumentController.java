@@ -59,8 +59,9 @@ public class DocumentController {
 	
 	@PutMapping("/updateDocument")
 	@ResponseBody
-	public void updateDocument(@RequestBody Document document) {
+	public void updateDocument(@RequestBody Document document ) {
 		documentService.updateDocument(document);
+
 	}
 	
 	@DeleteMapping("/deleteAllDocuments")

@@ -36,7 +36,6 @@ public class Quiz implements Serializable{
 	private float mark;
 
 	@OneToMany(mappedBy="quiz")
-	@JsonIgnore
 	private Set<Question> questions;
 	
 	@OneToOne(mappedBy="quiz")
