@@ -72,14 +72,18 @@ public class PotServiceImpl implements IPotService{
 	@Override
 	@Transactional
 	public void takeMoney(int idPot, float money) {
-		Pot p=retrievePot(idPot);
-		float sum;
-		sum=p.getSum();
-		sum-=money;
-		p.setSum(sum);
-		
-		potRepository.save(p);
-		
+		if(money <=0){
+			System.out.println("You cant delete money equals or less than 0");
+			return;
+		}else{
+			Pot p=retrievePot(idPot);
+			float sum;
+			sum=p.getSum();
+			sum-=money;
+			p.setSum(sum);
+			System.out.println("Money taken from "+p.getIdPot()+"-"+p.getLibelle()+": "+money+" new sum: "+p.getSum());
+			potRepository.save(p);
+		}
 		
 		
 	}
