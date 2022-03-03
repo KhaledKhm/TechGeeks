@@ -14,4 +14,5 @@ public interface IDonationService {
 	Donation addDonationAndAssignPot(Donation d, int idPot);
 	void addAndAssignPotAndUser(Donation donation, int idPot, int idUser);
 	public void numberDonationsByUser();
+	public void donatedMoneyByPerson(int idUser);
 }

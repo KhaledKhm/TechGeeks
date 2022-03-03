@@ -76,6 +76,14 @@ public class DonationController {
 	void numberDonationsByUser(){
 		donationService.numberDonationsByUser();
 	}
+	
+	
+	@GetMapping("/retrieve-donatedMoneyByPerson/{idUser]")
+	@ResponseBody
+	void donatedMoneyByPerson(@PathVariable("idUser") int idUser){
+		donationService.donatedMoneyByPerson(idUser);
+	}
+	
 	/*
 	  @Autowired
 	    public JavaMailSender emailSender;
