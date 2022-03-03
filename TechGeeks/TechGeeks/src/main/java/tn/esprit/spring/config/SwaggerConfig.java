@@ -22,7 +22,7 @@ public class SwaggerConfig {
 	}
 	private ApiInfo apiInfo () {
 	return new ApiInfoBuilder()
-	.title("Swagger Configuration for Women Empowerment Project")
+	.title("Swagger Configuration for examen Spring")
 	.description("\"Spring Boot Swagger configuration\"")
 	.version("1.1.0").build();
 	}
