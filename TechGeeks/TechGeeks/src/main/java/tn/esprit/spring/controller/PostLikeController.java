@@ -23,6 +23,7 @@ public class PostLikeController {
 	IPostLikeService iPostLikeService;
 	@Autowired 
 	IPostLikeService pl;
+	
 	@PostMapping("/AjoueLike")
 	public PostLike AjoutPostLike(@RequestBody PostLike p) {
 		return iPostLikeService.AjoutPostLike( p);
@@ -46,9 +47,9 @@ public class PostLikeController {
 		iPostLikeService.PostLikeModifier(pl, id);;
 	}
 	
-	/*@PostMapping("/AjoutlikePost/{idPost}")
+	@PostMapping("/AjoutlikePost/{idPost}")
 	@ResponseBody
 	public void AjoutlikePost(@PathVariable("idPost") int idPost ,@RequestBody PostLike po ) {
 		pl.AjoutLikeinpost(po, idPost);
-	}*/
+	}
 }

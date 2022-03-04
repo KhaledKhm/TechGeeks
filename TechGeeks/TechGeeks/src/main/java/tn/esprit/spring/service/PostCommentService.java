@@ -70,10 +70,11 @@ public class PostCommentService implements IPostCommentService{
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line;
         while ((line=br.readLine())!= null) {
-        System.out.println("contiain : "+ line);
+        System.out.println("contain : "+ line);
         for(int i=0;i<p.size();i++) {
-        	if(!(br.equals(p.get(i).getComment()))) {
-     		   postCommentrep.deleteById(p.get(i).getIdComment());
+        	if(!(br.readLine().contains(p.get(i).getComment()))) {
+        		i++;
+     		   postCommentrep.deleteById(p.get(i-1).getIdComment());
      		   System.out.println("supp");
      		   return;
         	}

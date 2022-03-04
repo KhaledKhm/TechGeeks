@@ -25,6 +25,7 @@ public class PostController {
 	@Autowired 
 	IPostService iPostService;
 	
+	
 	@PostMapping("/AjoutPost")
 	public String AjoutPost(@RequestBody Post p) {
 		iPostService.AjoutPost((Post) p);
@@ -61,6 +62,11 @@ public class PostController {
 	
 	@PostMapping("/AffecterLike/{idpl}")
 	public void affecterLikePost(@RequestBody Post p,@PathVariable int idpl) {
-		//iPostService.affecterLikePost(p, idpl);
+		//iPostService..affecterLikePost(p, idpl);
 	}
+	@GetMapping("/getByTitle/{title}")
+	public List<Post> PostGetTitle(@PathVariable String title){
+		return iPostService.getByTitle(title);
+	}
+	
 }

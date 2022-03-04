@@ -52,6 +52,14 @@ public class PostService implements IPostService{
 		postrepo.save(a);
 	}
 
+	
+	
+	@Override
+	public List<Post> getByTitle(String title) {
+		// TODO Auto-generated method stub
+		return (List<Post>)postrepo.findByTitle(title);
+	}
+
 /*	@Override
 	public Post affecterCommentairePost(int p, PostComment idco) {
 		// TODO Auto-generated method stub

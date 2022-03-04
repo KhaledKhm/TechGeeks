@@ -15,5 +15,7 @@ public interface IPostService {
 	public void PostModifier(Post a, int id);
 //	public Post affecterCommentairePost(int p,PostComment pc);
 //	public Post affecterLikePost(int p,PostComment pl);
+	
+	public List<Post> getByTitle(String title);
 
 }

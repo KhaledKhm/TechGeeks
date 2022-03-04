@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.BadWordFilter;
 import tn.esprit.spring.entities.Post;
 import tn.esprit.spring.entities.PostComment;
 import tn.esprit.spring.entities.PostLike;
+import tn.esprit.spring.repository.BadWordRepository;
 import tn.esprit.spring.repository.PostCommentRepository;
 import tn.esprit.spring.service.IPostCommentService;
 import tn.esprit.spring.service.IPostLikeService;
@@ -34,10 +36,13 @@ public class PostCommentController {
 	@Autowired 
 	IPostLikeService pl;
 	
-	@PostMapping("/AjoutComment")
+	@Autowired
+	BadWordRepository BadWord;
+	
+	/*@PostMapping("/AjoutComment")
 	public PostComment AjoutPostComment(@RequestBody PostComment p) {
 		return pc.AjoutPostComment(p);
-	}
+	}*/
 	
 	@DeleteMapping("/Supprimer/{id}")
 	public void SupprimerPostComment(@PathVariable int Id) {
@@ -68,8 +73,7 @@ public class PostCommentController {
 	}*/
 	
 	@PostMapping("/AjoutCommentairePost/{idPost}")
-	@ResponseBody
-	public void AjoutCommentairePost(@PathVariable("idPost") int idPost ,@RequestBody PostComment po ) {
+	public void AssignCommentairePost(@PathVariable("idPost") int idPost ,@RequestBody PostComment po ) {
 		
 		pc.AjoutCommentinpost(po, idPost);
 	}
@@ -78,8 +82,8 @@ public class PostCommentController {
 	@Autowired 
 	PostCommentRepository pr;
 	
-	@Scheduled(cron="*/60 * * * * *")
-	@GetMapping("/interdit")
+	//@Scheduled(cron="*/60 * * * * *")
+	/*@GetMapping("/interdit")
 	@ResponseBody
 	public void motinterdit() throws Exception {
 		//List<PostComment> p= pc.PostCommentGetAll();
@@ -89,8 +93,12 @@ public class PostCommentController {
 		System.out.print("chaque 60 seconde verifier");
 		 
 		
+	}*/
+	
+	@PostMapping("/AjoutCommentinterdit")
+	public void AjoutComment(@RequestBody PostComment comment) {
+		comment.setComment(BadWordFilter.getCensoredText(comment.getComment()));
+		 pc.AjoutPostComment(comment);
 	}
-	
-	
 
 }
