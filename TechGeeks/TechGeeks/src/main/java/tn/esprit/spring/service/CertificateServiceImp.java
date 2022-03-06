@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Certificate;
+import tn.esprit.spring.entities.Quiz;
 import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.CertificateRepository;
 import tn.esprit.spring.repository.UserRepository;
@@ -25,7 +26,7 @@ public class CertificateServiceImp implements ICertificateService{
 		certificateRepository.save(certificat);
 	}
 	
-	@Override
+	/*@Override
 	public void AffecterUser(int idCertificate, List<User> users) {
 		userRepository.saveAll(users);
 		Certificate c =certificateRepository.findById(idCertificate).orElse(null);
@@ -33,8 +34,9 @@ public class CertificateServiceImp implements ICertificateService{
 			user.setUserCertificate(c);
 		}
 		userRepository.saveAll(users);
-	}
-
+	}*/
+	
+	
 	@Override
 	public Certificate updateCertificate(Certificate certificate) {
 		Certificate c = certificateRepository.findById(certificate.getIdCertificate()).orElse(null);

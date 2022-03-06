@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Answer;
+import tn.esprit.spring.entities.Certificate;
 import tn.esprit.spring.entities.Question;
 import tn.esprit.spring.entities.Quiz;
 import tn.esprit.spring.repository.AnswerRepository;
@@ -39,10 +40,29 @@ public class QuizController {
 		quizService.addQuiz(quiz);
 	}
 	
-	@PostMapping("/addQuizByCertificate/{idCertificate}")
+	/*@PostMapping("/addQuizByCertificate/{idCertificate}")
 	@ResponseBody
 	public void addQuizByCertificate(@RequestBody Quiz quiz, @PathVariable("idCertificate") int idCertificate) {
 		quizService.addQuizByCertificate(quiz,idCertificate);
+	}
+	*/
+	
+	@PostMapping("/AffecterCertificate/{idQuiz}/{certificates}")
+	@ResponseBody
+	public void AffecterCertificate(@RequestBody Quiz quiz,@PathVariable("idQuiz") int idQuiz,@PathVariable("certificates") List<Certificate> certificates) {
+		quizService.AffecterCertificate(idQuiz,certificates);
+	}
+	
+	@PostMapping("/AffecterAllCertificates/{idQuiz}/{certificates}")
+	@ResponseBody
+	public void AffecterAllCertificates(@RequestBody Quiz quiz,@PathVariable("idQuiz") int idQuiz,@PathVariable("certificates") List<Certificate> certificates) {
+		quizService.AffecterAllCertificates(idQuiz,certificates);
+	}
+	
+	@PostMapping("/addQuizByTraining/{idTraining}")
+	@ResponseBody
+	public void addQuizByTraining(@RequestBody Quiz quiz, @PathVariable("idTraining") int idTraining) {
+		quizService.addQuizByTraining(quiz,idTraining);
 	}
 	
 	@PutMapping("/updateQuiz")

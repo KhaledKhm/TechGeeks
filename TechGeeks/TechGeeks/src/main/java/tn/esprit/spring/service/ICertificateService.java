@@ -8,7 +8,7 @@ import tn.esprit.spring.entities.User;
 
 public interface ICertificateService {
 	public void addCertificate (Certificate certificat);
-	public void AffecterUser( int idCertificate, List<User> users);
+	//public void AffecterUser( int idCertificate, List<User> users);
 	public Certificate updateCertificate(Certificate certificate);
 	public void deleteAllCertificates();
 	public void deleteCertificateById(int idCertificate);

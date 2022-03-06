@@ -3,10 +3,12 @@ package tn.esprit.spring.entities;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -33,12 +35,20 @@ public class Quiz implements Serializable{
 	
 	private String title;
 	
-	private float mark;
+	private double mark;
+	
 
 	@OneToMany(mappedBy="quiz")
+	@JsonIgnore
 	private Set<Question> questions;
 	
-	@OneToOne(mappedBy="quiz")
+	@OneToMany(mappedBy="quiz")
 	@JsonIgnore
-	private Certificate certificate;
+	private Set<Certificate> certificates;
+	
+	@OneToOne (mappedBy="quiz")
+	@JsonIgnore
+	private Training training;
+	
+	
 }

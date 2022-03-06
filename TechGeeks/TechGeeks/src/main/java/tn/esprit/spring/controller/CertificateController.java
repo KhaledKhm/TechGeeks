@@ -22,11 +22,11 @@ public class CertificateController {
 	@Autowired
 	ICertificateService certificateService;
 	
-	@PostMapping("/AffecterUser/{idCertificate}/{users}")
+	/*@PostMapping("/AffecterUser/{idCertificate}/{users}")
 	@ResponseBody
 	public void AffecterUser(@RequestBody Certificate certificate,@PathVariable("idCertificate") int idCertificate,@PathVariable("users") List<User> user) {
 		certificateService.AffecterUser(idCertificate,user);
-	}
+	}*/
 	
 	@PostMapping("/addCertificate")
 	@ResponseBody

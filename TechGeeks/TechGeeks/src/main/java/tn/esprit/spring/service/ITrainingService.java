@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import tn.esprit.spring.entities.Training;
 
 public interface ITrainingService {
-	public void addTraining(Training training,int idSector, int idLocal);
+	public void addTrainingByAdmin(Training training,int idLocal);
 	public Training updateTraining(Training training);
 	public void deleteAllTrainings();
 	public void deleteTrainingById(int idTraining);
@@ -17,5 +17,7 @@ public interface ITrainingService {
 	public List<Training> sortAllTrainingDESC(String attribut);
 	public List<Training> sortAllTrainingASC(String attribut);
 	public Page<Training> TrainingPagination(int offset, int pagesize );
-	
+	public void addComment(int idTraining, String comment);
+	public Training updateComment(Training training);
+	public void addTrainingByTrainer(Training training, int idUser, int idSector);
 }

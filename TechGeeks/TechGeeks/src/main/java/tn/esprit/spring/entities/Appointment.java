@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,8 +37,10 @@ public class Appointment implements Serializable{
 	private String local;
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<User> users;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User expert;
 }

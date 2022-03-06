@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -58,50 +60,68 @@ public class User implements Serializable{
 	
 	private String photo; //a revoir
 	
-	@OneToMany
-	private Set<Role> roles;
+	@OneToOne
+	@JsonIgnore
+	private Role role;
 
 	private ExpertRole expertRole;
 		
 	private String document;
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<Donation> donations;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<Event> events;
 	
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<Offre> offres;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Postulant postulantUser;
 	
 	@OneToMany(mappedBy="userAdvertising")
+	@JsonIgnore
 	private Set<Advertising> advertisings;
 	
 	@OneToMany(mappedBy="userComplaint")
+	@JsonIgnore
 	private Set<Complaint> complaints;
 	
 	@OneToMany(mappedBy="userPost")
+	@JsonIgnore
 	private Set<Post> posts;
 	
 	@OneToOne(mappedBy="user")
+	@JsonIgnore
 	private PostComment postComment;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Appointment appointment;
 	
 	@OneToMany(mappedBy="expert")
+	@JsonIgnore
 	private Set<Appointment> appointments;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Local localUser;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Chat chat;
 	
-	@ManyToOne
-	private Certificate userCertificate;
+	@OneToMany(mappedBy="user")
+	@JsonIgnore
+	private Set<Certificate> certificates;
+	
+	@OneToMany(mappedBy="user")
+	@JsonIgnore
+	private Set<Training> trainings;
 }

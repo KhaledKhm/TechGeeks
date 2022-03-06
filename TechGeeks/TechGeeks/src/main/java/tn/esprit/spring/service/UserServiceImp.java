@@ -12,4 +12,18 @@ import tn.esprit.spring.repository.UserRepository;
 
 @Service
 public class UserServiceImp implements IUserService {
+	
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	CertificateRepository certificateRepository;
+	
+	public void AffecterCertificat(int idUser, List<Certificate> certificates) {
+		certificateRepository.saveAll(certificates);
+		User u =userRepository.findById(idUser).orElse(null);
+		for (Certificate certificate : certificates) {
+			certificate.setUser(u);
+		}
+		certificateRepository.saveAll(certificates);
+	}
 }

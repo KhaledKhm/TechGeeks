@@ -3,14 +3,12 @@ package tn.esprit.spring.entities;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,27 +18,35 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class Question implements Serializable{
+
+public class UserAnswer implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int idQuestion;
-	private String question;
+	private int idUserAnswer;
+	private int UserAnswer ;
 	private double mark;
+	private int idQuiz;
 	
-	@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToOne
 	@JsonIgnore
-	private Set<Answer> answers;
+	private Answer answer;
+	
+	/*@OneToOne
+	@JsonIgnore
+	private Quiz quiz;*/
+	
+	@OneToOne
+	@JsonIgnore
+	private Question question;
 	
 	@ManyToOne
 	@JsonIgnore
-	private Quiz quiz;
-
+	private Certificate certificate;
 }

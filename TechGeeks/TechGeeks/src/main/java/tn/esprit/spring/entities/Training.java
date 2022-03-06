@@ -5,11 +5,14 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,6 +41,7 @@ public class Training implements Serializable{
 	
 	private Date dateEnd;
 	
+	@Enumerated(EnumType.STRING)
 	private Status status;
 	
 	private String feedback;
@@ -45,14 +49,22 @@ public class Training implements Serializable{
 	@ManyToOne
 	private Sector sector;
 	
+	@ManyToOne
+	private User user;
+	
 	@OneToMany(mappedBy="training")
 	@JsonIgnore
 	private Set<Document> documents;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Local local;
 	
-	@ManyToOne
+	@OneToMany(mappedBy="training")
 	@JsonIgnore
-	private Certificate certificate;
+	private Set<Certificate> certificates;
+	
+	@OneToOne
+	@JsonIgnore
+	private Quiz quiz;
 }

@@ -22,10 +22,16 @@ public class TariningController {
 	@Autowired
 	ITrainingService trainingService;
 	
-	@PostMapping("/addTraining/{idSector}/{idLocal}")
+	@PostMapping("/addTrainingByTrainer/{idUser}/{idSector}")
 	@ResponseBody
-	public void addTraining(@RequestBody Training training,@PathVariable("idSector") int idSector,@PathVariable("idLocal") int idLocal) {
-		trainingService.addTraining(training, idSector, idLocal);
+	public void addTrainingByTrainer(@RequestBody Training training,@PathVariable("idUser") int idUser,@PathVariable("idSector") int idSector) {
+		trainingService.addTrainingByTrainer(training, idUser, idSector);
+	}
+	
+	@PostMapping("/addTrainingByAdmin/{idLocal}")
+	@ResponseBody
+	public void addTrainingByAdmin(@RequestBody Training training,@PathVariable("idLocal") int idLocal) {
+		trainingService.addTrainingByAdmin(training, idLocal);
 	}
 	
 	@PutMapping("/updateTraining")
@@ -74,6 +80,18 @@ public class TariningController {
 	@ResponseBody
 	public Page<Training> TrainingPagination(@PathVariable ("offset")int offset,@PathVariable("pagesize")int pagesize ){
 	    return trainingService.TrainingPagination(offset, pagesize);
+	}
+	
+	@PutMapping("/addComment/{idTraining}/{comment}")
+	@ResponseBody
+	public void addComment(@PathVariable("idTraining")int idTraining,@PathVariable("comment") String comment) {
+		trainingService.addComment(idTraining,comment);
+	}
+	
+	@PutMapping("/updateComment")
+	@ResponseBody
+	public void updateComment(@RequestBody Training training) {
+		trainingService.updateComment(training);
 	}
 		               
 }
