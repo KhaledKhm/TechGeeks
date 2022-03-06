@@ -12,8 +12,15 @@ import org.springframework.data.domain.PageRequest;
 import tn.esprit.spring.entities.Sector;
 import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.entities.User;
+import tn.esprit.spring.entities.Answer;
 import tn.esprit.spring.entities.Local;
+import tn.esprit.spring.entities.Question;
+import tn.esprit.spring.entities.Quiz;
+import tn.esprit.spring.repository.AnswerRepository;
+import tn.esprit.spring.repository.CertificateRepository;
 import tn.esprit.spring.repository.LocalRepository;
+import tn.esprit.spring.repository.QuestionRepository;
+import tn.esprit.spring.repository.QuizRepository;
 import tn.esprit.spring.repository.TrainingRepository;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.repository.SectorRepository;
@@ -28,7 +35,14 @@ public class TrainingServiceImp implements ITrainingService{
 	SectorRepository sectorRepository ;
 	@Autowired
 	UserRepository userRepository ;
-	
+	@Autowired
+	QuizRepository quizRepository ;
+	@Autowired
+	CertificateRepository certificateRepository ;
+	@Autowired
+	QuestionRepository questionRepository;
+	@Autowired
+	AnswerRepository answerRepository;
 	@Override
 	public void addTrainingByTrainer(Training training, int idUser, int idSector) {
 		User u = userRepository.findById(idUser).orElse(null);
@@ -59,13 +73,50 @@ public class TrainingServiceImp implements ITrainingService{
 
 	@Override
 	public void deleteAllTrainings() {
-		trainingRepository.deleteAll();
+		List<Training> trainings = trainingRepository.findAll();
+		List<Quiz> quizs = quizRepository.findAll();
+		List<Question> questions = questionRepository.findAll();
+		List<Answer> answers = answerRepository.findAll();
+		trainings.forEach(training->{
+			quizs.forEach(quiz->{
+				if(training.getIdTraining() == quiz.getTraining().getIdTraining()){
+				questions.forEach(q->{
+					if(quiz.getIdQuiz() == q.getQuiz().getIdQuiz()){
+						answers.forEach(a->{
+							if(q.getIdQuestion() == a.getQuestion().getIdQuestion()){
+								answerRepository.delete(a);
+							}
+						});
+						questionRepository.delete(q);
+						}
+					});
+				}
+				});
+			trainingRepository.delete(training);
+		});
 	}
 
 	@Override
 	public void deleteTrainingById(int idTraining) {
-		trainingRepository.deleteById(idTraining);
-		
+		Training training = trainingRepository.findById(idTraining).get();
+		List<Quiz> quizs = quizRepository.findAll();
+		List<Question> questions = questionRepository.findAll();
+		List<Answer> answers = answerRepository.findAll();
+		quizs.forEach(quiz->{
+			if(training.getIdTraining() == quiz.getTraining().getIdTraining()){
+			questions.forEach(q->{
+				if(quiz.getIdQuiz() == q.getQuiz().getIdQuiz()){
+					answers.forEach(a->{
+						if(q.getIdQuestion() == a.getQuestion().getIdQuestion()){
+							answerRepository.delete(a);
+						}
+					});
+					questionRepository.delete(q);
+					}
+				});
+			}
+			});
+		trainingRepository.deleteById(idTraining);	
 	}
 
 	@Override

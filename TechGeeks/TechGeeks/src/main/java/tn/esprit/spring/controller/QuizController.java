@@ -26,13 +26,7 @@ import tn.esprit.spring.service.IQuizService;
 public class QuizController {
 	@Autowired
 	IQuizService quizService;
-	@Autowired
-	QuizRepository quizRepo;
-	@Autowired
-	QuestionRepository questionRepo;
-	@Autowired
-	AnswerRepository answerRepo;
-	
+
 	
 	@PostMapping("/addQuiz")
 	@ResponseBody
@@ -69,20 +63,7 @@ public class QuizController {
 	@DeleteMapping("/deleteQuizById/{idQuiz}")
 	@ResponseBody
 	public void deleteQuizById(@PathVariable("idQuiz") int idQuiz) {
-			Quiz quiz = quizRepo.findById(idQuiz).get();
-			List<Question> questions = questionRepo.findAll();
-			List<Answer> answers = answerRepo.findAll();
-			questions.forEach(q->{
-				if(quiz.getIdQuiz() == q.getQuiz().getIdQuiz()){
-					answers.forEach(a->{
-						if(q.getIdQuestion() == a.getQuestion().getIdQuestion()){
-							answerRepo.delete(a);
-						}
-					});
-					questionRepo.delete(q);
-				}
-			});
-			quizRepo.deleteById(idQuiz);
+		quizService.deleteQuizById(idQuiz);
 	}
 	
 	@GetMapping("/getAllQuizs")

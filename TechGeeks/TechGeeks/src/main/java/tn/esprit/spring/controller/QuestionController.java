@@ -26,10 +26,7 @@ public class QuestionController {
 	IQuestionService questionService;
 	@Autowired
 	IAnswerService answerService;
-	@Autowired
-	AnswerRepository answerRepo;
-	@Autowired
-	QuestionRepository questionRepo;
+	
 	
 	@PostMapping("/addQuestion")
 	@ResponseBody
@@ -59,14 +56,7 @@ public class QuestionController {
 	@DeleteMapping("/deleteQuestionById/{idQuestion}")
 	@ResponseBody
 	public void deleteQuestionById(@PathVariable("idQuestion") int idQuestion) {
-		Question ques = questionRepo.findById(idQuestion).get();
-		List<Answer> answers = answerRepo.findAll();
-		answers.forEach(a->{
-			if(ques.getIdQuestion() == a.getQuestion().getIdQuestion()){
-				answerRepo.delete(a);
-			}
-		});
-		questionRepo.deleteById(idQuestion);
+		questionService.deleteQuestionById(idQuestion);
 	}
 	
 	@GetMapping("/getAllQuestions")

@@ -6,7 +6,10 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import tn.esprit.spring.entities.Answer;
 import tn.esprit.spring.entities.Question;
 import tn.esprit.spring.entities.Quiz;
 import tn.esprit.spring.repository.QuizRepository;
@@ -37,18 +40,29 @@ public class QuestionServiceImp implements IQuestionService{
 
 	@Override
 	public void deleteAllQuestions() {
-		questionRepository.deleteAll();
+		List <Question> questions = questionRepository.findAll();
+		List<Answer> answers = answerRepository.findAll();
+		questions.forEach(q->{
+			answers.forEach(a->{
+				if(q.getIdQuestion() == a.getQuestion().getIdQuestion()){
+					answerRepository.delete(a);
+				}
+			});
+			questionRepository.delete(q);
+		});
 	}
 
 	@Override
 	public void deleteQuestionById(int idQuestion) {
+		Question ques = questionRepository.findById(idQuestion).get();
+		List<Answer> answers = answerRepository.findAll();
+		answers.forEach(a->{
+			if(ques.getIdQuestion() == a.getQuestion().getIdQuestion()){
+				answerRepository.delete(a);
+			}
+		});
 		questionRepository.deleteById(idQuestion);
 	}
-	/*@Override
-	public void deleteQuestionWithAnswer(int idQuestion) {
-		questionRepository.deleteById(idQuestion);
-		answerRepository.deleteByIdQuestion(idQuestion);
-	}*/
 
 	@Override
 	public List<Question> getAllQuestions() {
