@@ -27,12 +27,6 @@ public class DocumentServiceImp implements IDocumentService{
 		documentRepository.save(document);	
 	}
 	
-	/*@Override
-	public void addDocumentByTraining(Document document,int idTraining){
-		Training t = trainingRepository.findById(idTraining).orElse(null);
-		document.setTraining(t);
-		documentRepository.save(document);	
-	}*/
 	
 	@Override
 	public Document addDocumentByTraining(int idTraining,String description, MultipartFile file){

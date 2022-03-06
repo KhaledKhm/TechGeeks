@@ -107,6 +107,11 @@ public class TrainingServiceImp implements ITrainingService{
 		t.setFeedback(training.getFeedback());
 		return trainingRepository.save(t);
 	}
+
+	@Override
+	public List<Training> getTrainingBySector(String nameSector) {
+		return trainingRepository.FindTrainingBySector(nameSector);
+	}
 	
 
 }

@@ -14,6 +14,7 @@ public interface ITrainingService {
 	public void deleteTrainingById(int idTraining);
 	public List<Training> getAllTrainings();
 	public Optional<Training> getTrainingById(int idTraining);
+	public List<Training> getTrainingBySector(String nameSector);
 	public List<Training> sortAllTrainingDESC(String attribut);
 	public List<Training> sortAllTrainingASC(String attribut);
 	public Page<Training> TrainingPagination(int offset, int pagesize );

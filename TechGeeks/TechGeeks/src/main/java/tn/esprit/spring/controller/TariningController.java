@@ -64,6 +64,13 @@ public class TariningController {
 	public Optional <Training> getTrainingById(@PathVariable("idTraining") int idTraining) {
 		return trainingService.getTrainingById(idTraining);
 	}
+	
+	@GetMapping("/getTrainingBySector/{nameSector}")
+	@ResponseBody
+	public List<Training> getTrainingBySector(@PathVariable("nameSector") String nameSector) {
+		return trainingService.getTrainingBySector(nameSector);
+	}
+	
 	@GetMapping("/sortAllTrainingDESC/{attribut}") 
 	@ResponseBody
 	public List<Training> sortAllTrainingDESC (@PathVariable("attribut")String attribut){
