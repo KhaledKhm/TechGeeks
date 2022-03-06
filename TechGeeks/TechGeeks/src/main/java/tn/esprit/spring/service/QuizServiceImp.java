@@ -57,38 +57,17 @@ public class QuizServiceImp implements IQuizService{
 	public Optional<Quiz> getQuizById(int idQuiz) {
 		return quizRepository.findById(idQuiz);
 	}
-
-/*	@Override
-	public void addQuizByCertificate(Quiz quiz, int idCertificate) {
-		Certificate c = certificateRepository.findById(idCertificate).orElse(null);
-		quiz.setCertificate(c);
-		quizRepository.save(quiz);	
-	}*/
 	
 	@Override
-	public void AffecterCertificate(int idQuiz, List<Certificate> certificates) {
-		certificateRepository.saveAll(certificates);
+	public List<Certificate> AffecterCertificate (int idQuiz, int idtraining) {
 		Quiz q =quizRepository.findById(idQuiz).orElse(null);
+		List <Certificate> certificates = certificateRepository.findAll();
 		for (Certificate certificate : certificates) {
+			if(q.getTraining().getIdTraining() == certificate.getTraining().getIdTraining()){
 			certificate.setQuiz(q);
-		}
-		certificateRepository.saveAll(certificates);
-	}
-	
-	@Override
-	public void AffecterAllCertificates(int idQuiz, List<Certificate> certificates) {
-		//certificateRepository.saveAll(certificates);
-		certificates = certificateRepository.findAll();
-		Quiz q =quizRepository.findById(idQuiz).orElse(null);
-		certificates.forEach(c->{
-			if(c.getTraining().getIdTraining() == q.getTraining().getIdTraining()){
-			c.setQuiz(q);
 			}
-		}); 
-		/*for (Certificate certificate : certificates) {
-			certificate.setQuiz(q);
-		}*/
-		certificateRepository.saveAll(certificates);
+		}
+		return certificateRepository.saveAll(certificates);
 	}
 	
 	@Override
@@ -97,7 +76,5 @@ public class QuizServiceImp implements IQuizService{
 		quiz.setTraining(t);
 		quizRepository.save(quiz);	
 	}
-
-
 
 }

@@ -18,9 +18,9 @@ public class UserController {
 	@Autowired
 	IUserService userservice;
 	
-	@PostMapping("/AffecterCertificate/{idUser}/{certficates}")
+	/*@PostMapping("/AffecterCertificate/{idUser}/{certficates}")
 	@ResponseBody
 	public void AffecterCertificate(@RequestBody User user,@PathVariable("idUser") int idUser,@PathVariable("certficates") List<Certificate> certficates) {
 		userservice.AffecterCertificat(idUser,certficates);
-	}
+	}*/
 }

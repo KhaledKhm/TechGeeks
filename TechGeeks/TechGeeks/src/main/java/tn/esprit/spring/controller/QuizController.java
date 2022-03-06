@@ -40,24 +40,13 @@ public class QuizController {
 		quizService.addQuiz(quiz);
 	}
 	
-	/*@PostMapping("/addQuizByCertificate/{idCertificate}")
-	@ResponseBody
-	public void addQuizByCertificate(@RequestBody Quiz quiz, @PathVariable("idCertificate") int idCertificate) {
-		quizService.addQuizByCertificate(quiz,idCertificate);
-	}
-	*/
 	
-	@PostMapping("/AffecterCertificate/{idQuiz}/{certificates}")
+	@PostMapping("/AffecterCertificate/{idQuiz}/{idTraining}")
 	@ResponseBody
-	public void AffecterCertificate(@RequestBody Quiz quiz,@PathVariable("idQuiz") int idQuiz,@PathVariable("certificates") List<Certificate> certificates) {
-		quizService.AffecterCertificate(idQuiz,certificates);
+	public List<Certificate> AffecterCertificate(@RequestBody Quiz quiz,@PathVariable("idQuiz") int idQuiz,@PathVariable("idTraining") int idTraining) {
+		return quizService.AffecterCertificate(idQuiz,idTraining);
 	}
 	
-	@PostMapping("/AffecterAllCertificates/{idQuiz}/{certificates}")
-	@ResponseBody
-	public void AffecterAllCertificates(@RequestBody Quiz quiz,@PathVariable("idQuiz") int idQuiz,@PathVariable("certificates") List<Certificate> certificates) {
-		quizService.AffecterAllCertificates(idQuiz,certificates);
-	}
 	
 	@PostMapping("/addQuizByTraining/{idTraining}")
 	@ResponseBody
