@@ -34,12 +34,7 @@ public class DocumentController {
 	public void addDocument(@RequestBody Document document) {
 		documentService.addDocument(document);
 	}
-	
-	/*@PostMapping("/addDocument/{idTraining}")
-	@ResponseBody
-	public void addDocument(@RequestBody Document document,@PathVariable("idTraining") int idTraining) {
-		documentService.addDocumentByTraining(document,idTraining);
-	}*/
+
 	
 	@GetMapping("/")
 	public String get(Model model){

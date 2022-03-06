@@ -37,10 +37,7 @@ public class UserAnswer implements Serializable{
 	@OneToOne
 	@JsonIgnore
 	private Answer answer;
-	
-	/*@OneToOne
-	@JsonIgnore
-	private Quiz quiz;*/
+
 	
 	@OneToOne
 	@JsonIgnore

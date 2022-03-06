@@ -1,5 +1,8 @@
 package tn.esprit.spring.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +29,20 @@ public class TariningController {
 	@ResponseBody
 	public void addTrainingByTrainer(@RequestBody Training training,@PathVariable("idUser") int idUser,@PathVariable("idSector") int idSector) {
 		trainingService.addTrainingByTrainer(training, idUser, idSector);
+	}
+	
+	@PostMapping("/addTrainingByTrainer2/{idUser}/{idSector}/{dateStart}/{dateEnd}")
+	@ResponseBody
+	public String addTrainingByTrainer2(@RequestBody Training training,@PathVariable("idUser") int idUser,@PathVariable("idSector") int idSector,@PathVariable("dateStart") String dateStart, @PathVariable("dateEnd") String dateEnd) {
+		try {
+			Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dateStart);
+			java.sql.Date dateDebut = new java.sql.Date(date1.getTime());
+			Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(dateEnd);
+			java.sql.Date dateFin = new java.sql.Date(date2.getTime());
+			return trainingService.addTrainingByTrainer2(training, idUser, idSector, dateDebut, dateFin);
+		} catch (ParseException e) {
+			return null;
+		}
 	}
 	
 	@PostMapping("/addTrainingByAdmin/{idLocal}")

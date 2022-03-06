@@ -1,5 +1,6 @@
 package tn.esprit.spring.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,4 +22,5 @@ public interface ITrainingService {
 	public void addComment(int idTraining, String comment);
 	public Training updateComment(Training training);
 	public void addTrainingByTrainer(Training training, int idUser, int idSector);
+	public String addTrainingByTrainer2(Training training, int idUser, int idSector, Date dateStart, Date dateEnd);
 }

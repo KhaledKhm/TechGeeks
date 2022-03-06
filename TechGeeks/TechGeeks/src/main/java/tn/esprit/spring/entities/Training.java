@@ -1,7 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -37,14 +39,17 @@ public class Training implements Serializable{
 	
 	private String description;
 	
+
 	private Date dateStart;
-	
+
 	private Date dateEnd;
 	
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
 	private String feedback;
+	
+	private Float prix;
 	
 	@ManyToOne
 	private Sector sector;
