@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.mail.javamail.JavaMailSender;*/
 
 import tn.esprit.spring.entities.Donation;
+import tn.esprit.spring.repository.DonationRepository;
 import tn.esprit.spring.service.IDonationService;
 
 @RestController
@@ -23,6 +24,8 @@ public class DonationController {
 
 	@Autowired
 	IDonationService donationService;
+	@Autowired
+	DonationRepository donationRepository;
 	
 	@PostMapping("/add-donation")
 	@ResponseBody
@@ -78,10 +81,13 @@ public class DonationController {
 	}
 	
 	
-	@GetMapping("/retrieve-donatedMoneyByPerson/{idUser]")
+	@GetMapping("/retrieve-donatedMoneyByPerson/{idUser}")
 	@ResponseBody
 	void donatedMoneyByPerson(@PathVariable("idUser") int idUser){
 		donationService.donatedMoneyByPerson(idUser);
+	/*	float sum=0;
+		sum+=donationRepository.sumDonations(idUser);
+		System.out.println(sum);*/
 	}
 	
 	/*

@@ -79,7 +79,7 @@ public class DonationServiceImpl implements IDonationService{
 		
 		p.setSum(p.getSum()+donation.getSum());
 		donation.setPot(p);
-		donation.setUser(u);
+		donation.setDonationUser(u);
 				
 		donationRepository.save(donation);
 		
@@ -88,17 +88,19 @@ public class DonationServiceImpl implements IDonationService{
 	@Override
 	@Scheduled(cron = "* * * 1 * *")
 	public void numberDonationsByUser() {
-		for(Donation donation:retrieveAllDonations()){		
-		log.info("--- User: "
-				+ " First Name: "
-				+ donation.getUser().getFirstName()
-				+ " Last Name: " 
-				+ donation.getUser().getLastName()
-				+ " has made a total of "
-				+ donationRepository.nbreByUser(donation.getUser().getIdUser())
-				+ " donations ---" );
-		
-		}
+	//	for(Donation donation:retrieveAllDonations()){	
+			for(User user:userRepository.findAll()){
+				log.info("--- User: "
+						+ " First Name: "
+						+ user.getFirstName()
+						+ " Last Name: " 
+						+ user.getLastName()
+						+ " has made a total of "
+						+ donationRepository.nbreByUser(user.getIdUser())
+						+ " donations ---" );
+			}
+	//		return;
+	//	}
 		
 	}
 	
@@ -117,11 +119,13 @@ public class DonationServiceImpl implements IDonationService{
 	public void donatedMoneyByPerson(int idUser) {
 		float sum=0;
 //		List<User> users = userService.retrieveAllUsers();
-		List<Donation> donations = donationRepository.findByUserDonations(idUser);
+	/*	List<Donation> donations = donationRepository.findByUserDonations(idUser);
 		for (int i = 0; i<donations.size();i++){
 			sum+=donations.get(i).getSum();	
 			log.info(""+donations.get(i).getUser().getUsername()+" donated a sum of "+sum );
-	}
+	}*/
+		System.out.println("test");
+		System.out.println(sum+=donationRepository.sumDonations(idUser));
 	
 	}
 

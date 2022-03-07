@@ -46,5 +46,5 @@ public class Donation implements Serializable{
 	
 	@JsonIgnore
 	@ManyToOne
-	private User user;
+	private User donationUser;
 }

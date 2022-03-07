@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -67,7 +69,8 @@ public class User implements Serializable{
 		
 	private String document;
 	
-	@OneToMany
+	@JsonIgnore
+	@OneToMany(mappedBy="donationUser")
 	private Set<Donation> donations;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
