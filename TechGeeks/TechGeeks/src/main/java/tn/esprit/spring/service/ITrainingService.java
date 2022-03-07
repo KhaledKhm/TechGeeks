@@ -11,10 +11,10 @@ import tn.esprit.spring.entities.Training;
 
 public interface ITrainingService {
 	
-	public void addTrainingByAdmin(Training training,int idLocal);
+	public void addTrainingByAdmin(Training training,int idLocal,int idTarining);
 	public void addTrainingByTrainer(Training training, int idUser, int idSector);
 	public String addTrainingByTrainer2(Training training, int idUser, int idSector, Date dateStart, Date dateEnd);
-	public String addTrainingByTrainerByWomen(Training training,int idTraining,int idUser);
+	public String addTrainingByWomen(Training training,int idTraining,int idUser);
 	
 	public Training updateTraining(Training training);
 	

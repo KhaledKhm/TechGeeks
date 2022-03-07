@@ -35,7 +35,7 @@ public class TariningController {
 	@PutMapping("/addTrainingByWomen/{idTraining}/{idUser}")
 	@ResponseBody
 	public String addTrainingByWomen(@RequestBody Training training,@PathVariable("idTraining") int idTraining,@PathVariable("idUser") int idUser) {
-		return trainingService.addTrainingByTrainerByWomen(training,idTraining, idUser);
+		return trainingService.addTrainingByWomen(training,idTraining, idUser);
 	}
 	
 	@PostMapping("/addTrainingByTrainer2/{idUser}/{idSector}/{dateStart}/{dateEnd}")
@@ -52,10 +52,10 @@ public class TariningController {
 		}
 	}
 	
-	@PostMapping("/addTrainingByAdmin/{idLocal}")
+	@PostMapping("/addTrainingByAdmin/{idLocal}/{idTraining}")
 	@ResponseBody
-	public void addTrainingByAdmin(@RequestBody Training training,@PathVariable("idLocal") int idLocal) {
-		trainingService.addTrainingByAdmin(training, idLocal);
+	public void addTrainingByAdmin(@RequestBody Training training,@PathVariable("idLocal") int idLocal,@PathVariable("idTraining") int idTraining) {
+		trainingService.addTrainingByAdmin(training, idLocal, idTraining);
 	}
 	
 	@PutMapping("/updateTraining")

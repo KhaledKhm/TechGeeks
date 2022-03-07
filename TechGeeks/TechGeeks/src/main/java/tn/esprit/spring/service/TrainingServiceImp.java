@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import tn.esprit.spring.entities.Sector;
+import tn.esprit.spring.entities.Status;
 import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.entities.User;
 import tn.esprit.spring.entities.Answer;
@@ -48,6 +49,9 @@ public class TrainingServiceImp implements ITrainingService {
 	QuestionRepository questionRepository;
 	@Autowired
 	AnswerRepository answerRepository;
+	@Autowired
+	EmailService emailService; 
+	
 
 	@Override
 	public void addTrainingByTrainer(Training training, int idUser, int idSector) {
@@ -56,14 +60,17 @@ public class TrainingServiceImp implements ITrainingService {
 			Sector s = sectorRepository.findById(idSector).orElse(null);
 			training.setUser(u);
 			training.setSector(s);
+			training.setStatus(Status.Waiting);
 			trainingRepository.save(training);
 		}
 	}
 
 	@Override
-	public void addTrainingByAdmin(Training training, int idLocal) {
+	public void addTrainingByAdmin(Training training,int idLocal, int idTarining) {
+		training = trainingRepository.findById(idTarining).get();
 		Local l = localRepository.findById(idLocal).orElse(null);
 		training.setLocal(l);
+		training.setStatus(Status.Accepted);
 		trainingRepository.save(training);
 	}
 
@@ -238,7 +245,7 @@ public class TrainingServiceImp implements ITrainingService {
 	}
 
 	@Override
-	public String addTrainingByTrainerByWomen(Training training,int idTraining, int idUser) {
+	public String addTrainingByWomen(Training training,int idTraining, int idUser) {
 		User u = userRepository.findById(idUser).orElse(null);
 		Certificate c = new Certificate() ;
 		training = trainingRepository.findById(idTraining).get();
@@ -248,6 +255,7 @@ public class TrainingServiceImp implements ITrainingService {
 					c.setUser(u);
 					c.setTraining(training);
 					certificateRepository.save(c);
+					emailService.sendSimpleEmail(u.getEmail(), "Courses Her Way ", "aaaaaaaaa ");
 					return "done";
 				}else{
 					return "full place";
