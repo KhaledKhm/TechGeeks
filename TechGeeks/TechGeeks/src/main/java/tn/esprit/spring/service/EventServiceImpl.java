@@ -56,7 +56,7 @@ import tn.esprit.spring.repository.LocalRepository;
 	@Override
 	public Event addEventAndAssignLocal(Event e, int idLocal) {
 		Local l=localRepository.findById(idLocal).orElse(null);
-		e.setLocal(l);
+		e.setLocalEvent(l);
 		eventRepository.save(e);
 		return e;
 		

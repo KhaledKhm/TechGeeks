@@ -2,14 +2,12 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -44,8 +42,13 @@ public class Event implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateEnd;
 	
+	private float sum;
+
+	private float price;
+
 	@JsonIgnore
-	private Local local;
+	@ManyToOne
+	private Local localEvent;
 	
 
 	

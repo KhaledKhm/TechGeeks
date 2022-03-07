@@ -56,7 +56,7 @@ public class Local implements Serializable{
 	private Date dateEnd;
 	
 	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="localEvent")
 	private Set<Event> events;
 	
 	@JsonIgnore
