@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 
@@ -21,11 +22,19 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 	ComplaintRepository comprepo;
 	@Autowired
 	UserRepository urepo;
+	@Autowired
+	 EmailService emailService;
 	@Override
 	public Complaint addComplaint(Complaint c) {
 		// TODO Auto-generated method stub
 		return comprepo.save(c);
 	}
+	public void ajouterEtaffectercomplaints(Complaint c, int userid) {
+	User user = urepo.findById(userid).orElse(null);
+	c.setExper(user);
+	comprepo.save(c);
+	}
+
 
 	@Override
 	public Complaint updateComplaint(Complaint c) {
@@ -62,21 +71,39 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 		return(List<Complaint>) comprepo.findAll();
 	}
 
-	@Override
-	public void assignComplaintToUser(int idComplaint, int iduser) {
+	//@Override
+	//public void assignComplaintToUser(Complaint c, int iduser) {
 		// TODO Auto-generated method stub
-			User u = urepo.findById(iduser).orElse(null);
-			Complaint C= comprepo.findById(idComplaint).orElse(null);
-			C.setUserComplaint(u);
-			comprepo.save(C);
-	}
+		//	User u = urepo.findById(iduser).orElse(null);
+		//	c.setExper(iduser).;
+		//	comprepo.save(c);
+//	}//
 
 	@Override
    public int nbreCompParUser(int iduser) {
 		// TODO Auto-generated method stub
 		return comprepo.nbreCompParUser(iduser);
 	}
-	
 
+	@Override
+	public void traiterComplaint(int idComplaint, int iduser) {
+		// TODO Auto-generated method stub
+		User u = urepo.findById(iduser).orElse(null);
+		Complaint C= comprepo.findById(idComplaint).orElse(null);
+		C.setResponse("response of complaint");
+		comprepo.save(C);
+	
+	emailService.sendSimpleEmail(u.getEmail(), "Reponse reclamation ", "Votre Reclamation est en cours de traitement ");
+	
+	}
+	@Override
+	public void assignComplaintToUser(int idComplaint, int iduser) {
+		// TODO Auto-generated method stub
+		User u = urepo.findById(iduser).orElse(null);
+		Complaint C= comprepo.findById(idComplaint).orElse(null);
+		C.setUserComplaint(u);
+
+		comprepo.save(C);
+	}
 
 }

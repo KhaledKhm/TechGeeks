@@ -34,11 +34,16 @@ public class Complaint implements Serializable{
 	private int idComplaint;
 	
 	private String title;
+	private String response;
 	
 	@Enumerated(EnumType.STRING)
 	private Type type;
 	private String description;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User userComplaint;
+	@ManyToOne
+	@JsonIgnore
+	private User exper;
 }

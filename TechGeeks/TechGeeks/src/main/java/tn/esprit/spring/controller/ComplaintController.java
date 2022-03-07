@@ -28,6 +28,11 @@ public class ComplaintController {
 	Complaint addComplaint(@RequestBody Complaint c){//@request taayet lel les attributs
 	return cs.addComplaint(c);
 	}
+	@PostMapping("/addcomplaint-complaint/{id}")
+	@ResponseBody
+	void ajouterEtaffectercomplaints(@RequestBody Complaint c, @PathVariable(name="id")int userid){//@request taayet lel les attributs
+	 cs.ajouterEtaffectercomplaints(c, userid);
+	}
 
 	@GetMapping("/retrieve-Complaint")
 	@ResponseBody
@@ -70,6 +75,11 @@ public class ComplaintController {
 	@ResponseBody
 	int  nbrcompparUser(@PathVariable("iduser") int iduser) {
 	return cs.nbreCompParUser(iduser);
+	}
+	@PutMapping("/assign-Complaint/{idcomplaint}/{iduser}")
+	@ResponseBody
+	public void traiterComplaint(@PathVariable("idcomplaint") int  idComplaint ,@PathVariable("iduser")int iduser){
+		cs.traiterComplaint(idComplaint, iduser);
 	}
 	
 }

@@ -13,6 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 public class TechGeeksApplication {
 	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(TechGeeksApplication.class, args);
 		

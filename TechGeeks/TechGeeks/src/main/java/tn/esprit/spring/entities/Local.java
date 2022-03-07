@@ -50,6 +50,7 @@ public class Local implements Serializable{
 	private Date dateEnd;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<Event> events;
 	
 	
