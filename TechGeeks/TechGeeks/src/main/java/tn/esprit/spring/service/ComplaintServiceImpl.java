@@ -9,10 +9,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-
+import tn.esprit.spring.entities.Appointment;
 import tn.esprit.spring.entities.Complaint;
 import tn.esprit.spring.entities.Type;
 import tn.esprit.spring.entities.User;
+import tn.esprit.spring.repository.AppointmentRepository;
 import tn.esprit.spring.repository.ComplaintRepository;
 import tn.esprit.spring.repository.UserRepository;
 
@@ -23,6 +24,9 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 	@Autowired
 	UserRepository urepo;
 	@Autowired
+
+	AppointmentRepository apprepo;
+	@Autowired
 	 EmailService emailService;
 	@Override
 	public Complaint addComplaint(Complaint c) {
@@ -31,8 +35,17 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 	}
 	public void ajouterEtaffectercomplaints(Complaint c, int userid) {
 	User user = urepo.findById(userid).orElse(null);
-	c.setExper(user);
-	comprepo.save(c);
+		List<Appointment> app =apprepo.verifuser();
+	for (Appointment appointment : app ){
+		if (userid==apprepo.iduser()){
+			c.setExper(user);
+			comprepo.save(c);
+		}
+		else 
+		System.out.println(" you need to have an appointment with expert");
+	}
+	
+
 	}
 
 
@@ -82,7 +95,16 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 	@Override
    public int nbreCompParUser(int iduser) {
 		// TODO Auto-generated method stub
+		User u = urepo.findById(iduser).orElse(null);
+		int a = comprepo.nbreCompParUser(iduser);
+		if (a>2){
+			
+			emailService.sendSimpleEmail(u.getEmail(), "Alerte ", "	You should improve your performance ");
+
+		}
 		return comprepo.nbreCompParUser(iduser);
+		
+		
 	}
 
 	@Override
@@ -93,9 +115,11 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 		C.setResponse("response of complaint");
 		comprepo.save(C);
 	
-	emailService.sendSimpleEmail(u.getEmail(), "Reponse reclamation ", "Votre Reclamation est en cours de traitement ");
+	emailService.sendSimpleEmail(u.getEmail(), "Reponse Reclamation ", "Your Complaint is being processed ");
+	
 	
 	}
+	
 	@Override
 	public void assignComplaintToUser(int idComplaint, int iduser) {
 		// TODO Auto-generated method stub

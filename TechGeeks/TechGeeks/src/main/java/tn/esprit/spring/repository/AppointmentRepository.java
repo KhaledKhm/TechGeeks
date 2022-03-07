@@ -13,4 +13,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 
 	@Query("Select distinct a FROM Appointment a ,User u where a.expert.idUser=:id")
 	List <Appointment> findAppointmentByUser(@Param("id") int iduser);
+	@Query(value="SELECT * FROM `appointment` WHERE expert_id_user AND women_id_user IS NOT NULL",nativeQuery=true)
+	List <Appointment>  verifuser();
+	@Query(value="SELECT women_id_user FROM `appointment` WHERE expert_id_user AND women_id_user IS NOT NULL ",nativeQuery=true)
+	int iduser();
+	
 }

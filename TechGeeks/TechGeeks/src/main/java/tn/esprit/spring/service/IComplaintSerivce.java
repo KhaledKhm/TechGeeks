@@ -25,5 +25,4 @@ public interface IComplaintSerivce {
 	void traiterComplaint(int idComplaint, int iduser);
 	int nbreCompParUser(@Param("offre") int iduser);
 	void ajouterEtaffectercomplaints(Complaint c, int userid);
-
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Appointment;
 import tn.esprit.spring.entities.Complaint;
+import tn.esprit.spring.repository.AppointmentRepository;
 import tn.esprit.spring.service.IAppointmentService;
 import tn.esprit.spring.service.IComplaintSerivce;
 
@@ -22,6 +23,8 @@ import tn.esprit.spring.service.IComplaintSerivce;
 public class AppointmentController {
 	@Autowired
 	IAppointmentService as;
+	@Autowired 
+	AppointmentRepository ap;
 	@PostMapping("/add-Appointment")
 	@ResponseBody
 	Appointment addAppointment(@RequestBody Appointment a){//@request taayet lel les attributs
@@ -44,7 +47,11 @@ public class AppointmentController {
 		return as.retrieveAllAppointmentwithsorting(field);
 	}
 	
-
+	@GetMapping("/retrieve-verif")
+	@ResponseBody
+	public List<Appointment> verifuser() {
+		return ap.verifuser();
+	}
 	
 	@PutMapping("/modify-Appointment")
 	@ResponseBody

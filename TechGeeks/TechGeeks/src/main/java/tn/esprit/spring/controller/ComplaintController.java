@@ -28,9 +28,9 @@ public class ComplaintController {
 	Complaint addComplaint(@RequestBody Complaint c){//@request taayet lel les attributs
 	return cs.addComplaint(c);
 	}
-	@PostMapping("/addcomplaint-complaint/{id}")
+	@PostMapping("/addassign-complaint/{id}")
 	@ResponseBody
-	void ajouterEtaffectercomplaints(@RequestBody Complaint c, @PathVariable(name="id")int userid){//@request taayet lel les attributs
+	void ajouterEtaffectercomplaints(@RequestBody Complaint c, @PathVariable(name="id")int userid){
 	 cs.ajouterEtaffectercomplaints(c, userid);
 	}
 
