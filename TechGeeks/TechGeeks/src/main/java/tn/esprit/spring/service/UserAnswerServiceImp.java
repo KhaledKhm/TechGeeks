@@ -105,7 +105,7 @@ public class UserAnswerServiceImp implements IUserAnswerService {
 								" and which was guided by the trainer "+c.getTraining().getUser().getFirstName()+
 								" "+c.getTraining().getUser().getLastName());
 			}
-			else if ((q.getMark() * 0.8) == c.getMark() && c.getMark() <= q.getMark())
+			else
 			{
 				c.setComment("Training validated with excelent");
 				c.setTitle("Certificate in "+ c.getTraining().getSector().getName());

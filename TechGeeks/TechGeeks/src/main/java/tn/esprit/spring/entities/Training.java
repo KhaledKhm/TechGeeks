@@ -47,8 +47,6 @@ public class Training implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
-	private String feedback;
-	
 	private Float prix;
 	
 	@ManyToOne
@@ -68,6 +66,10 @@ public class Training implements Serializable{
 	@OneToMany(mappedBy="training")
 	@JsonIgnore
 	private Set<Certificate> certificates;
+	
+	@OneToMany(mappedBy="training")
+	@JsonIgnore
+	private Set <TrainingFeedback> feedback;
 	
 	@OneToOne
 	@JsonIgnore

@@ -106,16 +106,5 @@ public class TariningController {
 	    return trainingService.TrainingPagination(offset, pagesize);
 	}
 	
-	@PutMapping("/addComment/{idTraining}/{comment}")
-	@ResponseBody
-	public void addComment(@PathVariable("idTraining")int idTraining,@PathVariable("comment") String comment) {
-		trainingService.addComment(idTraining,comment);
-	}
-	
-	@PutMapping("/updateComment")
-	@ResponseBody
-	public void updateComment(@RequestBody Training training) {
-		trainingService.updateComment(training);
-	}
 		               
 }

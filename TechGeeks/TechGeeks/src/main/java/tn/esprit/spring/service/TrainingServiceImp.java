@@ -152,20 +152,6 @@ public class TrainingServiceImp implements ITrainingService {
 	}
 
 	@Override
-	public void addComment(int idTraining, String comment) {
-		Training t = trainingRepository.findById(idTraining).orElse(null);
-		t.setFeedback(comment);
-		trainingRepository.save(t);
-	}
-
-	@Override
-	public Training updateComment(Training training) {
-		Training t = trainingRepository.findById(training.getIdTraining()).orElse(null);
-		t.setFeedback(training.getFeedback());
-		return trainingRepository.save(t);
-	}
-
-	@Override
 	public List<Training> getTrainingBySector(String nameSector) {
 		return trainingRepository.FindTrainingBySector(nameSector);
 	}
@@ -184,6 +170,8 @@ public class TrainingServiceImp implements ITrainingService {
 			int nb = 0;
 			for (Training t : trainings) {
 				System.out.println("3");
+				System.out.println(t.getDateStart());
+				System.out.println(t.getDateEnd());
 				if (t.getUser().getIdUser() == idUser) {
 					System.out.println("4");
 					if (dateStart.before(t.getDateStart()) && dateEnd.after(t.getDateStart())
@@ -247,6 +235,12 @@ public class TrainingServiceImp implements ITrainingService {
 		}
 		System.out.println("28");
 		return "you are not a trainer";
+	}
+
+	@Override
+	public String addTrainingByTrainerByWomen(Training training, int idUser) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
