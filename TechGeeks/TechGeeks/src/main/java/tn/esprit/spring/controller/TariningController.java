@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entities.Certificate;
 import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.service.ITrainingService;
 
@@ -29,6 +30,12 @@ public class TariningController {
 	@ResponseBody
 	public void addTrainingByTrainer(@RequestBody Training training,@PathVariable("idUser") int idUser,@PathVariable("idSector") int idSector) {
 		trainingService.addTrainingByTrainer(training, idUser, idSector);
+	}
+	
+	@PutMapping("/addTrainingByWomen/{idTraining}/{idUser}")
+	@ResponseBody
+	public String addTrainingByWomen(@RequestBody Training training,@PathVariable("idTraining") int idTraining,@PathVariable("idUser") int idUser) {
+		return trainingService.addTrainingByTrainerByWomen(training,idTraining, idUser);
 	}
 	
 	@PostMapping("/addTrainingByTrainer2/{idUser}/{idSector}/{dateStart}/{dateEnd}")

@@ -16,6 +16,7 @@ import tn.esprit.spring.entities.Sector;
 import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.entities.User;
 import tn.esprit.spring.entities.Answer;
+import tn.esprit.spring.entities.Certificate;
 import tn.esprit.spring.entities.Local;
 import tn.esprit.spring.entities.Question;
 import tn.esprit.spring.entities.Quiz;
@@ -164,7 +165,7 @@ public class TrainingServiceImp implements ITrainingService {
 		System.out.println("1");
 		System.out.println(dateEnd);
 		System.out.println(dateStart);
-		
+
 		if (u.getRole().getIdRole() == 1) {
 			System.out.println("2");
 			int nb = 0;
@@ -177,46 +178,45 @@ public class TrainingServiceImp implements ITrainingService {
 					if (dateStart.before(t.getDateStart()) && dateEnd.after(t.getDateStart())
 							&& dateEnd.before(t.getDateEnd())) {
 						System.out.println("5");
-						nb++;
+						nb = nb + 1;
 						System.out.println("6");
-					}
-					else if (dateStart.before(t.getDateStart()) && dateEnd.equals(t.getDateEnd())) {
+					} else if (dateStart.before(t.getDateStart()) && dateEnd.equals(t.getDateEnd())) {
 						System.out.println("7");
-						nb++;
+						nb = nb + 1;
 						System.out.println("8");
 					} else if (dateStart.before(t.getDateStart()) && dateEnd.after(t.getDateEnd())) {
 						System.out.println("9");
-						nb++;
+						nb = nb + 1;
 						System.out.println("10");
 					} else if (dateStart.equals(t.getDateStart()) && dateEnd.before(t.getDateEnd())
 							&& dateEnd.before(t.getDateStart())) {
 						System.out.println("11");
-						nb++;
+						nb = nb + 1;
 						System.out.println("12");
 					} else if (dateStart.equals(t.getDateStart()) && dateEnd.equals(t.getDateEnd())) {
 						System.out.println("13");
-						nb++;
+						nb = nb + 1;
 						System.out.println("14");
 					} else if (dateStart.equals(t.getDateStart()) && dateEnd.after(t.getDateEnd())) {
 						System.out.println("15");
-						nb++;
+						nb = nb + 1;
 						System.out.println("16");
 					} else if (dateStart.after(t.getDateStart()) && dateStart.before(t.getDateEnd())
 							&& dateEnd.equals(t.getDateEnd())) {
 						System.out.println("17");
-						nb++;
+						nb = nb + 1;
 						System.out.println("18");
 					} else if (dateStart.after(t.getDateStart()) && dateStart.before(t.getDateEnd())
 							&& dateEnd.after(t.getDateEnd())) {
 						System.out.println("19");
-						nb++;
+						nb = nb + 1;
 						System.out.println("20");
 					} else if (dateStart.after(t.getDateStart()) && dateStart.before(t.getDateEnd())
 							&& dateEnd.before(t.getDateEnd())) {
 						System.out.println("21");
-						nb++;
+						nb = nb + 1;
 						System.out.println("22");
-					} 
+					}
 					System.out.println("25");
 					if (1 < nb) {
 						System.out.println("26");
@@ -238,9 +238,23 @@ public class TrainingServiceImp implements ITrainingService {
 	}
 
 	@Override
-	public String addTrainingByTrainerByWomen(Training training, int idUser) {
-		// TODO Auto-generated method stub
-		return null;
+	public String addTrainingByTrainerByWomen(Training training,int idTraining, int idUser) {
+		User u = userRepository.findById(idUser).orElse(null);
+		Certificate c = new Certificate() ;
+		training = trainingRepository.findById(idTraining).get();
+		if (u.getRole().getIdRole() == 2) {
+				if (training.getNbrParticipant() < training.getTotalParticipant()) {
+					training.setNbrParticipant(training.getNbrParticipant() + 1);
+					c.setUser(u);
+					c.setTraining(training);
+					certificateRepository.save(c);
+					return "done";
+				}else{
+					return "full place";
+				}
+			}else{
+				return "you can not be a participant";
+			}
 	}
 
 }

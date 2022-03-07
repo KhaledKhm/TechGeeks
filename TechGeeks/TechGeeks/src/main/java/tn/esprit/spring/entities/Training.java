@@ -44,6 +44,10 @@ public class Training implements Serializable{
 
 	private Date dateEnd;
 	
+	private int NbrParticipant;
+	
+	private  int TotalParticipant;
+	
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
