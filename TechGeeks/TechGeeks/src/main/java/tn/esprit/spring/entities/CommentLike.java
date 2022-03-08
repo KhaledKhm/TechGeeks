@@ -1,6 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,11 +22,15 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
+@NoArgsConstructor
+@AllArgsConstructor
 public class CommentLike implements Serializable{
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idCommentLike;
 	
+	private int commentLike;
 	@ManyToOne
 	private PostComment postComment;
 
