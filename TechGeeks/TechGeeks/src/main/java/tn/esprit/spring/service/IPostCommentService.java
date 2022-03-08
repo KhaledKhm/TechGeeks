@@ -19,12 +19,9 @@ public interface IPostCommentService{
 
 	public String AjoutCommentinpost(PostComment po, int idpost);
 	
-	/*@Modifying
-	@Query(value="insert into PostComment (comment) values (:comment) where idpost = :id ")
-	public void ajoutcommentaire(@Param("comment") String comment, @Param("id") int id);*/
+	
 	
 	//public void SupprimerMotInterdit(List<PostComment> p) throws Exception;
 	
-	public void getDictionaire() throws IOException ;
 
 }

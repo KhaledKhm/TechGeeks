@@ -1,6 +1,7 @@
 package tn.esprit.spring.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.websocket.server.PathParam;
@@ -79,7 +80,11 @@ public class PostController {
 	
 	@GetMapping("/orderByNblike")
 	public List<Post> PostorderByNblike(){
+		
+		
+		
 		return iPostService.getByOrdernbLike();
+		//return iPostService.getByOrdernbLike();
 	}
 	
 }

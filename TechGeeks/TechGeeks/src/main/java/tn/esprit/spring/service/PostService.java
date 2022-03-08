@@ -1,7 +1,7 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,8 @@ public class PostService implements IPostService{
 	PostRepository postrepo;
 	@Autowired
 	PostCommentRepository pr;
-	
+	@Autowired 
+	PostLikeRepository replike;
 	
 	@Override
 	public Post AjoutPost(Post p) {
@@ -66,7 +67,19 @@ public class PostService implements IPostService{
 	@Override
 	public List<Post> getByOrdernbLike() {
 		// TODO Auto-generated method stub
-		return postrepo.AfficherPostorderbynbLike();
+		//return postrepo.AfficherPostorderbynbLike();
+		Map<Post,Integer> mappost = null;
+		List<Post>  listpost=postrepo.findAll();
+		listpost.forEach((post) -> {
+			int nblike=replike.nbTotalelike(post.getIdPost());
+			mappost.put(post , nblike);
+		}
+	);
+		
+			
+		
+		//int nblike=replike.nbTotalelike();
+		return (List<Post>) mappost;
 	}
 
 	

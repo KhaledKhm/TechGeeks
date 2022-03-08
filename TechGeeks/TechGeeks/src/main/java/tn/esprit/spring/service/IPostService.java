@@ -1,7 +1,7 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import java.util.Set;
+
 
 
 import tn.esprit.spring.entities.Post;
@@ -18,7 +18,6 @@ public interface IPostService {
 	
 	public List<Post> getByTitle(String title);
 	
-	//public Post savefile(MultipartFile file);
 	public List<Post> getOrderByDate();
 	
 public List<Post> getByOrdernbLike();

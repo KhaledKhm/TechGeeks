@@ -13,8 +13,8 @@ public interface PostRepository extends JpaRepository<Post,Integer>{
 	public List<Post> findByTitle(String titre);
 	
 	public List<Post> findAllByOrderByCreatedAtDesc(); 
-	
-	@Query(value = "SELECT * , count(nb_like)As nombre FROM Post p JOIN post_like pl ON p.id_post=pl.post_likes_id_post ORDER BY nombre DESC",nativeQuery = true)
-	public List<Post> AfficherPostorderbynbLike();
+
+	/*@Query(value ="Select Post from Post ",nativeQuery = true)
+	public List<Post> AfficherPostbynbLike();*/
  
 }

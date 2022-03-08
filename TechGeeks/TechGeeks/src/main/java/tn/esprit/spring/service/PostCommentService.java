@@ -2,9 +2,7 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,27 +60,6 @@ public class PostCommentService implements IPostCommentService{
 		return "comment dans post ajouter";
 	}
 
-	@Override
-		public void getDictionaire() throws IOException {
-		List<PostComment> p=postCommentrep.findAll();
-		
-		String file = "dictionaire.txt";
-		BufferedReader br = new BufferedReader(new FileReader(file));
-		String line;
-        while ((line=br.readLine())!= null) {
-        System.out.println("contain : "+ line);
-        for(int i=0;i<p.size();i++) {
-        	if(!(br.readLine().contains(p.get(i).getComment()))) {
-        		i++;
-     		   postCommentrep.deleteById(p.get(i-1).getIdComment());
-     		   System.out.println("supp");
-     		   return;
-        	}
-        	else {
-        		System.out.print ("mafamech kelma zeyda");
-        	}}
-        	
-        }
+	
         
-	}
 }
