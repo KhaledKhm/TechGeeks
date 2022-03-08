@@ -30,8 +30,7 @@ public class DonationServiceImpl implements IDonationService{
 	PotRepository potRepository;
 	@Autowired
 	UserRepository userRepository;
-	@Autowired
-	UserService userService;
+
 
 	@Override
 	public List<Donation> retrieveAllDonations() {
@@ -117,15 +116,16 @@ public class DonationServiceImpl implements IDonationService{
 
 	@Override
 	public void donatedMoneyByPerson(int idUser) {
-		float sum=0;
+		float sum=donationRepository.sumDonations(idUser);
 //		List<User> users = userService.retrieveAllUsers();
 	/*	List<Donation> donations = donationRepository.findByUserDonations(idUser);
 		for (int i = 0; i<donations.size();i++){
-			sum+=donations.get(i).getSum();	
-			log.info(""+donations.get(i).getUser().getUsername()+" donated a sum of "+sum );
-	}*/
-		System.out.println("test");
-		System.out.println(sum+=donationRepository.sumDonations(idUser));
+			sum+=donations.get(i).getSum();	*/
+		User user= userRepository.findById(idUser).orElse(null);
+			log.info(user.getIdUser()+"-"+user.getUsername()+" "+user.getFirstName()+" "+user.getLastName()+" has donated a sum of "+sum );
+	
+		//System.out.println("test");
+		//System.out.println(sum+=donationRepository.sumDonations(idUser));
 	
 	}
 

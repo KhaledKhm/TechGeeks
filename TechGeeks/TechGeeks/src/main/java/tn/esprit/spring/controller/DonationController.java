@@ -9,14 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 /*import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;*/
 
 import tn.esprit.spring.entities.Donation;
-import tn.esprit.spring.repository.DonationRepository;
 import tn.esprit.spring.service.IDonationService;
 
 @RestController
@@ -24,23 +21,19 @@ public class DonationController {
 
 	@Autowired
 	IDonationService donationService;
-	@Autowired
-	DonationRepository donationRepository;
+
 	
 	@PostMapping("/add-donation")
-	@ResponseBody
 	Donation addDonation(@RequestBody Donation d){
 		return donationService.addDonation(d);
 	}
 	
 	@PostMapping("/assign-pot-to-donation/{idPot}")
-	@ResponseBody
 	Donation assignDonationtoPot(@RequestBody Donation d, @PathVariable("idPot") int idPot){
 		return donationService.addDonationAndAssignPot(d,idPot);
 	}
 	
 	@PostMapping("/assign-user-pot-to-donation/{idPot}/{idUser}")
-	@ResponseBody
 	void addAndAssignPotAndUser(@RequestBody Donation d, @PathVariable("idPot") int idPot, @PathVariable("idUser") int idUser){
 		donationService.addAndAssignPotAndUser(d,idPot,idUser);
 	}
@@ -48,21 +41,18 @@ public class DonationController {
 	
 	
 	@GetMapping("/retrieve-allDonations")
-	@ResponseBody
 	List<Donation> retrieveAllDonations(){
 		
 		return donationService.retrieveAllDonations();
 	}
 	
 	@GetMapping("/get-Donation/{idDonation}")
-	@ResponseBody
 	Donation getDonationById(@PathVariable("idDonation") int idDonation){
 		return donationService.retrieveDonation(idDonation);
 		
 	}
 	
 	@PutMapping("modify-donation")
-	@ResponseBody
 	Donation updateDonation(@RequestBody Donation d){
 		
 		return donationService.updateDonation(d);
@@ -75,19 +65,15 @@ public class DonationController {
 	}
 	
 	@GetMapping("/retrieve-numberDonationsByUser")
-	@ResponseBody
 	void numberDonationsByUser(){
 		donationService.numberDonationsByUser();
 	}
 	
 	
 	@GetMapping("/retrieve-donatedMoneyByPerson/{idUser}")
-	@ResponseBody
 	void donatedMoneyByPerson(@PathVariable("idUser") int idUser){
 		donationService.donatedMoneyByPerson(idUser);
-	/*	float sum=0;
-		sum+=donationRepository.sumDonations(idUser);
-		System.out.println(sum);*/
+	
 	}
 	
 	/*
