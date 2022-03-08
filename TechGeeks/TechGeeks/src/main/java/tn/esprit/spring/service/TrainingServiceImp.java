@@ -255,7 +255,7 @@ public class TrainingServiceImp implements ITrainingService {
 					c.setUser(u);
 					c.setTraining(training);
 					certificateRepository.save(c);
-					emailService.sendSimpleEmail(u.getEmail(), "Courses Her Way ", "aaaaaaaaa ");
+					emailService.sendSimpleEmail(u.getEmail(), "Courses Her Way ", "Thank you for assisting 5 days before the date of the course and for paying and confirming your registration. ");
 					return "done";
 				}else{
 					return "full place";
