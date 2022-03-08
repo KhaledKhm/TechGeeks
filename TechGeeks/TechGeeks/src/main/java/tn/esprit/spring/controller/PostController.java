@@ -1,6 +1,7 @@
 package tn.esprit.spring.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.websocket.server.PathParam;
 
@@ -12,10 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import tn.esprit.spring.entities.Post;
 import tn.esprit.spring.entities.PostComment;
+import tn.esprit.spring.repository.PostLikeRepository;
+import tn.esprit.spring.repository.PostRepository;
 import tn.esprit.spring.service.IPostService;
 
 @RestController
@@ -24,7 +29,8 @@ public class PostController {
 
 	@Autowired 
 	IPostService iPostService;
-	
+	 @Autowired 
+	 PostRepository postrep;
 	
 	@PostMapping("/AjoutPost")
 	public String AjoutPost(@RequestBody Post p) {
@@ -55,10 +61,7 @@ public class PostController {
 		post.setTitle(p.getTitle());
 		iPostService.PostModifier(post, id);;
 	}
-	@PostMapping("/AffecterCommentaire/{idpc}")
-	public void affecterCommentairePost(@PathVariable int p,@RequestBody PostComment idpc) {
-	//	iPostService.affecterCommentairePost(p, idpc);
-	}
+	
 	
 	@PostMapping("/AffecterLike/{idpl}")
 	public void affecterLikePost(@RequestBody Post p,@PathVariable int idpl) {
@@ -67,6 +70,16 @@ public class PostController {
 	@GetMapping("/getByTitle/{title}")
 	public List<Post> PostGetTitle(@PathVariable String title){
 		return iPostService.getByTitle(title);
+	}
+	
+	@GetMapping("/orderByDate")
+	public List<Post> PostOrderByDate(){
+		return iPostService.getOrderByDate();
+	}
+	
+	@GetMapping("/orderByNblike")
+	public List<Post> PostorderByNblike(){
+		return iPostService.getByOrdernbLike();
 	}
 	
 }

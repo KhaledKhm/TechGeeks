@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Post;
-import tn.esprit.spring.entities.PostComment;
-import tn.esprit.spring.entities.PostLike;
 import tn.esprit.spring.repository.PostCommentRepository;
 import tn.esprit.spring.repository.PostLikeRepository;
 import tn.esprit.spring.repository.PostRepository;
@@ -19,8 +17,7 @@ public class PostService implements IPostService{
 	PostRepository postrepo;
 	@Autowired
 	PostCommentRepository pr;
-	@Autowired
-	PostLikeRepository postlike;
+	
 	
 	@Override
 	public Post AjoutPost(Post p) {
@@ -59,6 +56,34 @@ public class PostService implements IPostService{
 		// TODO Auto-generated method stub
 		return (List<Post>)postrepo.findByTitle(title);
 	}
+
+	@Override
+	public List<Post> getOrderByDate() {
+		// TODO Auto-generated method stub
+		return postrepo.findAllByOrderByCreatedAtDesc();
+	}
+
+	@Override
+	public List<Post> getByOrdernbLike() {
+		// TODO Auto-generated method stub
+		return postrepo.AfficherPostorderbynbLike();
+	}
+
+	
+	/*@Override
+	public Post savefile(MultipartFile file) {
+		// TODO Auto-generated method stub
+		String filename=file.getOriginalFilename();
+		
+		try {
+			Post post=new Post(0, filename,file.getContentType(),file.getBytes(), null, null, null, null);
+			return postrepo.save(post);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}*/
 
 /*	@Override
 	public Post affecterCommentairePost(int p, PostComment idco) {

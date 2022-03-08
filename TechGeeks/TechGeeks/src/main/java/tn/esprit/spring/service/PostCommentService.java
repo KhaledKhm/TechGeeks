@@ -56,7 +56,7 @@ public class PostCommentService implements IPostCommentService{
 	public String AjoutCommentinpost(PostComment po, int idpost) {
 		// TODO Auto-generated method stub
 		Post p=ipostservice.PostById(idpost);
-		po.setPost(p);
+		po.setPostComments(p);
 		postCommentrep.save(po);
 
 		return "comment dans post ajouter";

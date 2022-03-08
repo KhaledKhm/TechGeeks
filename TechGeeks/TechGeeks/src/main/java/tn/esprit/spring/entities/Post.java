@@ -21,7 +21,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import tn.esprit.spring.entities.Advertising.pub;
 
 @Entity
 @Getter
@@ -40,7 +39,9 @@ public class Post implements Serializable{
 	
 	private String body;
 	
+	//@Lob
 	private String photo;
+	
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 	
@@ -48,9 +49,10 @@ public class Post implements Serializable{
 	@ManyToOne
 	private User userPost;
 	@JsonIgnore 
-	@OneToMany(mappedBy="post")
+	@OneToMany(mappedBy="postComments")
 	private Set<PostComment> postComments;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy="post")
+	@OneToMany(mappedBy="postLikes")
 	private Set<PostLike> postLikes;
 }

@@ -39,10 +39,7 @@ public class PostCommentController {
 	@Autowired
 	BadWordRepository BadWord;
 	
-	/*@PostMapping("/AjoutComment")
-	public PostComment AjoutPostComment(@RequestBody PostComment p) {
-		return pc.AjoutPostComment(p);
-	}*/
+	
 	
 	@DeleteMapping("/Supprimer/{id}")
 	public void SupprimerPostComment(@PathVariable int Id) {
@@ -95,10 +92,10 @@ public class PostCommentController {
 		
 	}*/
 	
-	@PostMapping("/AjoutCommentinterdit")
-	public void AjoutComment(@RequestBody PostComment comment) {
+	@PostMapping("/AjoutCommentinterdit//{idPost}")
+	public void AjoutComment(@RequestBody PostComment comment,@PathVariable("idPost") int idPost) {
 		comment.setComment(BadWordFilter.getCensoredText(comment.getComment()));
-		 pc.AjoutPostComment(comment);
+		 pc.AjoutCommentinpost(comment, idPost);
 	}
 
 }

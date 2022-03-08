@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entities.Post;
 import tn.esprit.spring.entities.PostLike;
+import tn.esprit.spring.repository.PostLikeRepository;
 import tn.esprit.spring.service.IPostLikeService;
 
 @RestController
@@ -23,6 +25,8 @@ public class PostLikeController {
 	IPostLikeService iPostLikeService;
 	@Autowired 
 	IPostLikeService pl;
+	@Autowired 
+	PostLikeRepository postLikeRepository;
 	
 	@PostMapping("/AjoueLike")
 	public PostLike AjoutPostLike(@RequestBody PostLike p) {
@@ -43,7 +47,7 @@ public class PostLikeController {
 	@PutMapping("/Modifier/{id}")
 	public void PostLikeModifier(@RequestBody PostLike a,@PathVariable int id) {
 		PostLike pl=iPostLikeService.PostLikeById(id);
-		a.setPost(pl.getPost());
+		a.setPostLikes(pl.getPostLikes());
 		iPostLikeService.PostLikeModifier(pl, id);;
 	}
 	
@@ -51,5 +55,10 @@ public class PostLikeController {
 	@ResponseBody
 	public void AjoutlikePost(@PathVariable("idPost") int idPost ,@RequestBody PostLike po ) {
 		pl.AjoutLikeinpost(po, idPost);
+	}
+	
+	@GetMapping("/getNombreLike/{idPost}")
+	public int PostNombreLike(@PathVariable("idPost") int idPost){
+		return postLikeRepository.nbTotalelike(idPost);
 	}
 }

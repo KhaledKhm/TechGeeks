@@ -42,7 +42,7 @@ public class CommentLikeController {
 	@PutMapping("/modifier/{id}")
 	public void CommentLikeModifier(@RequestBody CommentLike a,@PathVariable int id) {
 		CommentLike cl=cs.CommentLikeById(id);
-		cl.setPostComment(a.getPostComment());
+		cl.setCommentLike(a.getCommentLike());
 		cs.CommentLikeModifier(cl, id);
 	}
 }
