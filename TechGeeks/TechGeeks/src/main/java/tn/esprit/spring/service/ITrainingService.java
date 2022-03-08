@@ -29,4 +29,6 @@ public interface ITrainingService {
 	public List<Training> sortAllTrainingASC(String attribut);
 	
 	public Page<Training> TrainingPagination(int offset, int pagesize );
+	
+	public Training updateStatus(Training training , int idtraining);
 }
