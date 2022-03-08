@@ -30,11 +30,18 @@ public class DonationController {
 		return donationService.addDonation(d);
 	}
 	
-	@PostMapping("/assign-donation-to-pot/{idPot}")
+	@PostMapping("/assign-pot-to-donation/{idPot}")
 	@ResponseBody
 	Donation assignDonationtoPot(@RequestBody Donation d, @PathVariable("idPot") int idPot){
 		return donationService.addDonationAndAssignPot(d,idPot);
 	}
+	
+	@PostMapping("/assign-user-pot-to-donation/{idPot}/{idUser}")
+	@ResponseBody
+	void addAndAssignPotAndUser(@RequestBody Donation d, @PathVariable("idPot") int idPot, @PathVariable("idUser") int idUser){
+		donationService.addAndAssignPotAndUser(d,idPot,idUser);
+	}
+	
 	
 	
 	@GetMapping("/retrieve-allDonations")
@@ -63,6 +70,20 @@ public class DonationController {
 		donationService.deleteDonation(idDonation);
 		
 	}
+	
+	@GetMapping("/retrieve-numberDonationsByUser")
+	@ResponseBody
+	void numberDonationsByUser(){
+		donationService.numberDonationsByUser();
+	}
+	
+	
+	@GetMapping("/retrieve-donatedMoneyByPerson/{idUser]")
+	@ResponseBody
+	void donatedMoneyByPerson(@PathVariable("idUser") int idUser){
+		donationService.donatedMoneyByPerson(idUser);
+	}
+	
 	/*
 	  @Autowired
 	    public JavaMailSender emailSender;
