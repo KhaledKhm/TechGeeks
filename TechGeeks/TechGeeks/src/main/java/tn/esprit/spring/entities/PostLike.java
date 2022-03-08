@@ -20,11 +20,12 @@ import tn.esprit.spring.entities.Advertising.pub;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostLike implements Serializable{
-
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)

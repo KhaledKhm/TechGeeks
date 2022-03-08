@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>tn.esprit.spring</groupId>
 	<artifactId>TechGeeks</artifactId>
@@ -74,6 +74,17 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+			<scope>provided</scope>
+		</dependency>
+
 	<groupId>io.jsonwebtoken</groupId>
 	<artifactId>jjwt</artifactId>
 	<version>0.9.1</version>
@@ -90,12 +101,13 @@
     <scope>provided</scope>
 </dependency>
 
-<dependency>
 
-<groupId>io.springfox</groupId>
-<artifactId> springfox-boot-starter </artifactId>
-<version> 3.0.0 </version>
-</dependency>
+		<dependency>
+
+			<groupId>io.springfox</groupId>
+			<artifactId> springfox-boot-starter </artifactId>
+			<version> 3.0.0 </version>
+		</dependency>
 
 
 		<dependency>

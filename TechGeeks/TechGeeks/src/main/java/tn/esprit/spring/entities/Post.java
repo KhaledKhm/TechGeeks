@@ -31,7 +31,6 @@ import tn.esprit.spring.entities.Advertising.pub;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Post implements Serializable{
 
-
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idPost;

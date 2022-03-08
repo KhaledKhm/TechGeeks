@@ -19,13 +19,13 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentLike implements Serializable{
 
-	
-	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idCommentLike;

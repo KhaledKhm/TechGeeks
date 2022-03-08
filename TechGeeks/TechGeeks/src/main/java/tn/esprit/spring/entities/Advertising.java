@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +31,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @Table(name = "advertising")
 public class Advertising implements Serializable{
+
 enum pub{vidéo ,image}
+
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -52,5 +56,6 @@ enum pub{vidéo ,image}
 	
 	
 	@ManyToOne
+	@JsonIgnore
 	private User userAdvertising;
 }

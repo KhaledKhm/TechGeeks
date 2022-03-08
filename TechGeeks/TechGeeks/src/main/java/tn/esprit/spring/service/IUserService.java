@@ -2,6 +2,18 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 
+import tn.esprit.spring.entities.Certificate;
+
+public interface IUserService {
+	
+	public void AffecterCertificat(int idUser, List<Certificate> certificates);
+
+}
+
+package tn.esprit.spring.service;
+
+import java.util.List;
+
 import tn.esprit.spring.entities.User;
 
 public interface IUserService {
@@ -14,3 +26,4 @@ public interface IUserService {
     void updateUser(User U);
     User findUserByUserName(String userName);
 }
+
