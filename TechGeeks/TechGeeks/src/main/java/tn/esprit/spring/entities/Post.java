@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,6 +21,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.spring.entities.Advertising.pub;
 
 @Entity
 @Getter
@@ -35,15 +40,16 @@ public class Post implements Serializable{
 	private String body;
 	
 	private String photo;
-	
+	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 	
+	@JsonIgnore
 	@ManyToOne
 	private User userPost;
-	
+	@JsonIgnore 
 	@OneToMany(mappedBy="post")
 	private Set<PostComment> postComments;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="post")
 	private Set<PostLike> postLikes;
 }

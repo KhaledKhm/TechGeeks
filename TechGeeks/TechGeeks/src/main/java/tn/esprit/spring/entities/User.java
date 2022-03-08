@@ -3,17 +3,12 @@ package tn.esprit.spring.entities;
 
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,11 +29,9 @@ public class User implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int idUser;
-
-	private String login;
-	
-	private String pwd;
+	private Integer id;
+	private String userName;
+	private String Password;
 	
 	private String firstName;
 	
@@ -50,6 +43,8 @@ public class User implements Serializable{
 	
 	private int num;
 	
+	private Date birthDate;
+	
 	private String city;
 	
 	private String governorate;
@@ -59,14 +54,22 @@ public class User implements Serializable{
 	private String address;
 	
 	private String photo; //a revoir
+	private Boolean active;
 	
+
 	@OneToOne
 	@JsonIgnore
 	private Role role;
 
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch= FetchType.EAGER)
+	private Set<Role> roles;
+
+
 	private ExpertRole expertRole;
 		
 	private String document;
+	@Enumerated(EnumType.STRING)
+    private Provider provider;
 	
 	@OneToMany
 	@JsonIgnore

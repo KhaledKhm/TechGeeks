@@ -1,6 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.spring.entities.Advertising.pub;
 
 @Entity
 @Getter
@@ -21,8 +23,10 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostLike implements Serializable{
-	
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idPostLike;
