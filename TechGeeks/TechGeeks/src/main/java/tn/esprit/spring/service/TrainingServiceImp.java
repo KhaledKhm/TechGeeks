@@ -173,7 +173,7 @@ public class TrainingServiceImp implements ITrainingService {
 		System.out.println(dateEnd);
 		System.out.println(dateStart);
 
-		if (u.getRole().getIdRole() == 1) {
+		if (u.getRole().getRole() == "trainer") {
 			System.out.println("2");
 			int nb = 0;
 			for (Training t : trainings) {
@@ -249,7 +249,7 @@ public class TrainingServiceImp implements ITrainingService {
 		User u = userRepository.findById(idUser).orElse(null);
 		Certificate c = new Certificate() ;
 		training = trainingRepository.findById(idTraining).get();
-		if (u.getRole().getIdRole() == 2) {
+		if (u.getRole().getRole() == "women" ) {
 				if (training.getNbrParticipant() < training.getTotalParticipant()) {
 					training.setNbrParticipant(training.getNbrParticipant() + 1);
 					c.setUser(u);
@@ -264,5 +264,15 @@ public class TrainingServiceImp implements ITrainingService {
 				return "you can not be a participant";
 			}
 	}
+
+	@Override
+	public Training updateStatus(Training training,int idtraining) {
+		Training t = trainingRepository.findById(idtraining).get();
+		t.setStatus(training.getStatus());
+		return trainingRepository.save(t);
+	}
+
+		
+	
 
 }

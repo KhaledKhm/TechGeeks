@@ -32,6 +32,12 @@ public class TariningController {
 		trainingService.addTrainingByTrainer(training, idUser, idSector);
 	}
 	
+	@PutMapping("/updateStatus/{idTraining}/")
+	@ResponseBody
+	public Training updateStatus(@RequestBody Training training,@PathVariable("idTraining") int idTraining) {
+		return trainingService.updateStatus(training,idTraining);
+	}
+	
 	@PutMapping("/addTrainingByWomen/{idTraining}/{idUser}")
 	@ResponseBody
 	public String addTrainingByWomen(@RequestBody Training training,@PathVariable("idTraining") int idTraining,@PathVariable("idUser") int idUser) {
