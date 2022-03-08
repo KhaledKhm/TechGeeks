@@ -1,5 +1,7 @@
 package tn.esprit.spring.service;
 
+public interface IEventService {
+
 import java.util.Date;
 import java.util.List;
 

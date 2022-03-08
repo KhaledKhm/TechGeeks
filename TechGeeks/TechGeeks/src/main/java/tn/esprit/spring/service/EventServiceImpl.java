@@ -1,5 +1,9 @@
 package tn.esprit.spring.service;
 
+
+import org.springframework.stereotype.Service;
+
+
 import java.util.Date;
 import java.util.List;
 
@@ -16,9 +20,11 @@ import tn.esprit.spring.repository.LocalRepository;
 
 
  @Service
- @Slf4j
  public class EventServiceImpl implements IEventService {
 
+	public EventServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	@Autowired
 	EventRepository eventRepository;

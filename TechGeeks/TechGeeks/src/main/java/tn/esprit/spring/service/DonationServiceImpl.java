@@ -1,12 +1,7 @@
 package tn.esprit.spring.service;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
 
 import lombok.extern.slf4j.Slf4j;
 import tn.esprit.spring.entities.Donation;
@@ -17,12 +12,12 @@ import tn.esprit.spring.repository.PotRepository;
 import tn.esprit.spring.repository.UserRepository;
 
 @Service
-@Slf4j
 public class DonationServiceImpl implements IDonationService{
 
 	public DonationServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	@Autowired
 	DonationRepository donationRepository;

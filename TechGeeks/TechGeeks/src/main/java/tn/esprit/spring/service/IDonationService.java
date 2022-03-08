@@ -1,5 +1,7 @@
 package tn.esprit.spring.service;
 
+public interface IDonationService {
+
 import java.util.List;
 
 import tn.esprit.spring.entities.Donation;

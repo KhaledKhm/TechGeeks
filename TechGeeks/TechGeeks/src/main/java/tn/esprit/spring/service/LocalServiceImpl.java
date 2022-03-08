@@ -1,27 +1,14 @@
 package tn.esprit.spring.service;
 
-import java.util.List;
-import java.util.Set;
-
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
-import tn.esprit.spring.entities.Event;
-import tn.esprit.spring.entities.Local;
-import tn.esprit.spring.entities.User;
-import tn.esprit.spring.repository.EventRepository;
-import tn.esprit.spring.repository.LocalRepository;
-
 @Service
-@Slf4j
 public class LocalServiceImpl implements ILocalService{
 
 	public LocalServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
+
 	@Autowired
 	LocalRepository localRepository;
 	@Autowired
