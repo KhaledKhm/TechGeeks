@@ -1,10 +1,6 @@
 package tn.esprit.spring.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.entities.Formation;
 import tn.esprit.spring.entities.Offre;
 import tn.esprit.spring.entities.OffreCategory;
 import tn.esprit.spring.repository.OffreRepository;
@@ -27,51 +22,43 @@ import tn.esprit.spring.service.OffreServiceImpl;
 
 
 @RestController
-public class OffreController {
+public class OffreCategoryController {
 
 	@Autowired
-	IOffreService offreService;
-	@Autowired
 	IOffreCategoryService offreCategoryService;
-	@Autowired
-	UserRepository userRepository;
-	
-	public OffreController() {
+
+	public OffreCategoryController() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@PostMapping("/add-offre/{id_user}/{idOffreCat}")
+	@PostMapping("/add-offreCategory")
 	@ResponseBody
-	Offre addOffre(@RequestBody Offre o , @PathVariable("id_user")Integer id,@PathVariable("idOffreCat")Integer idOffreCat ){
-		o.setOffreCategory(offreCategoryService.retrieveOffreCategory(idOffreCat));
-		return offreService.addOffre(o, id);
+	OffreCategory addOffre(@RequestBody OffreCategory cat  ){
+		return offreCategoryService.addOffreCategory(cat);
 	}
 	
-	@GetMapping("/retrieve-allOffres")
+	@GetMapping("/retrieve-allOffresCategory")
 	@ResponseBody
-	List<Offre> retrieveAllOffres(){
-		
-		return offreService.retrieveAllOffres();
+	List<OffreCategory> retrieveAllOffres(){
+		return offreCategoryService.retrieveAllOffresCategory();
 	}
 	
-	@GetMapping("/get-offre/{idOffre}")
+	@GetMapping("/get-offreCategory/{idCategory}")
 	@ResponseBody
-	Offre getOffreById(@PathVariable("idOffre") int idOffre){
-		return offreService.retrieveOffre(idOffre);
+	OffreCategory getOffreById(@PathVariable("idCategory") int idCategory){
+		return offreCategoryService.retrieveOffreCategory(idCategory);
 		
 	}
 	
-	@PutMapping("/modify-offre")
+	@PutMapping("/modify-offreCategory")
 	@ResponseBody
-	Offre updateOffre(@RequestBody Offre o){
-		
-		return offreService.updateOffre(o);
+	OffreCategory updateOffreCategory(@RequestBody OffreCategory cat){
+		return offreCategoryService.updateOffreCategory(cat);
 	}
 	
-	@DeleteMapping("/delete-offre/{id}")
-	void deleteEvent(@PathVariable("id") int idOffre){
-		offreService.deleteOffre(idOffre);
-		
+	@DeleteMapping("/delete-offreCategory/{id}")
+	void deleteOffreCategory(@PathVariable("id") int idCatOffre){
+		offreCategoryService.deleteOffreCategory(idCatOffre);
 	}
 
 }

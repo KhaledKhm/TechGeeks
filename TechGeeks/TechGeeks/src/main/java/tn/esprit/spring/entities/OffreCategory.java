@@ -25,26 +25,18 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class Offre implements Serializable{
+public class OffreCategory implements Serializable{
 
-	public Offre() {
+	public OffreCategory() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int idOffer;
+	private int idOfferCategory;
 	
 	private String title;
 	
-	private String description;
+
 	
-	private Date creationDate;
-	@JsonIgnore
-	@ManyToOne
-	private User User;
-	
-	
-	@ManyToOne
-	private OffreCategory offreCategory;
 }
