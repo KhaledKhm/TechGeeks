@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +34,7 @@ public class CommentLike implements Serializable{
 	
 	private int commentLike;
 	@ManyToOne
+	@JsonIgnore
 	private PostComment postComment;
 
 }

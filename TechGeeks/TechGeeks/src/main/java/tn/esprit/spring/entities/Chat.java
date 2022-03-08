@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -40,9 +42,11 @@ public class Chat implements Serializable{
 	private String text;
 	@JsonIgnore
 	@OneToMany(mappedBy="chat")
+	@JsonIgnore
 	private Set<User> receivers;
 	@JsonIgnore
 	@ManyToOne 
+	@JsonIgnore
 	private User sender;
 	
 	private MessageType type;

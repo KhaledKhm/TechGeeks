@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,12 +35,15 @@ public class Postulant implements Serializable{
 	private Etat etat;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="postulantUser")
+	@JsonIgnore
 	private Set<User> users;
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<Offre> offres;
 	
 	@OneToMany(mappedBy="postulantInterview")
+	@JsonIgnore
 	private Set<Interview> interviews;
 
 }

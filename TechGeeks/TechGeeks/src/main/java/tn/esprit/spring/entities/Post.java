@@ -15,6 +15,8 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,11 +47,14 @@ public class Post implements Serializable{
 	
 	@JsonIgnore
 	@ManyToOne
+	@JsonIgnore
 	private User userPost;
 	@JsonIgnore 
 	@OneToMany(mappedBy="post")
+	@JsonIgnore
 	private Set<PostComment> postComments;
 	@JsonIgnore
 	@OneToMany(mappedBy="post")
+	@JsonIgnore
 	private Set<PostLike> postLikes;
 }

@@ -109,7 +109,9 @@ public class User implements Serializable{
 	@OneToMany(mappedBy="userComplaint")
 	@JsonIgnore
 	private Set<Complaint> complaints;
-	
+	@OneToMany(mappedBy="exper")
+	@JsonIgnore
+	private Set<Complaint> complaintss;
 	@OneToMany(mappedBy="userPost")
 	@JsonIgnore
 	private Set<Post> posts;
@@ -118,9 +120,11 @@ public class User implements Serializable{
 	@JsonIgnore
 	private PostComment postComment;
 	
-	@ManyToOne
+
+	@OneToMany(mappedBy="women")
 	@JsonIgnore
-	private Appointment appointment;
+	private Set<Appointment> appointmentss;
+
 	
 	@OneToMany(mappedBy="expert")
 	@JsonIgnore

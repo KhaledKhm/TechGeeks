@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,11 +36,14 @@ public class PostComment implements Serializable{
 	private String comment;
 	
 	@OneToMany(mappedBy="postComment")
+	@JsonIgnore
 	private Set<CommentLike> commentLikes;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Post post;
 	
 	@OneToOne
+	@JsonIgnore
 	private User user;
 }

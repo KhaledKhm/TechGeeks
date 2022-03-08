@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,10 +35,13 @@ public class Pot implements Serializable{
 	
 	private String bankAccount;
 	
+	
 	@OneToOne
+	@JsonIgnore
 	private Event event;
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<Donation> donations;
 	
 }
