@@ -7,7 +7,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.FindOrBuilder;
+
 import tn.esprit.spring.entities.Certificate;
+import tn.esprit.spring.entities.Punishment;
 import tn.esprit.spring.entities.Quiz;
 import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.CertificateRepository;
@@ -25,18 +28,7 @@ public class CertificateServiceImp implements ICertificateService{
 	public void addCertificate (Certificate certificat){
 		certificateRepository.save(certificat);
 	}
-	
-	/*@Override
-	public void AffecterUser(int idCertificate, List<User> users) {
-		userRepository.saveAll(users);
-		Certificate c =certificateRepository.findById(idCertificate).orElse(null);
-		for (User user : users) {
-			user.setUserCertificate(c);
-		}
-		userRepository.saveAll(users);
-	}*/
-	
-	
+		
 	@Override
 	public Certificate updateCertificate(Certificate certificate) {
 		Certificate c = certificateRepository.findById(certificate.getIdCertificate()).orElse(null);
@@ -65,6 +57,17 @@ public class CertificateServiceImp implements ICertificateService{
 	@Override
 	public Optional<Certificate> getCertificateById(int idCertificate) {
 		return certificateRepository.findById(idCertificate);
+	}
+
+	@Override
+	public Certificate updatePunishment(Certificate certificate, int idCertificate) {
+		Certificate c = certificateRepository.findById(idCertificate).get();
+		c.setPunishment(certificate.getPunishment());
+		Punishment p = Punishment.Fire;
+		if (c.getPunishment() == p){
+			certificateRepository.delete(c);
+		}
+		return certificateRepository.save(c);
 	}
 
 }

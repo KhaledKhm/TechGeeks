@@ -22,12 +22,6 @@ public class CertificateController {
 	@Autowired
 	ICertificateService certificateService;
 	
-	/*@PostMapping("/AffecterUser/{idCertificate}/{users}")
-	@ResponseBody
-	public void AffecterUser(@RequestBody Certificate certificate,@PathVariable("idCertificate") int idCertificate,@PathVariable("users") List<User> user) {
-		certificateService.AffecterUser(idCertificate,user);
-	}*/
-	
 	@PostMapping("/addCertificate")
 	@ResponseBody
 	public void addCertificate(@RequestBody Certificate certificate) {
@@ -63,6 +57,13 @@ public class CertificateController {
 	@ResponseBody
 	public Optional <Certificate> getCertificateById(@PathVariable("idCertificate") int idCertificate) {
 		return certificateService.getCertificateById(idCertificate);
+	}
+	
+	
+	@PutMapping("/updatePunishment/{idCertificate}")
+	@ResponseBody
+	public void updatePunishment(@RequestBody Certificate certificate,@PathVariable("idCertificate") int idCertificate) {
+		certificateService.updatePunishment(certificate,idCertificate);
 	}
 
 }
