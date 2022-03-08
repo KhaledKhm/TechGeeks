@@ -15,19 +15,20 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.spring.entities.Advertising.pub;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class PostComment implements Serializable{
-
-	public PostComment() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -35,15 +36,15 @@ public class PostComment implements Serializable{
 	
 	private String comment;
 	
-	@OneToMany(mappedBy="postComment")
 	@JsonIgnore
+	@OneToMany(mappedBy="postCommentLike")
 	private Set<CommentLike> commentLikes;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JsonIgnore
-	private Post post;
+	private Post postComments;
 	
-	@OneToOne
 	@JsonIgnore
+	@OneToOne
 	private User user;
 }

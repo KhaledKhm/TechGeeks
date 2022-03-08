@@ -15,15 +15,12 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import tn.esprit.spring.entities.Advertising.pub;
 
 @Entity
 @Getter
@@ -33,6 +30,7 @@ import tn.esprit.spring.entities.Advertising.pub;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Post implements Serializable{
 
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idPost;
@@ -41,20 +39,20 @@ public class Post implements Serializable{
 	
 	private String body;
 	
+	//@Lob
 	private String photo;
+	
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JsonIgnore
 	private User userPost;
 	@JsonIgnore 
-	@OneToMany(mappedBy="post")
-	@JsonIgnore
+	@OneToMany(mappedBy="postComments")
 	private Set<PostComment> postComments;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy="post")
-	@JsonIgnore
+	@OneToMany(mappedBy="postLikes")
 	private Set<PostLike> postLikes;
 }

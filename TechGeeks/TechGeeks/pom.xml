@@ -15,7 +15,7 @@
 	<description>PiDev Project</description>
 	<properties>
 		<java.version>1.8</java.version>
-		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
 	</properties>
 	<dependencies>
 	<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto -->
@@ -149,6 +149,7 @@
     <version>5.2.2.RELEASE</version>
 </dependency>
 
+
 <dependency>
 	<groupId>io.jsonwebtoken</groupId>
 	<artifactId>jjwt</artifactId>
@@ -246,14 +247,51 @@ spring-boot-starter-oauth2-resource-server
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
+
+<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
+		 <dépendance>
+            <groupId>com.h2database</groupId>
+            <artefactId>h2</artefactId>
+        </dépendance>
+		<dépendance>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator-core</artifactId>
+		</dépendance>
+		<dépendance>
+			<groupId>org.webjars</groupId>
+			<artifactId>sockjs-client</artifactId>
+			<version>1.0.2</version>
+		</dépendance>
+		<dépendance>
+			<groupId>org.webjars</groupId>
+			<artifactId>stomp-websocket</artifactId>
+			<version>2.3.3</version>
+		</dépendance>
+		<dépendance>
+			<groupId>org.webjars</groupId>
+			<artifactId>amorçage</artifactId>
+			<version>3.3.7</version>
+		</dépendance>
+		<dépendance>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.1.1-1</version>
+		</dépendance>
+		 -->
+
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>3.1.0</version>
+</plugin> 
 		</plugins>
 	</build>
 

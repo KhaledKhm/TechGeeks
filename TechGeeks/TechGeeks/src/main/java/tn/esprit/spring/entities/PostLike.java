@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,19 +23,30 @@ import tn.esprit.spring.entities.Advertising.pub;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostLike implements Serializable{
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idPostLike;
 	
+	private int nbLike;
+	
+	private int nbdislike;
+	
 	@ManyToOne
+	private Post postLikes;
+	
 	@JsonIgnore
-	private Post post;
+	@OneToOne
+	private User user;
 
 }
