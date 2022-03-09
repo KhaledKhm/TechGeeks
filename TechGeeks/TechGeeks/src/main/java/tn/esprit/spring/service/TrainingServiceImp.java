@@ -63,7 +63,7 @@ public class TrainingServiceImp implements ITrainingService {
 		Role role = roleRepository.findByRole(RoleName.ROLE_FORMER);
 		Set<Role> roles = u.getRoles();
 		for (Role r : roles) {
-			if (r.getId() == role.getId()) {
+			if (r.getIdRole() == role.getIdRole()) {
 				Sector s = sectorRepository.findById(idSector).orElse(null);
 				training.setUser(u);
 				training.setSector(s);
@@ -183,7 +183,7 @@ public class TrainingServiceImp implements ITrainingService {
 		System.out.println(dateStart);
 		Set<Role> roles = u.getRoles();
 		for (Role r : roles) {
-			if (r.getId() == role.getId()) {
+			if (r.getIdRole() == role.getIdRole()) {
 				System.out.println("2");
 				int nb = 0;
 				for (Training t : trainings) {
@@ -273,7 +273,7 @@ public class TrainingServiceImp implements ITrainingService {
 		training = trainingRepository.findById(idTraining).get();
 		Set<Role> roles = u.getRoles();
 		for (Role r : roles) {
-			if (r.getId() == role.getId()) {
+			if (r.getIdRole() == role.getIdRole()) {
 				for (Certificate certif : certificates)
 					if (u.getId() != certif.getUser().getId()) {
 						if (training.getNbrParticipant() < training.getTotalParticipant()) {

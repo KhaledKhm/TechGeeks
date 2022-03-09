@@ -97,7 +97,6 @@ public class User implements Serializable{
 //	private Set<Event> events;
 
 	
-	@JsonIgnore
 	@OneToMany
 	@JsonIgnore
 	private Set<Offre> offres;

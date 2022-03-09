@@ -74,7 +74,7 @@ import tn.esprit.spring.repository.UserRepository;
 			Event e = eventRepository.findById(idEvent).get();
 			User u = new User();
 			if(userRepository.findById(idUser).isPresent()){
-				u.setIdUser(idUser);
+				u.setId(idUser);
 				e.getEventUsers().add(u);
 				eventRepository.save(e);
 			}
@@ -135,16 +135,16 @@ import tn.esprit.spring.repository.UserRepository;
 	public void mostParticipatingUser() {
 		List<User> users =  userService.retrieveAllUsers();
 		int iUser=0;
-		int participation=eventRepository.mostParticipatingUser(users.get(0).getIdUser());
+		int participation=eventRepository.mostParticipatingUser(users.get(0).getId());
 		for (int i = 1; i<users.size();i++){
-			if(eventRepository.mostParticipatingUser(users.get(i).getIdUser()) > eventRepository.mostParticipatingUser(users.get(i-1).getIdUser()) ){
-				participation=eventRepository.mostParticipatingUser(users.get(i).getIdUser());
+			if(eventRepository.mostParticipatingUser(users.get(i).getId()) > eventRepository.mostParticipatingUser(users.get(i-1).getId()) ){
+				participation=eventRepository.mostParticipatingUser(users.get(i).getId());
 				iUser=i;
 			}
 		}
 		log.info("\n"
 				+"The most participating user is "
-				+users.get(iUser).getIdUser()
+				+users.get(iUser).getId()
 				+users.get(iUser).getUsername()
 				+":\n"
 				+users.get(iUser).getFirstName()
@@ -161,7 +161,7 @@ import tn.esprit.spring.repository.UserRepository;
 		List<User> userList =  userRepository.sortMostParticipatingUsers();
 		for (User user : userList){
 			log.info("\n"
-					+user.getIdUser()
+					+user.getId()
 					+"-"
 					+user.getUsername()
 					+": - First name: "
