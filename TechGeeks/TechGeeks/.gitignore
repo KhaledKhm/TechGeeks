@@ -13,12 +13,8 @@ target/
 .settings
 .springBeans
 .sts4-cache
-src/main/resources/application.properties
-application.properties
 mvnw
 mvnw.cmd
-pom.xml
-src/main/java/tn/esprit/spring/controller/LocalController.java
 
 ### IntelliJ IDEA ###
 .idea
