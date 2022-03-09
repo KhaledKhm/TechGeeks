@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.RoleRepository;
-import tn.esprit.spring.service.userService;
+import tn.esprit.spring.service.UserServiceImp;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/test")
 public class TestController {
 	@Autowired
-	userService us;
+	UserServiceImp us;
 	@Autowired
 	RoleRepository Rrepository;
   @GetMapping("/all")
@@ -34,7 +34,8 @@ public class TestController {
   @GetMapping("/retrieve-all-users")
   @PreAuthorize("hasRole('WOMEN')")
 	public Set<User> getUsers(){
-		return us.retrieveAllUsers();
+return null;
+	  //		return us.retrieveAllUsers();
 	}
 
   @GetMapping("/mod")

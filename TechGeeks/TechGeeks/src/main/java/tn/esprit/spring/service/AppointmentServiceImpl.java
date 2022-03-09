@@ -49,7 +49,7 @@ UserRepository urepo;
 		User u = urepo.findById(iduser).orElse(null);
 		Appointment a= apprepo.findById(idAppointment).orElse(null);
 		a.setExpert(u);
-		a.setWomen(u);
+//		a.setWomen(u);
 		apprepo.save(a);
 		
 	}

@@ -55,14 +55,14 @@ public class TrainingServiceImp implements ITrainingService {
 
 	@Override
 	public void addTrainingByTrainer(Training training, int idUser, int idSector) {
-		User u = userRepository.findById(idUser).orElse(null);
+		/*User u = userRepository.findById(idUser).orElse(null);
 		if (u.getRole().getRole() == "Trainer") {
 			Sector s = sectorRepository.findById(idSector).orElse(null);
 			training.setUser(u);
 			training.setSector(s);
 			training.setStatus(Status.Waiting);
 			trainingRepository.save(training);
-		}
+		}*/
 	}
 
 	@Override
@@ -173,7 +173,7 @@ public class TrainingServiceImp implements ITrainingService {
 		System.out.println(dateEnd);
 		System.out.println(dateStart);
 
-		if (u.getRole().getRole() == "trainer") {
+	/*	if (u.getRole().getRole() == "trainer") {
 			System.out.println("2");
 			int nb = 0;
 			for (Training t : trainings) {
@@ -239,7 +239,7 @@ public class TrainingServiceImp implements ITrainingService {
 					}
 				}
 			}
-		}
+		}*/
 		System.out.println("28");
 		return "you are not a trainer";
 	}
@@ -249,7 +249,7 @@ public class TrainingServiceImp implements ITrainingService {
 		User u = userRepository.findById(idUser).orElse(null);
 		Certificate c = new Certificate() ;
 		training = trainingRepository.findById(idTraining).get();
-		if (u.getRole().getRole() == "women" ) {
+	/*	if (u.getRole().getRole() == "women" ) {
 				if (training.getNbrParticipant() < training.getTotalParticipant()) {
 					training.setNbrParticipant(training.getNbrParticipant() + 1);
 					c.setUser(u);
@@ -262,7 +262,8 @@ public class TrainingServiceImp implements ITrainingService {
 				}
 			}else{
 				return "you can not be a participant";
-			}
+			}*/
+		return null;
 	}
 
 	@Override

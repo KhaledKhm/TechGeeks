@@ -40,8 +40,8 @@ public class PostController {
 	}
 	
 	@DeleteMapping("/SupprimerPost/{id}")
-	public void SupprimerPost(@PathVariable int Id) {
-		iPostService.SupprimerPost(Id);
+	public void SupprimerPost(@PathVariable("id") int id) {
+		iPostService.SupprimerPost(id);
 	}
 	
 	@GetMapping("/getByid/{id}")
@@ -83,7 +83,7 @@ public class PostController {
 		
 		
 		
-		return iPostService.getByOrdernbLike();
+		return iPostService.getByordernbLike();
 		//return iPostService.getByOrdernbLike();
 	}
 	

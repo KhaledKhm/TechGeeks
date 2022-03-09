@@ -65,21 +65,22 @@ public class PostService implements IPostService{
 	}
 
 	@Override
-	public List<Post> getByOrdernbLike() {
+	public List<Post> getByordernbLike() {
 		// TODO Auto-generated method stub
 		//return postrepo.AfficherPostorderbynbLike();
-		Map<Post,Integer> mappost = null;
-		List<Post>  listpost=postrepo.findAll();
-		listpost.forEach((post) -> {
-			int nblike=replike.nbTotalelike(post.getIdPost());
-			mappost.put(post , nblike);
-		}
-	);
+		
+		/*List<Post>  listpost=postrepo.findAll();
+		for(int i=0;i<listpost.size();i++) {
+			int nblike=replike.nbTotalelike(listpost.get(i).getIdPost());
+			if(nblike > replike.nbTotalelike(listpost.get(i).getIdPost())) {
+				
+			}
+		}*/
 		
 			
 		
 		//int nblike=replike.nbTotalelike();
-		return (List<Post>) mappost;
+		return postrepo.AfficherPostbynbLike();
 	}
 
 	

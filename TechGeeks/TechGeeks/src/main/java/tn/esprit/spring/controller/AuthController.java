@@ -37,11 +37,11 @@ import tn.esprit.spring.service.ServiceUser;
 
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+//@RequestMapping("/api/auth")
 public class AuthController {
-  @Autowired
+ /* @Autowired
   AuthenticationManager authenticationManager;
 
   @Autowired
@@ -111,6 +111,6 @@ public class AuthController {
 				msg="User have been added succ"; 
 		}
 		return msg; 
-		}
+		}*/
 	  
 }

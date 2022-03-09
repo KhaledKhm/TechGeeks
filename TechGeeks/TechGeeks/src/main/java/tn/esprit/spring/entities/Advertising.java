@@ -2,9 +2,6 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,31 +22,31 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "advertising")
 public class Advertising implements Serializable{
-
-enum pub{vidéo ,image}
-
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idAdvertising;
 	@NotNull
-	@Size(min=5, max=30)
-	private String nompublicite;
+	private String nameAd;
 	@NotNull
-	private Date datedebut;
+	private Date dateStart;
+	
 	@NotNull
-	private Date datefin;
+	private Date dateEnd;
+	
 	@NotNull
-	private int nombreinitialevus;
+	private int numbervus;
+	
+	
+	
 	@NotNull
-	private int nombrefinalvus;
-	@NotNull
-	private float coutpublication; 
+	private float price; 
+	
 	@NotNull
 	private pub typepub;
 	
@@ -58,4 +54,6 @@ enum pub{vidéo ,image}
 	@ManyToOne
 	@JsonIgnore
 	private User userAdvertising;
+	
+	
 }
