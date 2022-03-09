@@ -17,3 +17,4 @@ public interface UserRepository extends CrudRepository<User, Integer>{
     List<User> sortMostParticipatingUsers();
 }
 
+

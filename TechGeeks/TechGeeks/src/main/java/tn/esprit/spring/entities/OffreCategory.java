@@ -2,6 +2,7 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -23,25 +25,18 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class Postulant implements Serializable{
+public class OffreCategory implements Serializable{
 
-	public Postulant() {
+	public OffreCategory() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int idPostulant;
+	private int idOfferCategory;
 	
-	private Etat etat;
-	@ManyToOne
-	private User users;
+	private String title;
+	
 
 	
-	@ManyToOne
-	private Offre offres;
-	
-	@OneToMany(mappedBy="postulantInterview")
-	private Set<Interview> interviews;
-
 }

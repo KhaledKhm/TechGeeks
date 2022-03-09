@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -37,7 +38,7 @@ public class User implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int idUser;
+	private int id;
 
 	private String username;
 	
@@ -96,14 +97,15 @@ public class User implements Serializable{
 //	private Set<Event> events;
 
 	
-	
+	@JsonIgnore
 	@OneToMany
 	@JsonIgnore
 	private Set<Offre> offres;
-	
-	@ManyToOne
+
 	@JsonIgnore
-	private Postulant postulantUser;
+	@OneToMany(mappedBy="users")
+	private Set<Postulant> postulants;
+
 	
 	@OneToMany(mappedBy="userAdvertising")
 	@JsonIgnore
