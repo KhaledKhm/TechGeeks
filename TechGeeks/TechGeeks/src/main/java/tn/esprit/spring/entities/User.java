@@ -57,9 +57,6 @@ public class User implements Serializable{
 	private Boolean active;
 	
 
-	@OneToOne
-	@JsonIgnore
-	private Role role;
 
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch= FetchType.EAGER)
 	private Set<Role> roles;
@@ -96,13 +93,13 @@ public class User implements Serializable{
 	@JsonIgnore
 	private Set<Complaint> complaints;
 	
-	@OneToMany(mappedBy="userPost")
-	@JsonIgnore
-	private Set<Post> posts;
+//	@OneToMany(mappedBy="userPost")
+//	@JsonIgnore
+//	private Set<Post> posts;
 	
-	@OneToOne(mappedBy="user")
-	@JsonIgnore
-	private PostComment postComment;
+//	@OneToOne(mappedBy="user")
+//	@JsonIgnore
+//	private PostComment postComment;
 	
 	@ManyToOne
 	@JsonIgnore

@@ -13,6 +13,7 @@ import tn.esprit.spring.entities.Training;
 
 @Repository
 public interface TrainingRepository extends JpaRepository<Training, Integer>{
+	List<Training> findAll();
 	@Query("Select t from Training t where t.sector.name =:name")
 	List<Training> FindTrainingBySector(@Param("name") String name);
 }

@@ -1,12 +1,13 @@
 package tn.esprit.spring.service;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 
 import tn.esprit.spring.entities.Certificate;
+import tn.esprit.spring.entities.Local;
 import tn.esprit.spring.entities.Training;
 
 public interface ITrainingService {
@@ -31,4 +32,6 @@ public interface ITrainingService {
 	public Page<Training> TrainingPagination(int offset, int pagesize );
 	
 	public Training updateStatus(Training training , int idtraining);
+	
+	public List<Local> getAllLocal(Date dateStart, Date dateEnd );
 }

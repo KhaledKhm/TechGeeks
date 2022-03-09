@@ -21,18 +21,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class Role implements Serializable{
-
-	
-
-@AllArgsConstructor
-@NoArgsConstructor
 public class Role implements Serializable {
 
 	@Id

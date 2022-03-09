@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -45,8 +49,10 @@ public class Local implements Serializable{
 	
 	private int maxNumber;
 	
+	@Temporal(TemporalType.DATE)
 	private Date dateStart;
 	
+	@Temporal(TemporalType.DATE)
 	private Date dateEnd;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
