@@ -20,6 +20,5 @@ public interface EventRepository extends JpaRepository<Event,Integer> {
 			+ "ORDER BY (Select count(e.event_users_id_user) FROM event_event_users "
 			+ "WHERE e.event_users_id_user=u.id_user) DESC", nativeQuery = true) */
 //	@Query(value ="SELECT * , COUNT(pl.nb_like)AS nombre_like FROM post p JOIN post_like pl ON p.id_post = pl.post_likes_id_post  where id=id_post GROUP BY p.id_post ORDER BY COUNT(pl.nb_like) DESC",nativeQuery = true)
-	@Query(value ="SELECT * FROM User u JOIN event_event_users e ON e.event_users_id_user = u.id_user GROUP BY e.event_users_id_user ORDER BY COUNT(e.event_users_id_user) DESC",nativeQuery = true)
-	List<User> sortMostParticipatingUsers();
+	
 }

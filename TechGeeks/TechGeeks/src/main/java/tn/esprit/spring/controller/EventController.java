@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.User;
+import tn.esprit.spring.repository.EventRepository;
 import tn.esprit.spring.service.IEventService;
 
 @RestController
@@ -22,6 +23,8 @@ public class EventController {
 	@Autowired
 	IEventService eventService;
 	
+	@Autowired
+	EventRepository ev;
 	public EventController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -84,6 +87,7 @@ public class EventController {
 	}
 	@GetMapping("/sort-most-particpating-users-Event")
 	List<User> sortParticipatingUsers(){
+		//return eventService.sortMostParticipatingUsers();
 		return eventService.sortMostParticipatingUsers();
 		
 	}

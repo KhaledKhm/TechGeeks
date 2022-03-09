@@ -158,9 +158,17 @@ import tn.esprit.spring.repository.UserRepository;
 	}
 	@Override
 	public List<User> sortMostParticipatingUsers() {
-		List<User> userList =  eventRepository.sortMostParticipatingUsers();
+		List<User> userList =  userRepository.sortMostParticipatingUsers();
 		for (User user : userList){
-			log.info(" User: " +user.getUsername());
+			log.info("\n"
+					+user.getIdUser()
+					+"-"
+					+user.getUsername()
+					+": - First name: "
+					+user.getFirstName()
+					+" Last name: "
+					+user.getLastName()
+					);
 		}
 		return userList;
 	}
