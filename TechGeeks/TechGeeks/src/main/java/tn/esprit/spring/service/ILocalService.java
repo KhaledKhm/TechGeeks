@@ -13,4 +13,5 @@ public interface ILocalService {
 	Local updateLocal(Local l);
 	Local retrieveLocal(int id);
 	void deleteLocal(int id);
+	void assignEventToLocal(int idLocal, int idEvent);
 }

@@ -24,27 +24,23 @@ public class LocalController {
 	ILocalService localService;
 	
 	@PostMapping("/add-local")
-	@ResponseBody
 	Local addLocal(@RequestBody Local l){
 		return localService.addLocal(l);
 	}
 	
 	@GetMapping("/retrieve-allLocals")
-	@ResponseBody
 	List<Local> retrieveAllLocals(){
 		
 		return localService.retrieveAllLocals();
 	}
 	
 	@GetMapping("/get-Local/{idLocal}")
-	@ResponseBody
 	Local getLocalById(@PathVariable("idLocal") int idLocal){
 		return localService.retrieveLocal(idLocal);
 		
 	}
 	
 	@PutMapping("modify-local")
-	@ResponseBody
 	Local updateLocal(@RequestBody Local l){
 		
 		return localService.updateLocal(l);
@@ -54,6 +50,11 @@ public class LocalController {
 	void deleteLocal(@PathVariable("id") int idLocal){
 		localService.deleteLocal(idLocal);
 		
+	}
+	
+	@PutMapping("assign-event-to-local/{idLocal}/{idEvent}")
+	public void assignEventToLocal(@PathVariable("idLocal") int idLocal,@PathVariable("idEvent") int idEvent){
+		localService.assignEventToLocal(idLocal, idEvent);
 	}
 
 }

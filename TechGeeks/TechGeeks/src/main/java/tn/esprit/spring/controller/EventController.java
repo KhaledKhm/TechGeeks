@@ -43,6 +43,12 @@ public class EventController {
 		
 	}
 	
+	@GetMapping("/newest-Event")
+	void newestEvent(){
+		eventService.newestEvent();
+		
+	}
+	
 	@PutMapping("modify-event")
 	Event updateEvent(@RequestBody Event e){
 		

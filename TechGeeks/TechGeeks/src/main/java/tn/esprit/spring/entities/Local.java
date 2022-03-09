@@ -47,7 +47,6 @@ public class Local implements Serializable{
 	
 	private String name;
 	
-	private int maxNumber;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateStart;
@@ -56,7 +55,7 @@ public class Local implements Serializable{
 	private Date dateEnd;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="localEvent")
+	@OneToMany
 	private Set<Event> events;
 	
 	@JsonIgnore

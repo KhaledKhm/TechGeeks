@@ -33,7 +33,7 @@ public class DonationController {
 		return donationService.addDonationAndAssignPot(d,idPot);
 	}
 	
-	@PostMapping("/assign-user-pot-to-donation/{idPot}/{idUser}")
+	@PostMapping("/add-and-assign-user-pot-to-donation/{idPot}/{idUser}")
 	void addAndAssignPotAndUser(@RequestBody Donation d, @PathVariable("idPot") int idPot, @PathVariable("idUser") int idUser){
 		donationService.addAndAssignPotAndUser(d,idPot,idUser);
 	}

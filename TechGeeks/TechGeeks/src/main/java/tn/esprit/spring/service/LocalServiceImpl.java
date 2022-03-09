@@ -87,4 +87,17 @@ public class LocalServiceImpl implements ILocalService{
 		return l;
 	}
 
+	@Override
+	public void assignEventToLocal(int idLocal, int idEvent) {
+		if(localRepository.findById(idLocal).isPresent()){
+			Local l = localRepository.findById(idLocal).get();
+			Event e = new Event();
+			if(eventRepository.findById(idEvent).isPresent()){
+				e.setIdEvent(idEvent);
+				l.getEvents().add(e);
+				localRepository.save(l);
+			}
+		}
+	}
+
 }

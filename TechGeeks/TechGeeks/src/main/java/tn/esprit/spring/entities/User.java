@@ -69,9 +69,9 @@ public class User implements Serializable{
 		
 	private String document;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="donationUser")
-	private Set<Donation> donations;
+//	@JsonIgnore
+//	@OneToMany(mappedBy="donationUser")
+//	private Set<Donation> donations;
 	
 //	@ManyToMany
 //	private Set<Event> events;

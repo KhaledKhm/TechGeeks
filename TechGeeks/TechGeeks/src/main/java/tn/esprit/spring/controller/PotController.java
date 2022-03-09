@@ -26,25 +26,21 @@ public class PotController {
 	IPotService potService;
 	
 	@PostMapping("/add-pot")
-	@ResponseBody
 	Pot addPot(@RequestBody Pot p){
 		return potService.addPot(p);
 	}
 	
 	@GetMapping("/retrieve-allPots")
-	@ResponseBody
 	List<Pot> retrieveAllPots(){	
 		return potService.retrieveAllPots();
 	}
 	
 	@GetMapping("/get-Pot/{idPot}")
-	@ResponseBody
 	Pot getPotById(@PathVariable("idPot") int idPot){
 		return potService.retrievePot(idPot);
 	}
 	
 	@PutMapping("/modify-pot")
-	@ResponseBody
 	Pot updatePot(@RequestBody Pot p){	
 		return potService.updatePot(p);
 	}
@@ -56,7 +52,6 @@ public class PotController {
 	}
 	
 	@PutMapping("take-money-pot/{idPot}/{money}")
-	@ResponseBody
 	void takeMoneyFromPot(@PathVariable("idPot") int idPot, @PathVariable("money") float money){	
 
 		potService.takeMoney(idPot,money);

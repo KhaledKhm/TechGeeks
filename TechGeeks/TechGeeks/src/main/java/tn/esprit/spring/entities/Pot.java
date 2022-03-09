@@ -41,9 +41,9 @@ public class Pot implements Serializable{
 	@Column(length=8/*, message="bank account should only have 8 numbers"*/)
 	private String bankAccount;
 	
-	@JsonIgnore
-	@OneToOne
-	private Event event;
+//	@JsonIgnore
+//	@OneToOne
+//	private Event event;
 	
 	@JsonIgnore
 	@OneToMany

@@ -60,9 +60,9 @@ import tn.esprit.spring.repository.UserRepository;
 		
 	}
 	@Override
-	public Event addEventAndAssignLocal(Event e, int idLocal) {
+	public Event addEventAndAssignLocal(Event e, int idLocal) { //not needed
 		Local l=localRepository.findById(idLocal).orElse(null);
-		e.setLocalEvent(l);
+	//	e.setLocalEvent(l);
 		eventRepository.save(e);
 		return e;
 		
@@ -86,8 +86,8 @@ import tn.esprit.spring.repository.UserRepository;
 	@Override
 	public void newestEvent() {
 		List<Event> events = retrieveAllEvents();
-		for (int i = 0; i<events.size();i++){
-			if(events.get(i).getDateStart().before(events.get(i+1).getDateStart())){
+		for (int i = 1; i<events.size();i++){
+			if(events.get(i).getDateStart().before(events.get(i-1).getDateStart())){
 				log.info(i
 						+"-Event "
 						+events.get(i).getIdEvent()

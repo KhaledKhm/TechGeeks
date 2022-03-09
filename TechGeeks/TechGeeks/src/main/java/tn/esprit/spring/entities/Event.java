@@ -48,9 +48,9 @@ public class Event implements Serializable{
 
 	private float price;
 
-	@JsonIgnore
-	@ManyToOne
-	private Local localEvent;
+//	@JsonIgnore
+//	@ManyToOne
+//	private Local localEvent;
 	
 	@JsonIgnore
 	@ManyToMany
