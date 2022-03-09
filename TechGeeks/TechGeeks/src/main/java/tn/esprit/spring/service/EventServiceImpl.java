@@ -1,18 +1,18 @@
 package tn.esprit.spring.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Local;
 import tn.esprit.spring.entities.Pot;
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.EventRepository;
 import tn.esprit.spring.repository.LocalRepository;
+import tn.esprit.spring.repository.UserRepository;
 
 
  @Service
@@ -24,6 +24,12 @@ import tn.esprit.spring.repository.LocalRepository;
 	EventRepository eventRepository;
 	@Autowired
 	LocalRepository localRepository;
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	IUserService userService;
+	@Autowired
+	IPotService potService;
 	
 	@Override
 	public List<Event> retrieveAllEvents() {
@@ -62,6 +68,20 @@ import tn.esprit.spring.repository.LocalRepository;
 		
 	}
 	
+	@Override
+	public void assignUserToEvent(int idEvent, int idUser) {
+		if(eventRepository.findById(idEvent).isPresent()){
+			Event e = eventRepository.findById(idEvent).get();
+			User u = new User();
+			if(userRepository.findById(idUser).isPresent()){
+				u.setIdUser(idUser);
+				e.getEventUsers().add(u);
+				eventRepository.save(e);
+			}
+		}
+		
+	}
+	
 
 	@Override
 	public void newestEvent() {
@@ -81,7 +101,88 @@ import tn.esprit.spring.repository.LocalRepository;
 		}
 		
 	}
-
+	
+	@Override
+	public void mostEarningEvent() {
+		List<Event> events = retrieveAllEvents();
+		int iEvent=0;
+		float sum=0;
+		sum=(events.get(0).getPrice()*eventRepository.eventParticipants(events.get(0).getIdEvent())-events.get(0).getSum());
+		for (int i = 1; i<events.size();i++){
+			
+			if( ((events.get(i).getPrice()*eventRepository.eventParticipants(events.get(i).getIdEvent())-events.get(i).getSum())) > ((events.get(i-1).getPrice()*eventRepository.eventParticipants(events.get(i-1).getIdEvent())-events.get(i-1).getSum())) ){
+				sum=(events.get(i).getPrice()*eventRepository.eventParticipants(events.get(i).getIdEvent())-events.get(i).getSum());
+				iEvent=i;
+			}
+		}
+		log.info("\n"
+				+"The most profitable event is "
+				+events.get(iEvent).getLibelle()
+				+" with a sum of "
+				+sum
+				+"\n"
+				+events.get(iEvent).getPrice()
+				+" * "
+				+eventRepository.eventParticipants(events.get(iEvent).getIdEvent())
+				+" - "
+				+events.get(iEvent).getSum()
+				+" (which is the money assigned for this event from a pot) "
+				+" = "
+				+sum
+				);
+	}
+	@Override
+	public void mostParticipatingUser() {
+		List<User> users =  userService.retrieveAllUsers();
+		int iUser=0;
+		int participation=eventRepository.mostParticipatingUser(users.get(0).getIdUser());
+		for (int i = 1; i<users.size();i++){
+			if(eventRepository.mostParticipatingUser(users.get(i).getIdUser()) > eventRepository.mostParticipatingUser(users.get(i-1).getIdUser()) ){
+				participation=eventRepository.mostParticipatingUser(users.get(i).getIdUser());
+				iUser=i;
+			}
+		}
+		log.info("\n"
+				+"The most participating user is "
+				+users.get(iUser).getIdUser()
+				+users.get(iUser).getUsername()
+				+":\n"
+				+users.get(iUser).getFirstName()
+				+" "
+				+users.get(iUser).getLastName()
+				+" with "
+				+participation
+				+" participations total"
+				
+				);
+	}
+	@Override
+	public List<User> sortMostParticipatingUsers() {
+		List<User> userList =  eventRepository.sortMostParticipatingUsers();
+		for (User user : userList){
+			log.info(" User: " +user.getUsername());
+		}
+		return userList;
+	}
+	@Override
+	public void addMoneyFromPotToEvent(int idEvent, int idPot, float money) {
+		Pot pot =potService.retrievePot(idPot);
+		if((money <=0)  || (money > pot.getSum())){
+			System.out.println("You cant add money equals or less than 0 or Pot is out of money");
+			return;
+		}else{
+			Event event = retrieveEvent(idEvent);
+			float sum;
+			sum=event.getSum();
+			sum+=money;
+			event.setSum(sum);
+			potService.takeMoney(idPot, money);
+			System.out.println("Money added to "+event.getIdEvent()+"-"+event.getLibelle()+": "+money+" new sum: "+event.getSum());
+			eventRepository.save(event);
+		}
+			
+		
+	}
 	
 
 }

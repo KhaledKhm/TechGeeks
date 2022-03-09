@@ -2,11 +2,13 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,7 +52,9 @@ public class Event implements Serializable{
 	@ManyToOne
 	private Local localEvent;
 	
-
+	@JsonIgnore
+	@ManyToMany
+	private Set<User> eventUsers;
 	
 	
 

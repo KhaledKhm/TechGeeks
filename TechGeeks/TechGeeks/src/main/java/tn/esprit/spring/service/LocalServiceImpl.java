@@ -66,8 +66,8 @@ public class LocalServiceImpl implements ILocalService{
 	@Transactional
 	public Local assignUserToLocal(int idLocal, int idUser, int idEvent) {
 		Local l=retrieveLocal(idLocal);
-//		l.setUsers();
-//		l.setEvents();
+//		l.setUsers(users);
+//		l.setEvents(events);
 		
 		Set<Event> events =  l.getEvents();
 		Set<User> users = l.getUsers();
@@ -76,7 +76,7 @@ public class LocalServiceImpl implements ILocalService{
 			l.setEvents(events);
 		}else{
 			for (int i = 0; i<events.size();i++){
-				
+				l.setEvents(events);
 			}
 		}
 		if (users.size() == 0){

@@ -73,8 +73,8 @@ public class User implements Serializable{
 	@OneToMany(mappedBy="donationUser")
 	private Set<Donation> donations;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Event> events;
+//	@ManyToMany
+//	private Set<Event> events;
 	
 	
 	@OneToMany
