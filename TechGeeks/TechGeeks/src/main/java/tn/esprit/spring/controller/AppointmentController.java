@@ -65,7 +65,7 @@ public class AppointmentController {
 	}
 	@PostMapping("/assign-Appointment/{idAppointment}/{idexpert}/{iduser}")
 	@ResponseBody
-	public void assignComplaintToUser(@PathVariable("idAppointment") int  idAppointment ,@PathVariable("idexpert")int idexpert,@PathVariable("iduser")int iduser){
+	public void assignAppointmentTouser(@PathVariable("idAppointment") int  idAppointment ,@PathVariable("idexpert")int idexpert,@PathVariable("iduser")int iduser){
 		as.assignAppointmentToUser(idAppointment, idexpert,iduser);
 	}
 	@GetMapping("/get-AppointmentByuser/{iduser}")

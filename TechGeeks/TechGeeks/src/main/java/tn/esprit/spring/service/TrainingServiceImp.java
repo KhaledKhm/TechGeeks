@@ -280,6 +280,7 @@ public class TrainingServiceImp implements ITrainingService {
 							training.setNbrParticipant(training.getNbrParticipant() + 1);
 							c.setUser(u);
 							c.setTraining(training);
+							c.setTitle("Certficate in "+training.getSector().getName());
 							certificateRepository.save(c);
 							emailService.sendSimpleEmail(u.getEmail(), "Courses Her Way ",
 									"Thank you for assisting 5 days before the date of the course and for paying and confirming your registration. ");

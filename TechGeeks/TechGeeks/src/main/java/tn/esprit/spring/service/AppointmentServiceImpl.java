@@ -47,9 +47,10 @@ UserRepository urepo;
 	public void assignAppointmentToUser(int idAppointment,int idexpert, int iduser) {
 		// TODO Auto-generated method stub
 		User u = urepo.findById(iduser).orElse(null);
+		User u2 = urepo.findById(idexpert).orElse(null);
 		Appointment a= apprepo.findById(idAppointment).orElse(null);
-		a.setExpert(u);
-//		a.setWomen(u);
+		a.setExpert(u2);
+      	a.setWomen(u);
 		apprepo.save(a);
 		
 	}

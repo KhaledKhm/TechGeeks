@@ -105,8 +105,9 @@ public class QuizServiceImp implements IQuizService{
 	
 	@Override
 	public void addQuizByTraining(Quiz quiz, int idTraining) {
+		quiz = new Quiz(); 
 		Training t = trainingRepository.findById(idTraining).orElse(null);
-		quiz.setTraining(t);
+		t.setQuiz(quiz);
 		quizRepository.save(quiz);	
 	}
 

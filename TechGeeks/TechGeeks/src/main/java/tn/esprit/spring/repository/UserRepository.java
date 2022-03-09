@@ -14,7 +14,7 @@ public interface UserRepository extends CrudRepository<User, Integer>{
     User findByEmail(String email);
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
-    @Query(value ="SELECT * FROM User u JOIN event_event_users e ON e.event_users_id_user = u.id_user GROUP BY e.event_users_id_user ORDER BY e.event_users_id_user DESC",nativeQuery = true)
+    @Query(value ="SELECT * FROM User u JOIN event_event_users e ON e.event_users_id_user = u.id GROUP BY e.event_users_id_user ORDER BY e.event_users_id_user DESC",nativeQuery = true)
     List<User> sortMostParticipatingUsers();
 }
 

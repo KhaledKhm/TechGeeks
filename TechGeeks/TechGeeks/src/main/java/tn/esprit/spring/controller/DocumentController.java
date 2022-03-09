@@ -36,7 +36,7 @@ public class DocumentController {
 	}
 
 	
-	@GetMapping("/")
+	@GetMapping("/alldocument")
 	public String get(Model model){
 		List<Document> documents = documentService.getAllDocuments();
 		model.addAttribute("documents", documents);

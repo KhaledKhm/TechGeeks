@@ -28,30 +28,25 @@ public class ComplaintController {
 	Complaint addComplaint(@RequestBody Complaint c){//@request taayet lel les attributs
 	return cs.addComplaint(c);
 	}
-	@PostMapping("/addassign-complaint/{id}")
-	@ResponseBody
-	void ajouterEtaffectercomplaints(@RequestBody Complaint c, @PathVariable(name="id")int userid){
+	@PostMapping("/addassign-complaint/{userid}")
+	void ajouterEtaffectercomplaints(@RequestBody Complaint c, @PathVariable("userid")int userid){
 	 cs.ajouterEtaffectercomplaints(c, userid);
 	}
 
 	@GetMapping("/retrieve-Complaint")
-	@ResponseBody
 	public Optional<Complaint> retrieveComplaint(Integer id) {
 	return cs.retrieveComplaint(id);
 	}
 	@GetMapping("/retrieve-Complaints")
-	@ResponseBody
 	public List<Complaint> retrieveAllComplaints() {
 		return cs.retrieveAllComplaints();
 	}
 	@GetMapping("/find-Complaint")
-	@ResponseBody
 	public List<Complaint> findComplaintbytype(Type type) {
 	return cs.findComplaintBytype(type);
 	}
 	
 	@PutMapping("/modify-Complaint")
-	@ResponseBody
 	Complaint updateComplaint(@RequestBody Complaint c){
 		return cs.updateComplaint(c);
 	}

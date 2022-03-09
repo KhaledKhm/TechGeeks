@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private AuthEntryPointJwt unauthorizedHandler;
-/*
+
   @Bean
   public AuthTokenFilter authenticationJwtTokenFilter() {
     return new AuthTokenFilter();
@@ -78,14 +78,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   public AuthenticationManager authenticationManagerBean() throws Exception {
     return super.authenticationManagerBean();
   }
-*/
+
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 	  http
 		.authorizeRequests()
-		.antMatchers("/api/auth/**").permitAll();
-	/*	.anyRequest()
+		.antMatchers("/api/auth/**").permitAll()
+		.anyRequest()
 		.authenticated()
 		.and()
 		.oauth2Login()
@@ -106,6 +106,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			}
       	     })
        .and()
-       .httpBasic().and().csrf().disable();*/
+       .httpBasic().and().csrf().disable();
   }
 }

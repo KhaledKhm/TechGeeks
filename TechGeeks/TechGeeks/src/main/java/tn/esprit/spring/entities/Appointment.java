@@ -36,9 +36,7 @@ public class Appointment implements Serializable{
 	
 	private String local;
 	
-	@OneToMany
-	@JsonIgnore
-	private Set<User> users;
+	
 	
 	@ManyToOne
 	@JsonIgnore

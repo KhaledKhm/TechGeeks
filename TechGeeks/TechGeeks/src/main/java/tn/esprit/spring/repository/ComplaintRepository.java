@@ -16,7 +16,7 @@ import tn.esprit.spring.entities.Type;
 public interface ComplaintRepository extends 	JpaRepository<Complaint, Integer>{
 
 	List<Complaint> findByType( Type type );
-	@Query("Select COUNT(*) FROM Complaint c where c.exper.idUser=:id")
+	@Query("Select COUNT(*) FROM Complaint c where c.exper.id=:id")
 	int nbreCompParUser(@Param("id") int iduser);
 
 }

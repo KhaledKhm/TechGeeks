@@ -11,11 +11,11 @@ import tn.esprit.spring.entities.Appointment;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
 
-	@Query("Select distinct a FROM Appointment a ,User u where a.expert.idUser=:id")
+	@Query("Select distinct a FROM Appointment a ,User u where a.expert.id=:id")
 	List <Appointment> findAppointmentByUser(@Param("id") int iduser);
-	@Query(value="SELECT * FROM `appointment` WHERE expert_id_user AND women_id_user IS NOT NULL",nativeQuery=true)
+	@Query(value="SELECT * FROM `appointment` WHERE expert_id AND women_id IS NOT NULL",nativeQuery=true)
 	List <Appointment>  verifuser();
-	@Query(value="SELECT women_id_user FROM `appointment` WHERE expert_id_user AND women_id_user IS NOT NULL ",nativeQuery=true)
+	@Query(value="SELECT expert_id FROM appointment a WHERE a.expert_id IS NOT NULL",nativeQuery=true)
 	int iduser();
 	
 }
