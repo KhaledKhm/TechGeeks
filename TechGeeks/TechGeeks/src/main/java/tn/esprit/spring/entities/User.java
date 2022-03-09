@@ -85,13 +85,16 @@ public class User implements Serializable{
 
 	private ExpertRole expertRole;
 		
-	@OneToMany
-	@JsonIgnore
-	private Set<Donation> donations;
+
+	private String document;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JsonIgnore
-	private Set<Event> events;
+//	@JsonIgnore
+//	@OneToMany(mappedBy="donationUser")
+//	private Set<Donation> donations;
+	
+//	@ManyToMany
+//	private Set<Event> events;
+
 	
 	
 	@OneToMany

@@ -1,8 +1,10 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,21 +29,24 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Pot implements Serializable{
 
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idPot;
 
 	private String libelle;
 	
+	private float sum;
+	
+	@Column(length=8/*, message="bank account should only have 8 numbers"*/)
 	private String bankAccount;
 	
+//	@JsonIgnore
+//	@OneToOne
+//	private Event event;
 	
-	@OneToOne
 	@JsonIgnore
-	private Event event;
-	
 	@OneToMany
-	@JsonIgnore
 	private Set<Donation> donations;
 	
 }
