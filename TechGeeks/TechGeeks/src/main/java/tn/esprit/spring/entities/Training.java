@@ -1,7 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -39,9 +39,10 @@ public class Training implements Serializable{
 	
 	private String description;
 	
-
+	@Temporal(TemporalType.DATE)
 	private Date dateStart;
-
+	
+    @Temporal(TemporalType.DATE)
 	private Date dateEnd;
 	
 	private int NbrParticipant;

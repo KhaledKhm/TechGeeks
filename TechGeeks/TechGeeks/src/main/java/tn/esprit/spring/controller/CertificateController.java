@@ -55,7 +55,7 @@ public class CertificateController {
 	
 	@GetMapping("/getCertificateById/{idCertificate}")
 	@ResponseBody
-	public Optional <Certificate> getCertificateById(@PathVariable("idCertificate") int idCertificate) {
+	public Certificate getCertificateById(@PathVariable("idCertificate") int idCertificate) {
 		return certificateService.getCertificateById(idCertificate);
 	}
 	

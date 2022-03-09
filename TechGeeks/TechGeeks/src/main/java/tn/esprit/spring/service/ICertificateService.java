@@ -12,6 +12,6 @@ public interface ICertificateService {
 	public void deleteAllCertificates();
 	public void deleteCertificateById(int idCertificate);
 	public List<Certificate> getAllCertificates();
-	public Optional<Certificate> getCertificateById(int idCertificate);
+	public Certificate getCertificateById(int idCertificate);
 	public Certificate updatePunishment(Certificate certificate, int idCertificate);
 }

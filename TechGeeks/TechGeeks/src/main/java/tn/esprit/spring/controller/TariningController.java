@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.entities.Certificate;
+import tn.esprit.spring.entities.Local;
 import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.service.ITrainingService;
 
@@ -88,6 +89,23 @@ public class TariningController {
 		return trainingService.getAllTrainings();
 	}
 	
+	@GetMapping("/getAllLocal/{dateStart}/{dateEnd}")
+	@ResponseBody
+	public List<Local> getAllLocal(@PathVariable ("dateStart")@DateTimeFormat(pattern = "yyyy-MM-dd") Date dateStart, @PathVariable ("dateEnd") @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateEnd ) {
+		
+		
+//		try {
+//			Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dateStart);
+//			Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(dateEnd);
+			return trainingService.getAllLocal(dateStart, dateEnd);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+	}
+	
 	
 	@GetMapping("/getTrainingById/{idTraining}")
 	@ResponseBody
@@ -118,6 +136,5 @@ public class TariningController {
 	public Page<Training> TrainingPagination(@PathVariable ("offset")int offset,@PathVariable("pagesize")int pagesize ){
 	    return trainingService.TrainingPagination(offset, pagesize);
 	}
-	
-		               
+	           
 }

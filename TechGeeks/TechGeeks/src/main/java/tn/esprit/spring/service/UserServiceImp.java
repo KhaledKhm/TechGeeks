@@ -18,6 +18,7 @@ public class UserServiceImp implements IUserService {
 	@Autowired
 	CertificateRepository certificateRepository;
 	
+	@Override
 	public void AffecterCertificat(int idUser, List<Certificate> certificates) {
 		certificateRepository.saveAll(certificates);
 		User u =userRepository.findById(idUser).orElse(null);
@@ -25,5 +26,41 @@ public class UserServiceImp implements IUserService {
 			certificate.setUser(u);
 		}
 		certificateRepository.saveAll(certificates);
+	}
+
+	@Override
+	public List<User> retrieveAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User saveUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteUser(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public User retrieveUser(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateUser(User U) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public User findUserByUserName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
