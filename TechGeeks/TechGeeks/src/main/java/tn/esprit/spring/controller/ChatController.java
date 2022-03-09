@@ -61,7 +61,7 @@ public class ChatController {
 	@MessageMapping("/chat.newUser")
 	@SendTo("/topic/messages")
 	public Chat newUser(@Payload Chat chatMessage ,SimpMessageHeaderAccessor headeraccessor) {
-		headeraccessor.getSessionAttributes().put("username", chatMessage.getSender());
+		headeraccessor.getSessionAttributes().put("username", chatMessage.getText());
 		return chatMessage;
 	}
 }

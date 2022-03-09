@@ -20,6 +20,6 @@ public interface IPostService {
 	
 	public List<Post> getOrderByDate();
 	
-public List<Post> getByOrdernbLike();
+public List<Post> getByordernbLike();
 
 }

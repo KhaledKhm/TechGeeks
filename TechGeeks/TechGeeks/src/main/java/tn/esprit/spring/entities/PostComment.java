@@ -20,7 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import tn.esprit.spring.entities.Advertising.pub;
 
 @Entity
 @Getter
