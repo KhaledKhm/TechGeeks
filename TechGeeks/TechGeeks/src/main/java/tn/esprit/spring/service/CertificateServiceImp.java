@@ -1,18 +1,16 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud.FindOrBuilder;
+
 
 import tn.esprit.spring.entities.Certificate;
 import tn.esprit.spring.entities.Punishment;
-import tn.esprit.spring.entities.Quiz;
-import tn.esprit.spring.entities.User;
+
 import tn.esprit.spring.repository.CertificateRepository;
 import tn.esprit.spring.repository.UserRepository;
 
@@ -55,8 +53,8 @@ public class CertificateServiceImp implements ICertificateService{
 	}
 
 	@Override
-	public Optional<Certificate> getCertificateById(int idCertificate) {
-		return certificateRepository.findById(idCertificate);
+	public Certificate getCertificateById(int idCertificate) {
+		return certificateRepository.findById(idCertificate).orElse(null);
 	}
 
 	@Override
