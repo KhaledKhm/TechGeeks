@@ -4,7 +4,7 @@ package tn.esprit.spring.service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
-
+import java.util.List;
 import java.util.Set;
 
 import javax.mail.MessagingException;
@@ -20,10 +20,12 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.utility.RandomString;
+import tn.esprit.spring.entities.Certificate;
 import tn.esprit.spring.entities.Provider;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.RoleName;
 import tn.esprit.spring.entities.User;
+import tn.esprit.spring.repository.CertificateRepository;
 import tn.esprit.spring.repository.RoleRepository;
 import tn.esprit.spring.repository.UserRepository;
 @Slf4j
@@ -33,6 +35,18 @@ public class ServiceUser implements userService{
 	UserRepository userRepository;
 	@Autowired
 	RoleRepository  roleRepository;
+	@Autowired
+	CertificateRepository certificateRepository;
+	
+	@Override
+	public void AffecterCertificat(int idUser, List<Certificate> certificates) {
+		certificateRepository.saveAll(certificates);
+		User u =userRepository.findById(idUser).orElse(null);
+		for (Certificate certificate : certificates) {
+			certificate.setUser(u);
+		}
+		certificateRepository.saveAll(certificates);
+	}
 	
 	@Override
 	public Set<User> retrieveAllUsers() {

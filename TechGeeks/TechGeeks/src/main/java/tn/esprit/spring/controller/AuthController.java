@@ -16,11 +16,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entities.Certificate;
 import tn.esprit.spring.entities.Provider;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.RoleName;
@@ -37,11 +39,11 @@ import tn.esprit.spring.service.ServiceUser;
 
 
 
-//@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-//@RequestMapping("/api/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
- /* @Autowired
+  @Autowired
   AuthenticationManager authenticationManager;
 
   @Autowired
@@ -57,6 +59,14 @@ public class AuthController {
 
   @Autowired
   JwtUtils jwtUtils;
+  
+//	@Autowired
+//	IUserService userservice;
+	
+	@PostMapping("/AffecterCertificate/{idUser}/{certficates}")
+	public void AffecterCertificate(@RequestBody User user,@PathVariable("idUser") int idUser,@PathVariable("certficates") List<Certificate> certficates) {
+		ServiceUser.AffecterCertificat(idUser,certficates);
+	}
 
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -111,6 +121,6 @@ public class AuthController {
 				msg="User have been added succ"; 
 		}
 		return msg; 
-		}*/
+		}
 	  
 }

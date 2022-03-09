@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import tn.esprit.spring.entities.PostComment;
 
-
+@Repository
 public interface PostCommentRepository extends JpaRepository<PostComment,Integer>{
 
 	
