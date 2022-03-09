@@ -99,7 +99,7 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 		int a = comprepo.nbreCompParUser(iduser);
 		if (a>2){
 			
-			emailService.sendSimpleEmail(u.getEmail(), "Alerte ", "	You should improve your performance ");
+			emailService.sendSimpleEmail(u.getEmail(), "Alert! ", "	You should improve your performance ");
 
 		}
 		return comprepo.nbreCompParUser(iduser);
