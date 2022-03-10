@@ -26,6 +26,7 @@ import tn.esprit.spring.entities.Provider;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.RoleName;
 import tn.esprit.spring.entities.User;
+import tn.esprit.spring.mail.EmailControllers;
 import tn.esprit.spring.repository.CertificateRepository;
 import tn.esprit.spring.repository.RoleRepository;
 import tn.esprit.spring.repository.UserRepository;
@@ -38,6 +39,8 @@ public class ServiceUser implements userService{
 	RoleRepository  roleRepository;
 	@Autowired
 	CertificateRepository certificateRepository;
+	@Autowired
+	EmailControllers  EmailController;
 	
 	@Override
 	public void AffecterCertificat(int idUser, List<Certificate> certificates) {
@@ -50,6 +53,14 @@ public class ServiceUser implements userService{
 	}
 	
 	@Override
+	public boolean VerifUser(String user,String Vcode) {
+		if(user.equals(Vcode)){
+			return true ; 
+		}
+		return false ; 
+	}
+	
+	@Override
 	public Set<User> retrieveAllUsers() {
 		Set<User> users = new HashSet<User>();
 		userRepository.findAll().forEach(users::add);
@@ -57,11 +68,15 @@ public class ServiceUser implements userService{
 	}
 
 	@Override
-	public User addUser(User user) {
+	public User addUser(User user) throws MessagingException  {
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
-		user.setEtat(true);
-		return userRepository.save(user);
+		user.setVcode(EmailController.verificationCode());
+		user.setEtat(false);
+		userRepository.save(user);
+		User u = retrieveUserById(user.getId());
+		EmailController.send(u.getId(), user.getVcode());
+		return user;
 	}
 
 	

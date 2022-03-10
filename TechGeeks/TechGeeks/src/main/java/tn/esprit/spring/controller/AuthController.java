@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import tn.esprit.spring.entities.Provider;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.RoleName;
 import tn.esprit.spring.entities.User;
+import tn.esprit.spring.mail.EmailControllers;
 import tn.esprit.spring.payload.request.LoginRequest;
 import tn.esprit.spring.payload.request.SignupRequest;
 import tn.esprit.spring.payload.response.JwtResponse;
@@ -55,6 +57,9 @@ public class AuthController {
   @Autowired
   RoleRepository roleRepository;
 
+  @Autowired
+	EmailControllers  EmailController;
+
  
 
   @Autowired
@@ -71,8 +76,10 @@ public class AuthController {
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 	  User u = userRepository.findByEmail(loginRequest.getEmail());
-	  if(u.getProvider().toString() != "LOCAL" ){
+	  if( u.getProvider().toString() != "LOCAL" ){
 		  return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Your should connect with your "+u.getProvider());
+	  }else if(u.getEtat() == false ){
+		  return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Your should Verifie your account  ");
 	  }
 		  
     Authentication authentication = authenticationManager.authenticate(
@@ -96,7 +103,7 @@ public class AuthController {
   }
 
   @PostMapping("/signup")
-  public String registerUser( @RequestBody User signUpRequest) {
+  public String registerUser( @RequestBody User signUpRequest) throws MessagingException  {
 			Set<Role> Role = new HashSet();
 		String msg="";
 	User userExists = userRepository.findByUsername(signUpRequest.getUsername());
@@ -122,5 +129,27 @@ public class AuthController {
 		}
 		return msg; 
 		}
+  @PostMapping("/verifieAccount/{Vcode}")
+  public ResponseEntity<?> verifieAccount( @Valid @RequestBody LoginRequest loginRequest ,@PathVariable("Vcode") String Vcode) throws MessagingException {
+	 User u = userRepository.findByEmail(loginRequest.getEmail());
+	 if(ServiceUser.VerifUser(u.getVcode(), Vcode)){
+		 u.setEtat(true);
+		 userRepository.save(u);
+		 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Your account have been verified  ");
+	 }else{
+		 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Your should Reverifie your account  ");
+	 }
 	  
+  }
+  
+  @PostMapping("/Reverifie")
+  public String Reverifie( @Valid @RequestBody LoginRequest loginRequest) throws MessagingException {
+	 String  Vcode = EmailController.verificationCode();
+	 User u = userRepository.findByEmail(loginRequest.getEmail());
+	 u.setVcode(Vcode);
+	 EmailController.send(u.getId(), Vcode);
+	 userRepository.save(u);
+	  return null ; 
+	  
+  }
 }

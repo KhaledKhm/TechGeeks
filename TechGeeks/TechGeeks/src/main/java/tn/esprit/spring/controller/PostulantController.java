@@ -34,7 +34,7 @@ public class PostulantController {
 	@Autowired
 	IOffreService offreService;
 	@Autowired
-	UserRepository userRepository;
+	UserRepository userRepository;	
 	public PostulantController() {
 		// TODO Auto-generated constructor stub
 	}

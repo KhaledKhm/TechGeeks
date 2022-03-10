@@ -62,6 +62,8 @@ public class User implements Serializable{
 	
 	private String address;
 	
+	private String Vcode;
+	
 	private String photo; //a revoir
 	private Boolean etat;
 	@Enumerated(EnumType.STRING)
