@@ -36,7 +36,7 @@ public class PostulationServiceImpl implements IPostulationService {
 	
 	@Override
 	public Postulant addOffrePostulant(Postulant p ,int idUser , int idOffre) {
-		User user = userRepository.findById(idUser).orElse(null);
+		User user = userRepository.findById(idUser).get();
 		Offre offre = offreRepository.findById(idOffre).get();
 		p.setUsers(user);
 		p.setOffres(offre);

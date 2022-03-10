@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.utility.RandomString;
 import tn.esprit.spring.entities.Certificate;
+import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Provider;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.RoleName;
@@ -154,6 +155,15 @@ public class ServiceUser implements userService{
 	@Override
 	public User retrieveUserById(Integer iduser) {
 		return userRepository.findById(iduser).orElse(null);
+	}
+
+	@Override
+	public List<User> retrieveAllUsersKhaled() {
+		List<User> userList =  userRepository.findAll() ;
+		for (User user : userList){
+			log.info(" User: " +user);
+		}
+		return userList;
 	}
 
 	

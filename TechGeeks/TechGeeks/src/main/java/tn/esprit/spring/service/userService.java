@@ -8,6 +8,7 @@ import tn.esprit.spring.entities.User;
 
 public interface userService {
 	Set<User> retrieveAllUsers();
+	List<User> retrieveAllUsersKhaled();
 	User addUser(User user) ;
 	User findUserByUserName(String userName);
 	User retrieveUserById(Integer iduser);

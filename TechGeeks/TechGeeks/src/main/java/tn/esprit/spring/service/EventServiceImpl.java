@@ -133,7 +133,7 @@ import tn.esprit.spring.repository.UserRepository;
 	}
 	@Override
 	public void mostParticipatingUser() {
-		List<User> users =  (List<User>) userService.retrieveAllUsers();
+		List<User> users =  (List<User>) userService.retrieveAllUsersKhaled();
 		int iUser=0;
 		int participation=eventRepository.mostParticipatingUser(users.get(0).getId());
 		for (int i = 1; i<users.size();i++){

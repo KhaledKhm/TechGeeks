@@ -43,7 +43,7 @@ public class AdvertisingController {
 	}
 	
 	@PutMapping("/AdvertisingUpdate/{id}")
-	public void AdvertisingUpdate(@RequestBody Advertising a ,@PathVariable(value="id") int id) {
+	public void AdvertisingUpdate(@RequestBody Advertising a ,@PathVariable("id") int id) {
 		Advertising add=iAdvertisingService.AdvertisingById(id);
 		add.setNameAd(a.getNameAd());
 		add.setDateStart(a.getDateStart());
@@ -60,14 +60,14 @@ public class AdvertisingController {
 		iAdvertisingService.SupprimerAdvertising(id);
 	}
 	
-	@Scheduled(fixedDelay = 6000)
+	//@Scheduled(cron="*/30 * * * * *")
 	@DeleteMapping("/AdvertisingDeleteDateFin")
 	public void AdvertisingDeleteDateFin() {
 		iAdvertisingService.AdvertisingDeleteDateFin();
 	}
 	
 	@PostMapping("/AffecterVus/{idADs}")
-	public void affecterVusAds(@RequestBody Advertising  p,@PathVariable("idADs") int idADs) {
-		iAdvertisingService.AjoutVusAdvertising(p, idADs);
+	public void affecterVusAds(@PathVariable("idADs") int idADs) {
+		System.out.println(iAdvertisingService.AjoutVusAdvertising(idADs));
 	}
 }

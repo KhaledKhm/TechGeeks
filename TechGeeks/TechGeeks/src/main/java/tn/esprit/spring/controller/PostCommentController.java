@@ -59,21 +59,6 @@ public class PostCommentController {
 		postcommentservice.PostCommentModifier(c, id);
 	}
 	
-	/*@PostMapping("/AffecterLike/{idpl}")
-	public void affecterLikePost(@RequestBody Post p,@PathVariable int idpl) {
-		iPostService.affecterLikePost(p, idpl);
-	}*/
-	
-	@PostMapping("/AjoutCommentairePost/{idPost}")
-	public void AssignCommentairePost(@PathVariable("idPost") int idPost ,@RequestBody PostComment po ) {
-		
-		//postcommentservice.AjoutCommentinpost(po, idPost);
-	}
-	
-	
-	
-	
-	
 	
 	@PostMapping("/AjoutCommentinterdit/{idPost}")
 	public void AjoutComment(@RequestBody PostComment comment,@PathVariable("idPost") int idPost) {

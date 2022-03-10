@@ -13,6 +13,6 @@ public interface IAdvertisingService {
 	
 	public void AdvertisingDeleteDateFin();
 	
-	String AjoutVusAdvertising(Advertising ad, int idADs);
+	String AjoutVusAdvertising(int idADs);
 
 }

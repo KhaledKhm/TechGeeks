@@ -33,7 +33,8 @@ public class PostulantController {
 	PostulationRepository postulationRepository;
 	@Autowired
 	IOffreService offreService;
-	
+	@Autowired
+	UserRepository userRepository;
 	public PostulantController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -41,9 +42,9 @@ public class PostulantController {
 	@PostMapping("/add-postulant/{id_user}/{id_offre}")
 	@ResponseBody
 	Postulant addPostulant(@RequestBody Postulant p , @PathVariable("id_user")Integer id_user, @PathVariable("id_offre")Integer id_offre ){
-//		p.setUsers(userRepository.findById(id_user).get());
-//		p.setOffres(offreRepository.findById(id_offre).get());
-//		postulationRepository.save(p);
+		p.setUsers(userRepository.findById(id_user).get());
+		p.setOffres(offreService.retrieveOffre(id_offre));
+		postulationRepository.save(p);
 		return p;
 	}
 	

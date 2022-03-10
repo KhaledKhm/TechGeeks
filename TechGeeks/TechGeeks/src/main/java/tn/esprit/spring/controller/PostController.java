@@ -64,10 +64,7 @@ public class PostController {
 	}
 	
 	
-	@PostMapping("/AffecterLike/{idpl}")
-	public void affecterLikePost(@RequestBody Post p,@PathVariable int idpl) {
-		//iPostService..affecterLikePost(p, idpl);
-	}
+
 	@GetMapping("/getByTitle/{title}")
 	public List<Post> PostGetTitle(@PathVariable String title){
 		return iPostService.getByTitle(title);
@@ -80,11 +77,7 @@ public class PostController {
 	
 	@GetMapping("/orderByNblike")
 	public List<Post> PostorderByNblike(){
-		
-		
-		
 		return iPostService.getByordernbLike();
-		//return iPostService.getByOrdernbLike();
 	}
 	
 }
