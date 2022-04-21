@@ -28,8 +28,8 @@ public class ChatController {
 	IChatService chatservice;
 	
 	@PostMapping("/AjoutChat")
-	public String AjoutChat(@RequestBody List<Chat> c) {
-		chatservice.AjoutChat((Chat) c);
+	public String AjoutChat(@RequestBody Chat c) {
+		chatservice.AjoutChat(c);
 		return "chat Ajouter";
 	}
 	@DeleteMapping("/SupprimerChat/{id}")
@@ -61,7 +61,7 @@ public class ChatController {
 	@MessageMapping("/chat.newUser")
 	@SendTo("/topic/messages")
 	public Chat newUser(@Payload Chat chatMessage ,SimpMessageHeaderAccessor headeraccessor) {
-		headeraccessor.getSessionAttributes().put("username", chatMessage.getSender());
+		headeraccessor.getSessionAttributes().put("username", chatMessage.getText());
 		return chatMessage;
 	}
 }

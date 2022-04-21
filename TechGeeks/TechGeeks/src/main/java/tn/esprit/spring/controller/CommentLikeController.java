@@ -22,8 +22,8 @@ public class CommentLikeController {
 	ICommentLikeService cs;
 	
 	@PostMapping("/AjoutCommentLike")
-	public CommentLike AjoutCommentLike(@RequestBody List<CommentLike> c) {
-		return cs.AjoutCommentLike((CommentLike) c);
+	public CommentLike AjoutCommentLike(@RequestBody CommentLike c) {
+		return cs.AjoutCommentLike(c);
 	}
 	
 	@DeleteMapping("/supprimer/{id}")
@@ -42,7 +42,7 @@ public class CommentLikeController {
 	@PutMapping("/modifier/{id}")
 	public void CommentLikeModifier(@RequestBody CommentLike a,@PathVariable int id) {
 		CommentLike cl=cs.CommentLikeById(id);
-		cl.setPostComment(a.getPostComment());
+		cl.setCommentLike(a.getCommentLike());
 		cs.CommentLikeModifier(cl, id);
 	}
 }

@@ -95,7 +95,7 @@ public class DonationServiceImpl implements IDonationService{
 						+ " Last Name: " 
 						+ user.getLastName()
 						+ " has made a total of "
-						+ donationRepository.nbreByUser(user.getIdUser())
+						+ donationRepository.nbreByUser(user.getId())
 						+ " donations ---" );
 			}
 	//		return;
@@ -122,7 +122,7 @@ public class DonationServiceImpl implements IDonationService{
 		for (int i = 0; i<donations.size();i++){
 			sum+=donations.get(i).getSum();	*/
 		User user= userRepository.findById(idUser).orElse(null);
-			log.info(user.getIdUser()+"-"+user.getUsername()+" "+user.getFirstName()+" "+user.getLastName()+" has donated a sum of "+sum );
+			log.info(user.getId()+"-"+user.getUsername()+" "+user.getFirstName()+" "+user.getLastName()+" has donated a sum of "+sum );
 	
 		//System.out.println("test");
 		//System.out.println(sum+=donationRepository.sumDonations(idUser));

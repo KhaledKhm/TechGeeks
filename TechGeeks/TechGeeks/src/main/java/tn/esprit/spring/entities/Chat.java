@@ -1,5 +1,6 @@
 package tn.esprit.spring.entities;
 
+import java.awt.TrayIcon.MessageType;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -14,9 +15,13 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+
 import lombok.Builder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,19 +35,22 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 @Builder
 public class Chat implements Serializable{
-	
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idChat;
 	@NotNull
 	private String text;
-	@JsonIgnore
+	
+
 	@OneToMany(mappedBy="chat")
-	private Set<User> receivers;
 	@JsonIgnore
+	private Set<User> receivers;
+
 	@ManyToOne 
+	@JsonIgnore
 	private User sender;
 	
-	private MessageType type;
+	
 
 }

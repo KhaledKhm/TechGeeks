@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.entities.Post;
 import tn.esprit.spring.entities.PostLike;
 import tn.esprit.spring.repository.PostLikeRepository;
 
@@ -13,6 +14,9 @@ public class PostLikeService implements IPostLikeService{
 
 	@Autowired
 	PostLikeRepository postLikeRep;
+	
+	@Autowired 
+	IPostService ipostservice;
 	@Override
 	public PostLike AjoutPostLike(PostLike p) {
 		// TODO Auto-generated method stub
@@ -41,6 +45,26 @@ public class PostLikeService implements IPostLikeService{
 	public void PostLikeModifier(PostLike a, int id) {
 		// TODO Auto-generated method stub
 		postLikeRep.save(a);
+	}
+
+	@Override
+	public String AjoutLikeinpost(PostLike po, int idpost) {
+	
+		
+		// TODO Auto-generated method stub
+		
+		Post p=ipostservice.PostById(idpost);
+		po.setPostLikes(p);
+		if (p.getIdPost()==idpost) {
+			int nb=0;
+			po.setNbLike(nb+1);
+		
+		
+		postLikeRep.save(po);
+		}
+		return "like dans post ajouter";
+		
+
 	}
 
 }

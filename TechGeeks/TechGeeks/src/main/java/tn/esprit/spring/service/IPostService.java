@@ -2,9 +2,9 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 
+
+
 import tn.esprit.spring.entities.Post;
-import tn.esprit.spring.entities.PostComment;
-import tn.esprit.spring.entities.PostLike;
 
 
 public interface IPostService {
@@ -15,5 +15,11 @@ public interface IPostService {
 	public void PostModifier(Post a, int id);
 //	public Post affecterCommentairePost(int p,PostComment pc);
 //	public Post affecterLikePost(int p,PostComment pl);
+	
+	public List<Post> getByTitle(String title);
+	
+	public List<Post> getOrderByDate();
+	
+public List<Post> getByordernbLike();
 
 }

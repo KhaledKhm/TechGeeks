@@ -20,7 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import tn.esprit.spring.entities.Advertising.pub;
 
 @Entity
 @Getter
@@ -37,11 +36,13 @@ public class PostComment implements Serializable{
 	private String comment;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="postComment")
+	@OneToMany(mappedBy="postCommentLike")
 	private Set<CommentLike> commentLikes;
+	
 	@JsonIgnore
 	@ManyToOne
-	private Post post;
+	private Post postComments;
+	
 	@JsonIgnore
 	@OneToOne
 	private User user;

@@ -1,6 +1,8 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
+import java.io.*;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,16 +54,12 @@ public class PostCommentService implements IPostCommentService{
 	public String AjoutCommentinpost(PostComment po, int idpost) {
 		// TODO Auto-generated method stub
 		Post p=ipostservice.PostById(idpost);
-		po.setPost(p);
+		po.setPostComments(p);
 		postCommentrep.save(po);
 
 		return "comment dans post ajouter";
 	}
 
 	
-
-	
-
-	
-
+        
 }

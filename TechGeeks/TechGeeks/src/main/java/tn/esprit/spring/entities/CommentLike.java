@@ -32,6 +32,6 @@ public class CommentLike implements Serializable{
 	
 	private int commentLike;
 	@ManyToOne
-	private PostComment postComment;
+	private PostComment postCommentLike;
 
 }

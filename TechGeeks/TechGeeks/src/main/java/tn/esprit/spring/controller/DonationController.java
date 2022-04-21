@@ -76,24 +76,5 @@ public class DonationController {
 	
 	}
 	
-	/*
-	  @Autowired
-	    public JavaMailSender emailSender;
-
-	    @ResponseBody
-	    @RequestMapping("/sendSimpleEmail")
-	    public String sendSimpleEmail() {
-
-	        // Create a Simple MailMessage.
-	        SimpleMailMessage message = new SimpleMailMessage();
-	        
-	        message.setTo("khmthe@gmail.com");
-	        message.setSubject("Test Simple Email");
-	        message.setText("Hello, Im testing Simple Email");
-
-	        // Send Message!
-	        this.emailSender.send(message);
-
-	        return "Email Sent!";
-	    }*/
+	
 }

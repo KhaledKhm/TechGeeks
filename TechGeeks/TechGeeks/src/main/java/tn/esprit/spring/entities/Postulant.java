@@ -6,10 +6,15 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -30,15 +35,18 @@ public class Postulant implements Serializable{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idPostulant;
 	
+	@Enumerated(EnumType.STRING)
 	private Etat etat;
+	@ManyToOne
+	private User users;
+
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="postulantUser")
-	private Set<User> users;
-	
-	@OneToMany
-	private Set<Offre> offres;
+	@ManyToOne
+	@JsonIgnore
+	private Offre offres;
 	
 	@OneToMany(mappedBy="postulantInterview")
+	@JsonIgnore
 	private Set<Interview> interviews;
 
 }

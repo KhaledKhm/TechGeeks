@@ -4,9 +4,7 @@ import java.util.List;
 
 import tn.esprit.spring.entities.Chat;
 
-
 public interface IChatService {
-
 	public Chat AjoutChat(Chat c);
 	public void SupprimerChat(int Id);
 	public Chat ChatById(int id);

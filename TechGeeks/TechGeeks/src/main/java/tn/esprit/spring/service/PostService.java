@@ -1,14 +1,12 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Post;
-import tn.esprit.spring.entities.PostComment;
-import tn.esprit.spring.entities.PostLike;
 import tn.esprit.spring.repository.PostCommentRepository;
 import tn.esprit.spring.repository.PostLikeRepository;
 import tn.esprit.spring.repository.PostRepository;
@@ -19,8 +17,8 @@ public class PostService implements IPostService{
 	PostRepository postrepo;
 	@Autowired
 	PostCommentRepository pr;
-	@Autowired
-	PostLikeRepository postlike;
+	@Autowired 
+	PostLikeRepository replike;
 	
 	@Override
 	public Post AjoutPost(Post p) {
@@ -51,6 +49,55 @@ public class PostService implements IPostService{
 		// TODO Auto-generated method stub
 		postrepo.save(a);
 	}
+
+	
+	
+	@Override
+	public List<Post> getByTitle(String title) {
+		// TODO Auto-generated method stub
+		return (List<Post>)postrepo.findByTitle(title);
+	}
+
+	@Override
+	public List<Post> getOrderByDate() {
+		// TODO Auto-generated method stub
+		return postrepo.findAllByOrderByCreatedAtDesc();
+	}
+
+	@Override
+	public List<Post> getByordernbLike() {
+		// TODO Auto-generated method stub
+		//return postrepo.AfficherPostorderbynbLike();
+		
+		/*List<Post>  listpost=postrepo.findAll();
+		for(int i=0;i<listpost.size();i++) {
+			int nblike=replike.nbTotalelike(listpost.get(i).getIdPost());
+			if(nblike > replike.nbTotalelike(listpost.get(i).getIdPost())) {
+				
+			}
+		}*/
+		
+			
+		
+		//int nblike=replike.nbTotalelike();
+		return postrepo.AfficherPostbynbLike();
+	}
+
+	
+	/*@Override
+	public Post savefile(MultipartFile file) {
+		// TODO Auto-generated method stub
+		String filename=file.getOriginalFilename();
+		
+		try {
+			Post post=new Post(0, filename,file.getContentType(),file.getBytes(), null, null, null, null);
+			return postrepo.save(post);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}*/
 
 /*	@Override
 	public Post affecterCommentairePost(int p, PostComment idco) {

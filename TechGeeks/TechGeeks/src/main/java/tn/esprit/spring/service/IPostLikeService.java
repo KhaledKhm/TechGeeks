@@ -12,4 +12,7 @@ public interface IPostLikeService {
 	public PostLike PostLikeById(int id);
 	public List<PostLike> PostLikeGetAll();
 	public void PostLikeModifier(PostLike a, int id);
+	
+	public String AjoutLikeinpost(PostLike po, int idpost);
+
 }

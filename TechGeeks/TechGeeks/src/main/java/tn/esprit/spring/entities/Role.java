@@ -20,11 +20,14 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Role implements Serializable{
 
+	public Role() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Id
-
-	@GeneratedValue(strategy =
-	GenerationType.AUTO)
-	private int id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private int idRole;
+	
 	@Enumerated(EnumType.STRING)
 	private RoleName role;
 	
