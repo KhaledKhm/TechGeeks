@@ -3,6 +3,8 @@ package tn.esprit.spring.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +28,8 @@ public class Role implements Serializable{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idRole;
 	
-	private String role;
+	@Enumerated(EnumType.STRING)
+	private RoleName role;
+	
 
 }

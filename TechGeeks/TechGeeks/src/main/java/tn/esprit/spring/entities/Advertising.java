@@ -1,16 +1,21 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
-import java.util.Set;
-
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
@@ -18,22 +23,37 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PUBLIC)
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "advertising")
 public class Advertising implements Serializable{
-
-	public Advertising() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idAdvertising;
+	@NotNull
+	private String nameAd;
+	@NotNull
+	private Date dateStart;
 	
-	private String title;
+	@NotNull
+	private Date dateEnd;
 	
-	private String description;
+	@NotNull
+	private int numbervus;
 	
-	private String image;
+	
+	
+	@NotNull
+	private float price; 
+	
+	@NotNull
+	private pub typepub;
+	
 	
 	@ManyToOne
+	@JsonIgnore
 	private User userAdvertising;
+	
+	
 }
