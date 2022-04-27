@@ -18,9 +18,9 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
-public class AuthEntryPointJwt implements AuthenticationEntryPoint {
+public class AuthEntryPointJwt /*implements AuthenticationEntryPoint */{
 
-  private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
+/*  private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
 
   @Override
   public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
@@ -39,5 +39,5 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     final ObjectMapper mapper = new ObjectMapper();
     mapper.writeValue(response.getOutputStream(), body);
   }
-
+*/
 }

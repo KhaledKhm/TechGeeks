@@ -21,13 +21,13 @@ import tn.esprit.spring.security.UserDetailsServiceImpl;
 
 
 
-public class AuthTokenFilter extends OncePerRequestFilter {
-  @Autowired
-  private JwtUtils jwtUtils;
+public class AuthTokenFilter /*extends OncePerRequestFilter */{
+//  @Autowired
+ // private JwtUtils jwtUtils;
 
-  @Autowired
-  private UserDetailsServiceImpl userDetailsService;
-
+ // @Autowired
+ // private UserDetailsServiceImpl userDetailsService;
+/*
   private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
   @Override
@@ -63,5 +63,5 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     }
 
     return null;
-  }
+  }*/
 }

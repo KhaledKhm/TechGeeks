@@ -13,7 +13,7 @@ import tn.esprit.spring.security.UserDetailsImpl;
 
 @Component
 public class JwtUtils {
-  private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
+ /* private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
   @Value("${HerWay.app.jwtSecret}")
   private String jwtSecret;
@@ -54,5 +54,5 @@ public class JwtUtils {
     }
 
     return false;
-  }
+  }*/
 }

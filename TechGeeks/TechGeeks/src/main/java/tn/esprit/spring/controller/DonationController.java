@@ -17,7 +17,7 @@ import org.springframework.mail.javamail.JavaMailSender;*/
 import tn.esprit.spring.entities.Donation;
 import tn.esprit.spring.service.IDonationService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class DonationController {
 
