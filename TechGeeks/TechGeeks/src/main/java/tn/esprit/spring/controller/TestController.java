@@ -59,7 +59,7 @@ public class TestController {
   
   @PostMapping("/process_register")
   public String processRegister(User user, HttpServletRequest request)
-          throws UnsupportedEncodingException, MessagingException {
+        /*  throws UnsupportedEncodingException, MessagingException*/ {
 	  su.register(user, getSiteURL(request));       
       return "register_success";
   }

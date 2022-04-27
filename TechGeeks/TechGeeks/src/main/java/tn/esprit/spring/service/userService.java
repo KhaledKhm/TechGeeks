@@ -11,7 +11,7 @@ import tn.esprit.spring.entities.User;
 public interface userService {
 	Set<User> retrieveAllUsers();
 	List<User> retrieveAllUsersKhaled();
-	User addUser(User user) throws MessagingException ;
+	User addUser(User user) /*throws MessagingException*/ ;
 	User findUserByUserName(String userName);
 	User retrieveUserById(Integer iduser);
 	void AffecterCertificat(int idUser, List<Certificate> certificates);

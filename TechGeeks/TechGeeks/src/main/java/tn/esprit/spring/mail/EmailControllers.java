@@ -17,12 +17,12 @@ import tn.esprit.spring.service.ServiceUser;
 @RestController
 public class EmailControllers {
 	
-	 @Autowired
-		JavaMailSender mailSender;
-	 @Autowired
-	  ServiceUser ServiceUser;
+//	 @Autowired
+//		JavaMailSender mailSender;
+//	 @Autowired
+//	  ServiceUser ServiceUser;
 	  
-	  @GetMapping("/test/{id}")
+	/*  @GetMapping("/test/{id}")
 		public String send(@PathVariable("id") Integer Id,String verificationCode) throws MessagingException{
 		  User u = ServiceUser.retrieveUserById(Id);
 		  MimeMessage msg = mailSender.createMimeMessage();
@@ -65,7 +65,7 @@ public class EmailControllers {
 		    return "Successfully sent";
 	  }
 	  
-	
+	*/
 
 
 

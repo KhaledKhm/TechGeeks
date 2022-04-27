@@ -21,8 +21,12 @@ import tn.esprit.spring.service.IComplaintSerivce;
 
 @RestController
 public class ComplaintController {
+//	@Autowired
+//	IComplaintSerivce cs;
+	
 	@Autowired
 	IComplaintSerivce cs;
+	
 	@PostMapping("/add-Complaint")
 	@ResponseBody
 	Complaint addComplaint(@RequestBody Complaint c){//@request taayet lel les attributs

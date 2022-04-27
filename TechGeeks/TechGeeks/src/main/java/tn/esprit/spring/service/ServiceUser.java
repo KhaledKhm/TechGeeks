@@ -21,12 +21,10 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.utility.RandomString;
 import tn.esprit.spring.entities.Certificate;
-import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Provider;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.RoleName;
 import tn.esprit.spring.entities.User;
-import tn.esprit.spring.mail.EmailControllers;
 import tn.esprit.spring.repository.CertificateRepository;
 import tn.esprit.spring.repository.RoleRepository;
 import tn.esprit.spring.repository.UserRepository;
@@ -39,8 +37,8 @@ public class ServiceUser implements userService{
 	RoleRepository  roleRepository;
 	@Autowired
 	CertificateRepository certificateRepository;
-	@Autowired
-	EmailControllers  EmailController;
+//	@Autowired
+//	EmailControllers  EmailController;
 	
 	@Override
 	public void AffecterCertificat(int idUser, List<Certificate> certificates) {
@@ -68,14 +66,14 @@ public class ServiceUser implements userService{
 	}
 
 	@Override
-	public User addUser(User user) throws MessagingException  {
+	public User addUser(User user) /*throws MessagingException */ {
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
-		user.setVcode(EmailController.verificationCode());
+//		user.setVcode(EmailController.verificationCode());
 		user.setEtat(false);
 		userRepository.save(user);
 		User u = retrieveUserById(user.getId());
-		EmailController.send(u.getId(), user.getVcode());
+	//	EmailController.send(u.getId(), user.getVcode());
 		return user;
 	}
 
@@ -121,23 +119,23 @@ public class ServiceUser implements userService{
 		return userRepository.findByEmail(email);
 	}
 	
-	@Autowired
-    private JavaMailSender mailSender;
+//	@Autowired
+ //   private JavaMailSender mailSender;
  
      
  
     public void register(User user, String siteURL)
-            throws UnsupportedEncodingException, MessagingException {
+         /*   throws UnsupportedEncodingException, MessagingException*/ {
     	/*PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);*/
          
         String randomCode = RandomString.make(64);
          
-        sendVerificationEmail(user, siteURL);
+  //      sendVerificationEmail(user, siteURL);
     }
      
-    private void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException {
+  /*  private void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException {
         String toAddress = "olfa.selmi@esprit.tn";
         String fromAddress = "hamza.krid@esprit.tn";
         String senderName = "HerWay";
@@ -163,9 +161,9 @@ public class ServiceUser implements userService{
          
         helper.setText(content, true);
          
-        mailSender.send(message);
+ //       mailSender.send(message);
          
-    }
+    }*/
 
 	@Override
 	public User retrieveUserById(Integer iduser) {

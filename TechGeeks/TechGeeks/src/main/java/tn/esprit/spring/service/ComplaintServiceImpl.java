@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.mail.javamail.JavaMailSender;
+//import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Appointment;
@@ -26,8 +26,8 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 	@Autowired
 
 	AppointmentRepository apprepo;
-	@Autowired
-	 EmailService emailService;
+	//@Autowired
+	 //EmailService emailService;
 	@Override
 	public Complaint addComplaint(Complaint c) {
 		// TODO Auto-generated method stub
@@ -101,7 +101,7 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 		int a = comprepo.nbreCompParUser(iduser);
 		if (a>2){
 			
-			emailService.sendSimpleEmail(u.getEmail(), "Alert! ", "	You should improve your performance ");
+//			emailService.sendSimpleEmail(u.getEmail(), "Alert! ", "	You should improve your performance ");
 
 		}
 		return comprepo.nbreCompParUser(iduser);
@@ -117,7 +117,7 @@ public class ComplaintServiceImpl  implements IComplaintSerivce{
 		C.setResponse("response of complaint");
 		comprepo.save(C);
 	
-	emailService.sendSimpleEmail(u.getEmail(), "Reponse Reclamation ", "Your Complaint is being processed ");
+//	emailService.sendSimpleEmail(u.getEmail(), "Reponse Reclamation ", "Your Complaint is being processed ");
 	
 	
 	}

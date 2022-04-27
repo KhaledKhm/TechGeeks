@@ -20,10 +20,10 @@ import java.util.Base64;
 @RestController
 public class QRCodeController {
 
-	@Autowired
-	private userService uService;
+//	@Autowired
+//	private userService uService;
 	
-	private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
+/*	private static final String QR_CODE_IMAGE_PATH = "./src/main/resources/QRCode.png";
 
 	@GetMapping(value = "/genrateQRCode/{id}")
 	public String getQRCode(Model model, @PathVariable("id") Integer iduser) {
@@ -52,5 +52,5 @@ public class QRCodeController {
 		model.addAttribute("qrcode", qrcode);
 
 		return "medium";
-	}
+	}*/
 }

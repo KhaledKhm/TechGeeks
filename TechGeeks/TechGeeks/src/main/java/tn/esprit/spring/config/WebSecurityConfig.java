@@ -47,27 +47,27 @@ import tn.esprit.spring.service.ServiceUser;
     prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-    private CustomOAuth2UserService oauthUserService;
-	@Autowired
-    private UserRepository UserRepository;
-	@Autowired
-    private ServiceUser UserService;
-	@Autowired
-	RoleRepository Rrepository;
+//	@Autowired
+//    private CustomOAuth2UserService oauthUserService;
+//	@Autowired
+ //   private UserRepository UserRepository;
+//	@Autowired
+ //   private ServiceUser UserService;
+//	@Autowired
+//	RoleRepository Rrepository;
 	
-  @Autowired
-  UserDetailsServiceImpl userDetailsService;
+//  @Autowired
+//  UserDetailsServiceImpl userDetailsService;
 
-  @Autowired
-  private AuthEntryPointJwt unauthorizedHandler;
+  //@Autowired
+  //private AuthEntryPointJwt unauthorizedHandler;
 
-  @Bean
+ /* @Bean
   public AuthTokenFilter authenticationJwtTokenFilter() {
     return new AuthTokenFilter();
-  }
+  }*/
 
-  @Override
+ /* @Override
   public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 	  PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(encoder);
@@ -78,14 +78,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   public AuthenticationManager authenticationManagerBean() throws Exception {
     return super.authenticationManagerBean();
   }
-
+*/
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 	  http
 		.authorizeRequests()
-		.antMatchers("/api/auth/**").permitAll()
-		.anyRequest()
+		.antMatchers("/api/auth/**").permitAll();
+/*		.anyRequest()
 		.authenticated()
 		.and()
 		.oauth2Login()
@@ -106,6 +106,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			}
       	     })
        .and()
-       .httpBasic().and().csrf().disable();
+       .httpBasic().and().csrf().disable();*/
   }
 }

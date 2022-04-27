@@ -45,30 +45,30 @@ import tn.esprit.spring.service.ServiceUser;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-  @Autowired
-  AuthenticationManager authenticationManager;
+//  @Autowired
+//  AuthenticationManager authenticationManager;
 
-  @Autowired
-  ServiceUser ServiceUser;
-  @Autowired
-  UserRepository userRepository;
+//  @Autowired
+//  ServiceUser ServiceUser;
+//  @Autowired
+//  UserRepository userRepository;
   
 
-  @Autowired
-  RoleRepository roleRepository;
+//  @Autowired
+//  RoleRepository roleRepository;
 
-  @Autowired
-	EmailControllers  EmailController;
+//  @Autowired
+//	EmailControllers  EmailController;
 
  
 
-  @Autowired
-  JwtUtils jwtUtils;
+ // @Autowired
+ // JwtUtils jwtUtils;
   
 //	@Autowired
 //	IUserService userservice;
 	
-	@PostMapping("/AffecterCertificate/{idUser}/{certficates}")
+/*	@PostMapping("/AffecterCertificate/{idUser}/{certficates}")
 	public void AffecterCertificate(@RequestBody User user,@PathVariable("idUser") int idUser,@PathVariable("certficates") List<Certificate> certficates) {
 		ServiceUser.AffecterCertificat(idUser,certficates);
 	}
@@ -151,5 +151,5 @@ public class AuthController {
 	 userRepository.save(u);
 	  return null ; 
 	  
-  }
+  }*/
 }
