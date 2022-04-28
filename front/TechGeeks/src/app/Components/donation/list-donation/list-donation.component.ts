@@ -28,8 +28,7 @@ export class ListDonationComponent implements OnInit {
    }
   }
 
-  retrieveAllDonations(){
-    console.log("sum"+this.donation.sum);
+  getAllDonations(){
     this.donationService.retrieveAllDonations().subscribe(res => this.listDonations = res)
   }
   open(content: any) {
