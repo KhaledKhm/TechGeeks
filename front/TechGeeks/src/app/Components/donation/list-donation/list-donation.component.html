@@ -1,1 +1,56 @@
 <p>list-donation works!</p>
+<div class="row">
+    <div class="card" class="text-center">
+        <table class="table">
+            <thead style="background-color: rgb(192, 183, 183);">
+                <th>Date</th>
+                <th>Sum</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor='let d of listDonations'>
+                    <td>{{d.dateDonation}}</td>
+                    <td>{{d.sum}}</td>
+                    <td>{{d.bankAccount}}</td>
+                    <td><button type="button" class="btn btn-outline-primary"
+                            (click)="open(mymodal)">edit</button>
+                        <ng-template #mymodal let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+                                <button type="button" class="close" aria-label="Close"
+                                    (click)="modal.dismiss('Cross click')">
+                                    <span aria-hidden="true" (click)="cancel()">×</span>
+
+                                </button>
+
+                            </div>
+                            <div>
+                            <form>
+                                <div class="modal-body">
+
+                                    <div class="row" class="col-md-5">
+                                        <label>Title</label>
+                                        <input type="text" [(ngModel)]="d.dateDonation" [ngModelOptions]="{standalone : true}" />
+                                    </div>
+                                    <div class="row" class="col-md-5">
+                                        <label>Price</label>
+                                        <input type="number" [(ngModel)]="d.sum" [ngModelOptions]="{standalone : true}" />
+                                    </div>
+                                    <div class="row" class="col-md-5">
+                                        <label>Quantity</label>
+                                        <input type="number" [(ngModel)]="d.bankAccount" [ngModelOptions]="{standalone : true}" />
+                                    </div>
+                                </div>
+
+                             
+                            </form>
+                        </div>
+                        </ng-template>
+                     
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

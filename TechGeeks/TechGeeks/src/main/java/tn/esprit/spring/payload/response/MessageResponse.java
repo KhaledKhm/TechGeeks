@@ -1,7 +1,7 @@
 package tn.esprit.spring.payload.response;
 
 public class MessageResponse {
-  private String message;
+ // private String message;
 /*
   public MessageResponse(String message) {
     this.message = message;

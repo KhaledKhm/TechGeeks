@@ -1,7 +1,6 @@
 package tn.esprit.spring.mail;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;

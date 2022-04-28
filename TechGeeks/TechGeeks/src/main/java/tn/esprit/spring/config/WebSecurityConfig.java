@@ -11,19 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.RoleName;
@@ -40,12 +28,12 @@ import tn.esprit.spring.service.ServiceUser;
 
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(
     // securedEnabled = true,
     // jsr250Enabled = true,
-    prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+ //   prePostEnabled = true)
+public class WebSecurityConfig /*extends WebSecurityConfigurerAdapter */{
 
 //	@Autowired
 //    private CustomOAuth2UserService oauthUserService;
@@ -80,11 +68,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   }
 */
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-	  http
-		.authorizeRequests()
-		.antMatchers("/api/auth/**").permitAll();
+ // @Override
+ // protected void configure(HttpSecurity http) /*throws Exception */{
+//	  http
+//		.authorizeRequests()
+//		.antMatchers("/api/auth/**").permitAll();
 /*		.anyRequest()
 		.authenticated()
 		.and()
@@ -107,5 +95,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       	     })
        .and()
        .httpBasic().and().csrf().disable();*/
-  }
+ // }
 }
