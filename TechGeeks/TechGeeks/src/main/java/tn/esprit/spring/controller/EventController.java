@@ -17,7 +17,7 @@ import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.EventRepository;
 import tn.esprit.spring.service.IEventService;
 
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 @RestController
 public class EventController {
 

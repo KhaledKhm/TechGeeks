@@ -20,6 +20,7 @@ import { AddPotComponent } from './components/pot/add-pot/add-pot.component';
 import { ListPotComponent } from './components/pot/list-pot/list-pot.component';
 import { ListLocalComponent } from './components/local/list-local/list-local.component';
 import { AddLocalComponent } from './components/local/add-local/add-local.component';
+import { EditDonationComponent } from './components/donation/edit-donation/edit-donation.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AddLocalComponent } from './components/local/add-local/add-local.compon
     AddPotComponent,
     ListPotComponent,
     ListLocalComponent,
-    AddLocalComponent
+    AddLocalComponent,
+    EditDonationComponent
   ],
   imports: [
     BrowserModule,

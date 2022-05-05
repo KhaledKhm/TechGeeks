@@ -48,6 +48,13 @@ public class DonationController {
 		return donationService.retrieveAllDonations();
 	}
 	
+	@GetMapping("/retrieve-myDonations/{idUser}")
+	List<Donation> retrieveMyDonations(@PathVariable("idUser")int idUser){
+		
+		return donationService.retrieveMyDonations(idUser);
+	}
+	
+	
 	@GetMapping("/get-Donation/{idDonation}")
 	Donation getDonationById(@PathVariable("idDonation") int idDonation){
 		return donationService.retrieveDonation(idDonation);

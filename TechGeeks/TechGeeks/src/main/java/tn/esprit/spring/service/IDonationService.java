@@ -7,6 +7,7 @@ import tn.esprit.spring.entities.Donation;
 
 public interface IDonationService {
 	List<Donation> retrieveAllDonations();
+	List<Donation> retrieveMyDonations(int idUser);
 	Donation addDonation(Donation d);
 	Donation updateDonation(Donation d);
 	Donation retrieveDonation(int id);

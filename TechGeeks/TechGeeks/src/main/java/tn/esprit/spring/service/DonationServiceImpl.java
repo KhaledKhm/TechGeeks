@@ -129,6 +129,15 @@ public class DonationServiceImpl implements IDonationService{
 	
 	}
 
+	@Override
+	public List<Donation> retrieveMyDonations(int idUser) {
+		List<Donation> donationList = donationRepository.findByDonationUserId(idUser);
+		for (Donation donation : donationList){
+			log.info(" Donation: " +donation);
+		}
+		return donationList;
+	}
+
 	
 
 }

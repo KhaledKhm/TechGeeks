@@ -1,1 +1,32 @@
-<p>add-event works!</p>
+<div class="center">
+    <form>
+        <div class="row" class="col-md-6">
+            <label>Libelle</label><br>
+            <input type="text" placeholder="Event Libelle" [(ngModel)]="event.libelle"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <br><label>Start date</label><br><br>
+            <input type="date" placeholder="Start date" [(ngModel)]="event.dateStart"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <br> <label>End Date</label><br><br>
+            <input type="date" placeholder="End date" [(ngModel)]="event.dateEnd"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <br><label>Sum</label><br>
+            <input type="number" placeholder="Sum" [(ngModel)]="event.sum"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <label>Price</label><br>
+            <input type="number" placeholder="Price" [(ngModel)]="event.price"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" (click)="addEvent(event)" >Add</button> 
+      <!--  <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>-->
+    </form>
+</div>

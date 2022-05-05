@@ -1,1 +1,19 @@
-<p>add-donation works!</p>
+<div class="center">
+    <form>
+        <div class="row" class="col-md-6">
+            <input type="date" placeholder="Date of Donation" [(ngModel)]="donation.dateDonation"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <input type="number" placeholder="Sum" [(ngModel)]="donation.sum"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <input type="number" placeholder="Bank account" [(ngModel)]="donation.bankAccount"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" (click)="addDonation(donation)" >Add</button> 
+      <!--  <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>-->
+    </form>
+</div>
