@@ -1,6 +1,7 @@
 <div class="center">
     <form>
         <div class="row" class="col-md-6">
+            <label>Libelle</label><br>
             <input type="date" placeholder="Date of Donation" [(ngModel)]="donation.dateDonation"
                 [ngModelOptions]="{standalone : true}">
         </div>
@@ -13,7 +14,7 @@
                 [ngModelOptions]="{standalone : true}">
         </div>
         <br>
-        <button type="button" class="btn btn-success" (click)="addDonation(donation)" >Add</button> 
-      <!--  <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>-->
+        <button type="button"  class="btn btn-success" (click)="addDonation(donation)" >Add</button> 
+        <button type="button" class="btn btn-info" (click)="closeForm()">Cancel</button>
     </form>
 </div>
