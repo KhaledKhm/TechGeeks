@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Donation } from 'src/app/models/donation';
@@ -6,22 +7,24 @@ import { DonationService } from 'src/app/services/donation.service';
 @Component({
   selector: 'app-add-donation',
   templateUrl: './add-donation.component.html',
-  styleUrls: ['./add-donation.component.css']
+  styleUrls: ['./add-donation.component.css'],
+  providers: [DatePipe]
 })
 export class AddDonationComponent implements OnInit {
 
-  constructor(private donationService : DonationService, private modalService: NgbModal) { }
+  constructor(private donationService : DonationService, private modalService: NgbModal, private datePipe: DatePipe) { }
 
   listDonations : any; 
   form : boolean = false;
    donation!: Donation;
    closeResult! : string;
+   myDate = new Date();
   ngOnInit(): void {
   //  this.getAllDonations();
 
   this.donation = {
     idDonation: null,
-    dateDonation: null,
+    dateDonation: this.datePipe.transform(this.myDate, 'yyyy-MM-dd'),
     sum: null,
    bankAccount: null,
  }
@@ -60,5 +63,9 @@ export class AddDonationComponent implements OnInit {
     }
     cancel(){
       this.form = false;
+    }
+
+    closeMod(){
+      this.modalService.dismissAll();
     }
 }

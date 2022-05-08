@@ -1,6 +1,7 @@
 export class Pot {
     idPot:any;
-    libelle:any;	
+    libelle!: string;
+    description!: string;	
 	sum:any;	
 	bankAccount:any;
 }
