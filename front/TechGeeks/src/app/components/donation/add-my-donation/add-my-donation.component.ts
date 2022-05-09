@@ -2,50 +2,33 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Donation } from 'src/app/models/donation';
-import { Pot } from 'src/app/models/pot';
 import { DonationService } from 'src/app/services/donation.service';
 
 @Component({
-  selector: 'app-add-donation',
-  templateUrl: './add-donation.component.html',
-  styleUrls: ['./add-donation.component.css'],
-  providers: [DatePipe]
+  selector: 'app-add-my-donation',
+  templateUrl: './add-my-donation.component.html',
+  styleUrls: ['./add-my-donation.component.css']
 })
-export class AddDonationComponent implements OnInit {
-
+export class AddMyDonationComponent implements OnInit {
+  form : boolean = false;
+  donation!: Donation;
+  closeResult! : string;
   constructor(private donationService : DonationService, private modalService: NgbModal, private datePipe: DatePipe) { }
 
-  listDonations : any; 
-  form : boolean = false;
-   donation!: Donation;
-   closeResult! : string;
-  // myDate = new Date();
- //  pott!: Pot;
   ngOnInit(): void {
-  //  this.getAllDonations();
-
-/*  this.donation = {
-    idDonation: null,
-    dateDonation: this.datePipe.transform(this.myDate, 'yyyy-MM-dd'),
-    sum: null,
-   bankAccount: null,
-   pot:this.pott,
-   user: null,
- }
-*/
   }
-
-  addDonation(d: any){
+  addMyDonation(d: any,idPot:any,idUser:any){
     
     console.log("add" +d.sum);
     console.log("add" +d);
-    this.donationService.addDonation(d).subscribe(() => {
+    this.donationService.addAndAssignPotAndUser(d,idPot,idUser).subscribe(() => {
   //    this.getAllProducts();
       this.form = false;
       //return d;
     });
   }
 
+  
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;

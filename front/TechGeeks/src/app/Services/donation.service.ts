@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Donation } from '../models/donation';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,10 @@ updateDonation(donation:any){
 	deleteDonation(idDonation:any){
 		return this.httpClient.delete(`${this.API_URL}/delete-donation/${idDonation}`)
   }
+
+
+	retrieveMyDonations(idUser: any){
+		return this.httpClient.get(`${this.API_URL}/retrieve-myDonations/${idUser}`)
+	}
 
 }

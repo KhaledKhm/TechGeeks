@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Donation } from 'src/app/models/donation';
+import { Pot } from 'src/app/models/pot';
 import { DonationService } from 'src/app/services/donation.service';
 
 @Component({
@@ -15,18 +16,22 @@ export class ListDonationComponent implements OnInit {
   form:boolean=false;
    donation!:Donation;
    closeResult!:string;
+   pott!: Pot;
   
   constructor(private donationService: DonationService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     
     this.getAllDonations();
-    this.donation = {
+/*    this.donation = {
       idDonation: null,
       dateDonation: null,
     	sum: null,
      bankAccount: null,
-   }
+     pot:this.pott,
+     user: null,
+ 
+   }*/
   }
 
   getAllDonations(){
@@ -42,7 +47,7 @@ export class ListDonationComponent implements OnInit {
      console.log(don);
      this.donationService.updateDonation(don).subscribe();
    }
-
+  
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;

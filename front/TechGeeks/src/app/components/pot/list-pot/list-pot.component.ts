@@ -17,14 +17,17 @@ export class ListPotComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPots();
-    this.pot = {
+   /* this.pot = {
       idPot:null,
       libelle:null,
+      description: null,
       sum:null,	
       bankAccount:null,
-  }
+  }*/
 
 }
+
+
 
 getAllPots(){
   this.potService.retrieveAllPots().subscribe(res => this.listPots = res)

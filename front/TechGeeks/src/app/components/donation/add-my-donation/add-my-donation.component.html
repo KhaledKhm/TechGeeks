@@ -1,0 +1,21 @@
+<div class="center">
+    <form>
+   <!--   <div class="row" class="col-md-6">
+            <label>Date </label><br>
+            <input type="date" placeholder="Date of Donation" [(ngModel)]="donation.dateDonation"
+                [ngModelOptions]="{standalone : true}">
+        </div>-->  
+        <div class="row" class="col-md-6">
+            <label>Sum</label><br>
+            <input type="number" placeholder="Sum" [(ngModel)]="donation.sum"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <input type="number" placeholder="Bank account" [(ngModel)]="donation.bankAccount"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <br>
+        <button type="button"  class="btn btn-success" (click)="addDonation(donation)" (click)="closeMod()">Add</button> 
+        <button type="button" class="btn btn-info" (click)="closeMod()">Cancel</button>
+    </form>
+</div>

@@ -1,7 +1,8 @@
     <div class="row">
         <div class="col-md-12">
             <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)">Add new Donation</button>
-            <ng-template #mymodal1 let-modal1>
+            <ng-template #mymodal1 let-modal1
+            cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop">
                 <app-add-donation id="modal"></app-add-donation>
             
             </ng-template>
@@ -66,6 +67,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    <button class="btn btn-round btn-sm btn-success" (click)="open(mydons)">My Donations</button>
+                    <ng-template #mydons let-modal1
+                    cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop">
+                        <app-my-donations id="mydons"></app-my-donations>
+                    
+                    </ng-template>
                 </div>
             </div>
         </div>

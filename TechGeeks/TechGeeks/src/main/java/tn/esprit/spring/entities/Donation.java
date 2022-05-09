@@ -40,7 +40,7 @@ public class Donation implements Serializable{
 	
 	private String bankAccount;
 
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToOne
 	private Pot pot;
 	
