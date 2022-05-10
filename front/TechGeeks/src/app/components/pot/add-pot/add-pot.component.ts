@@ -16,13 +16,13 @@ export class AddPotComponent implements OnInit {
   constructor(private potService: PotService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-   /* this.pot = {
+    this.pot = {
       idPot:null,
       libelle:null,
       description: null,
       sum:null,	
       bankAccount:null,
-  }*/
+  }
   }
   addPot(p: any){
     this.potService.addPot(p).subscribe(() => {

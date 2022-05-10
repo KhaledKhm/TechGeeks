@@ -87,7 +87,11 @@
                                 </ng-template>
                                 <button type="button" class="btn btn-outline-danger"
                                 (click)="deletePot(p.idPot)">delete</button>
-                                
+                                <button type="button" class="btn btn-outline-danger" 
+                                (click)="open(mymodaldonate)">Donate to Pot</button>
+                                <ng-template #mymodaldonate let-mymodaldonate>
+                                    <app-add-my-donation></app-add-my-donation>
+                                </ng-template>
                             </td>
                         </tr>
                     </tbody>

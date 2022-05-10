@@ -2,9 +2,9 @@ import { Pot } from "./pot";
 
 export class Donation {
     idDonation: any;
-    dateDonation: Date;
+    dateDonation: any;
 	sum: any;
-    bankAccount: number;
+    bankAccount: any;
     pot: Pot;
     user: any;
 }

@@ -19,12 +19,12 @@ export class AddDonationComponent implements OnInit {
   form : boolean = false;
    donation!: Donation;
    closeResult! : string;
-  // myDate = new Date();
- //  pott!: Pot;
+   myDate = new Date();
+   pott!: Pot;
   ngOnInit(): void {
   //  this.getAllDonations();
 
-/*  this.donation = {
+  this.donation = {
     idDonation: null,
     dateDonation: this.datePipe.transform(this.myDate, 'yyyy-MM-dd'),
     sum: null,
@@ -32,7 +32,7 @@ export class AddDonationComponent implements OnInit {
    pot:this.pott,
    user: null,
  }
-*/
+
   }
 
   addDonation(d: any){

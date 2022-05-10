@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Donation } from 'src/app/models/donation';
+import { Pot } from 'src/app/models/pot';
 import { DonationService } from 'src/app/services/donation.service';
 
 @Component({
@@ -13,14 +14,24 @@ export class AddMyDonationComponent implements OnInit {
   form : boolean = false;
   donation!: Donation;
   closeResult! : string;
+  myDate = new Date();
+  pott!: Pot;
   constructor(private donationService : DonationService, private modalService: NgbModal, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
+    this.donation = {
+      idDonation: null,
+      dateDonation: this.datePipe.transform(this.myDate, 'yyyy-MM-dd'),
+      sum: null,
+     bankAccount: null,
+     pot:this.pott,
+     user: null,
+    }
   }
   addMyDonation(d: any,idPot:any,idUser:any){
     
-    console.log("add" +d.sum);
-    console.log("add" +d);
+ //   console.log("add" +d.sum);
+  //  console.log("add" +d);
     this.donationService.addAndAssignPotAndUser(d,idPot,idUser).subscribe(() => {
   //    this.getAllProducts();
       this.form = false;
