@@ -1,0 +1,49 @@
+<section class="vh-100">
+    <div
+        class="shop archive post-type-archive post-type-archive-product woocommerce woocommerce-page cloe_brooks_body body_style_wide body_transparent theme_skin_less article_style_stretch layout_excerpt template_excerpt scheme_original top_panel_show top_panel_above sidebar_show sidebar_left sidebar_outer_hide">
+        <div class="body_wrap">
+            <!-- page_content_wrap -->
+            <div class="content_wrap">
+                <div class="page_content_wrap page_paddings_yes">
+                    <div class="content_wrap">
+                        <div class="content">
+                            <!-- list_products -->
+                            <div class="list_products shop_mode_thumbs">
+                                <h1 class="page-title">
+                                    appointments
+                                    <div>
+                                        <ul class="products">
+                                            <!-- product -->
+                                            <li *ngFor="let a of  listappointment"
+                                                class="post-206 product type-product status-publish has-post-thumbnail product_cat-all product_cat-magazines product_tag-novel column-1_3 first instock shipping-taxable purchasable product-type-simple">
+                                                <div class="post_item_wrap">
+                                                    <div class="post_content">
+
+                                                        {{a.idAppointment}}
+                                                        {{a.local}}
+                                                        {{a.date}}
+                                                        
+                                                    </div>
+                                                    <button (click)="delete(a.idAppointment)">delete</button>
+                                                    <button [routerLink]="['/updateappointment',a.idAppointment]">edit</button>
+
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </h1>
+                                <!-- ordering -->
+
+                                <!-- /ordering -->
+                                <!-- All products -->
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

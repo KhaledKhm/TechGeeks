@@ -1,0 +1,22 @@
+<form #f="ngForm"  >
+    <label>date</label>
+    <input type="date" name="date"    [(ngModel)]="app.date"
+    required minlength="3" #t="ngModel">
+    <div *ngIf="t.invalid ">
+        <div *ngIf="t.errors?.['required']"> 
+required
+</div>
+<div *ngIf="t.errors?.['minlength']"> 
+    minlength
+</div>
+
+    </div>
+    <label>local</label>
+    <input type="text" name="local" [(ngModel)]="app.local" #t="ngModel">
+    
+    
+    <br>
+    <input type="submit"  value="add appointment"  (click)="save(app)">
+
+</form>
+

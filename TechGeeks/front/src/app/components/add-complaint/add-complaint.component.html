@@ -1,0 +1,25 @@
+
+<form #f="ngForm"  >
+    <label>title</label>
+    <input type="text" name="title"    [(ngModel)]="cmplt.title"
+    required minlength="3" #t="ngModel">
+    <div *ngIf="t.invalid ">
+        <div *ngIf="t.errors?.['required']"> 
+required
+</div>
+<div *ngIf="t.errors?.['minlength']"> 
+    minlength
+</div>
+
+    </div>
+    <label>description</label>
+    <input type="text" name=" description" [(ngModel)]="cmplt.description" #t="ngModel">
+    
+    <label>expert</label>
+    <input type="text" name="exper" [(ngModel)]="cmplt.exper">
+
+    
+    <br>
+    <input type="submit"  value="add Complaint"  (click)="addComplaint(cmplt,cmplt.exper)">
+
+</form>
