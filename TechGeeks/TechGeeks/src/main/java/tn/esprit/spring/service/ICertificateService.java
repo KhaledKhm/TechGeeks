@@ -14,4 +14,5 @@ public interface ICertificateService {
 	public List<Certificate> getAllCertificates();
 	public Certificate getCertificateById(int idCertificate);
 	public Certificate updatePunishment(Certificate certificate, int idCertificate);
+	public List<Certificate> getCertificateByUser(int idUser);
 }

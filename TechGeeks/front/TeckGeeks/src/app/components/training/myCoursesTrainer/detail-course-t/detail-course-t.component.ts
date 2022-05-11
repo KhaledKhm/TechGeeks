@@ -87,25 +87,34 @@ export class DetailCourseTComponent implements OnInit {
 
 
   private getQuiz() {
+    
       this.idTraining = this.ac.snapshot.params['idTraining'];
       this.sq.getQuizBytraining(this.idTraining).subscribe(
         (res) => {
           this.q = res;
           console.log(res);
 
-          this.squest.getQuestionByQuiz(this.q.idQuestion).subscribe(
+          this.squest.getQuestionByQuiz(this.q.idQuiz).subscribe(
             (res) => {
               this.qst = res;
               console.log(res);
-              this.sa.getAnswerByQuestion(this.qst.idQuestion).subscribe((res)=>{
-                this.an = res;
+              for (var c of this.qst) {
+                console.log(c.idQuestion);
+                this.sa.getAnswerByQuestion(c.idQuestion).subscribe((res)=>{
+                  this.an = res;
+                  console.log(res);
+                }              
+                );
               }
                 
-              );
+              
+              
+
             }
           );
         });  
   }
+
 
   addQuiz() {
     this.idTraining = this.ac.snapshot.params['idTraining'];

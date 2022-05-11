@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Certificate;
+import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.entities.User;
 import tn.esprit.spring.service.ICertificateService;
 @CrossOrigin(origins = "http://localhost:4200")
@@ -65,6 +66,12 @@ public class CertificateController {
 	@ResponseBody
 	public void updatePunishment(@RequestBody Certificate certificate,@PathVariable("idCertificate") int idCertificate) {
 		certificateService.updatePunishment(certificate,idCertificate);
+	}
+	
+	@GetMapping("/getCertificateByUser/{id}")
+	@ResponseBody
+	public List<Certificate> getCertificateByUser(@PathVariable("id") int idUser) {
+		return certificateService.getCertificateByUser(idUser);
 	}
 
 }

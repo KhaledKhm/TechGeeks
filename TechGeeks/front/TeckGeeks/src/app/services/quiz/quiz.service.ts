@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class QuizService {
-  readonly API_URL = 'http://localhost:8089/SpringMVC';
+  readonly API_URL = 'http://localhost:8089';
 
   constructor(private httpClient: HttpClient) { }
 

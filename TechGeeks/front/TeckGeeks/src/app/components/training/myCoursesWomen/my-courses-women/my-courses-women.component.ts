@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CertificateService } from 'src/app/services/certificate/certificate.service';
 import { SectorService } from 'src/app/services/sector/sector.service';
 import { TrainingService } from 'src/app/services/training/training.service';
 
@@ -14,17 +15,17 @@ export class MyCoursesWomenComponent implements OnInit {
   id : any;
   u = 3;
 
-  constructor(private s : TrainingService,
+  constructor(private s : CertificateService,
     private sectorServ : SectorService) { }
 
   ngOnInit(): void {
     this.getList();
-    this.getAllCourses();
+    this.getAllCertificate();
   }
 
 
-  private getAllCourses(){
-    this.s.getTrainingByUser(this.u).subscribe(
+  private getAllCertificate(){
+    this.s.getCertificateByUser(this.u).subscribe(
       res =>{
       this.list = res;
       console.log(res);

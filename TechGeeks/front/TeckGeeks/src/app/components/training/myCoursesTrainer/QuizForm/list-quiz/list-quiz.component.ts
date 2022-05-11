@@ -86,7 +86,6 @@ deleteAnswer(idAnswer : any)
         this.squest.addQuestionByquiz(this.q.idQuiz,this.question).subscribe((res)=>{
           this.questTest = res ; 
           console.log(this.questTest.idQuestion);
-
             this.sa.addAnswerByQuestion(this.questTest.idQuestion,this.answer1).subscribe();
             this.sa.addAnswerByQuestion(this.questTest.idQuestion,this.answer2).subscribe();
             this.sa.addAnswerByQuestion(this.questTest.idQuestion,this.answer3).subscribe();

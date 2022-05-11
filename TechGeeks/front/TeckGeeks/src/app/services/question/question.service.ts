@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class QuestionService {
 
-  readonly API_URL = 'http://localhost:8089/SpringMVC';
+  readonly API_URL = 'http://localhost:8089';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class AnswerService {
 
-  readonly API_URL = 'http://localhost:8089/SpringMVC';
+  readonly API_URL = 'http://localhost:8089';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -36,6 +36,7 @@ export class AnswerService {
 
 
   getAnswerByQuestion(idQuestion : any) {
-    return this.httpClient.get(`${this.API_URL}/getAnswerById/${idQuestion}`)
+    return this.httpClient.get(`${this.API_URL}/getAnswerByQuestion/${idQuestion}`)
   }
+
 }

@@ -4,17 +4,12 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class SectorService {
+export class CertificateService {
   readonly API_URL = 'http://localhost:8089';
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllSectors() {
-    return this.httpClient.get(`${this.API_URL}/getAllSectors`)
+  getCertificateByUser(id : any){
+    return this.httpClient.get(`${this.API_URL}/getCertificateByUser/${id}`)
   }
-
-  getSectorById(idSector : any) {
-    return this.httpClient.get(`${this.API_URL}/getSectorById/${idSector}`)
-  }
-
 }

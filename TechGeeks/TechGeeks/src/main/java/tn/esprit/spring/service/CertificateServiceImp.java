@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Certificate;
 import tn.esprit.spring.entities.Punishment;
-
+import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.repository.CertificateRepository;
 import tn.esprit.spring.repository.UserRepository;
 
@@ -67,6 +67,12 @@ public class CertificateServiceImp implements ICertificateService{
 		}
 		return certificateRepository.save(c);
 	}
+	
+	@Override
+	public List<Certificate> getCertificateByUser(int idUser) {
+		return certificateRepository.FindCertficateByUser(idUser);
+	}
+	
 
 }
 
