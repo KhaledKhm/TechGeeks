@@ -1,0 +1,310 @@
+<div
+    class="single single-product woocommerce woocommerce-page cloe_brooks_body body_style_wide body_transparent theme_skin_less article_style_stretch layout_single-standard template_single-standard scheme_original top_panel_show top_panel_above sidebar_hide sidebar_outer_hide">
+    <div class="body_wrap">
+
+        <div class="top_panel_title top_panel_style_3  title_present navi_present breadcrumbs_present scheme_dark ">
+            <div
+                class="top_panel_title_inner top_panel_inner_style_3  title_present_inner breadcrumbs_present_inner shop_single_top_panel">
+                <div class="content_wrap">
+                    <!-- breadcrumbs -->
+                    <div class="breadcrumbs">
+                        <a class="breadcrumbs_item home" href="index.html">Home</a>
+                        <span class="breadcrumbs_delimiter"></span>
+                        <a class="breadcrumbs_item all" [routerLink]="['/listCourses/']">Courses</a>
+                        <span class="breadcrumbs_delimiter"></span>
+                        <a class="breadcrumbs_item cat_post">{{list.name}}</a>
+                        <div>{{list.id}}</div>
+                    </div>
+                    <!-- /breadcrumbs -->
+                </div>
+            </div>
+        </div>
+        <div class="page_content_wrap page_paddings_yes">
+            <div class="content_wrap">
+                <div class="content">
+                    <!-- post content -->
+                    <div class="post_item post_item_single post_item_product">
+                        <div
+                            class="product type-product has-post-thumbnail product_cat-all product_cat-magazines first instock shipping-taxable purchasable product-type-simple">
+                            <!-- entry-summary -->
+                            <div class="summary entry-summary">
+                                <h1 class="product_title entry-title">{{list.name}}</h1>
+                                <!-- product_meta -->
+                                <div class="product_meta">
+                                    <span class="posted_in">
+                                        Status:
+                                        {{list.status}}
+                                    </span>
+
+                                </div>
+                                <!-- product_meta -->
+                                <div class="product_meta">
+                                    <span class="posted_in">
+                                        Category:
+                                        {{list.idSector}}
+                                    </span>
+
+                                </div>
+                                <div class="product_meta">
+                                    <form class="cart" method="post" action="#">
+                                    </form>
+                                </div>
+                                <div>
+                                    <p class="price">
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol"></span>{{list.prix}} DT
+                                        </span>
+                                    </p>
+                                </div>
+                                <div>
+                                    {{list.dateStart | date : 'd MMMM y'}} - {{list.dateEnd | date : 'd MMMM y'}}
+                                </div>
+                                <div>
+                                    Number of places : {{list.totalParticipant}} Participant(s)
+                                </div>
+                                <div>
+                                    Available for : {{list.nbrParticipant}} Participant(s)
+                                </div>
+                                <div>
+                                    {{list.idLocal}}
+                                </div>
+                                <br>
+                                <div>
+                                    {{list.description}}
+                                </div>
+                                <br>
+                                <form class="cart" method="post" action="#">
+                                    <input type="hidden" name="add-to-cart" value="215" />
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="card" class="text-center">
+                                                        <table class="table">
+                                                            <button type="button" (click)="open(mymodal1)">Add
+                                                                Quiz</button>
+                                                            <button type="button"
+                                                                (click)="open(mymodal)">Update</button>
+                                                            <button
+                                                                (click)="deleteTraining(list.idTraining)">Delete</button>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="woocommerce-tabs wc-tabs-wrapper trx-stretch-width woocommerce-tabs1">
+                                <ul class="tabs wc-tabs">
+                                    <li class="description_tab ">
+                                        <a href="#tab-description">Participants</a>
+                                    </li>
+                                    <li class="reviews_tab ">
+                                        <a href="#tab-reviews">Quiz</a>
+                                    </li>
+                                </ul>
+                                <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab"
+                                    id="tab-description">
+                                    <h2>All Members</h2>
+                                    <p>{{list.description}}</p>
+                                </div>
+                                <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab"
+                                    id="tab-reviews">
+                                    <div id="reviews" class="woocommerce-Reviews">
+                                        <div id="review_form_wrapper">
+                                            <div id="review_form">
+                                                <div id="respond" class="comment-respond">
+                                                </div>
+                                            </div>
+                                            <!--affichage quiz -->
+                                            <div class="container">
+                                                <div class="card">
+                                                    <div class="d-flex justify-content-between p-2">
+
+                                                        <div class="text-center">
+                                                            <h4> {{q.title}}</h4>
+                                                        </div>
+                                                        <div class="quiz-header">
+
+                                                            <span>Mark : {{q.mark}} Points</span>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngFor="let qs of qst">
+                                                        <div class="d-flex justify-content-around py-2">
+                                                            <div classe="score">
+                                                                {{q.qs.mark}} Points
+                                                            </div>
+                                                            <div class="question-remain">
+                                                                <span style="font-style: cursive;">Question 1 of 9
+                                                                </span>
+                                                            </div>
+                                                            <div class="timer">
+                                                                {{q.qs.time}} sec
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress mb-2">
+                                                            <div class="progress-bar progress-bar-striped bg-success"
+                                                                role="progressbar" style=" width : 25% "
+                                                                aria-valuenow="25" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+                                                        <div class="question">
+                                                            <div class="card">
+                                                                <h3>{{q.qs.question}}</h3>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="options" *ngFor="let a of an">
+                                                            <ol>
+                                                                <li>
+                                                                    <div class="card">{{q.qs.a.answer}}</div>
+                                                                </li>
+                                                                
+                                                            </ol>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <button (click)="previousQuestion()"><i
+                                                                    class="fa fa-chevron-left"
+                                                                    aria-hidden="true"></i></button>
+
+                                                            <button (click)="nextquestion()"><i
+                                                                    class="fa fa-chevron-right"
+                                                                    aria-hidden="true"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--affichage quiz-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /woocommerce-tabs -->
+            </div>
+        </div>
+        <!-- /post content -->
+    </div>
+</div>
+
+
+
+<!-- add -->
+<ng-template #mymodal1 let-modal1>
+    <div>
+        <form>
+            <div class="modal-body">
+                <div class="cart">
+                    <strong> Add Quiz</strong>
+                    <div class="text-center">
+                        <input type="text" placeholder="Title" [(ngModel)]="quiz.title"
+                            [ngModelOptions]="{standalone : true}">
+                    </div>
+                    <div class="d-flex justify-content-between ">
+                        <div class="timer">
+                            <input type="text" placeholder="Time in minute" [(ngModel)]="quiz.time"
+                                [ngModelOptions]="{standalone : true}">
+                        </div>
+                        <div class="quiz-header">
+                            <input type="text" placeholder="Quiz Mark" [(ngModel)]="quiz.mark"
+                                [ngModelOptions]="{standalone : true}">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="addQuiz()"
+                    (click)="modal1.close('Save click')">Validate</button>
+                <button (click)="modal1.close('Save click')" (click)="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
+
+
+
+
+<!-- edit-->
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            Update Course</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true" (click)="cancel()">×</span>
+        </button>
+    </div>
+    <div>
+        <form>
+            <div class="modal-body">
+                <div class="row">
+                    <div>
+                        <p class="comment-form-author">
+                            <input type="text" placeholder="Name" size="45" [(ngModel)]="list.name"
+                                [ngModelOptions]="{standalone : true}">
+                        </p>
+                    </div>
+
+
+                    <div class="row" class="col-md-6">
+                        <h6>Date Start :</h6>
+                        <p class="comment-form-author">
+                            <input placeholder="Start" size="45" [(ngModel)]="list.dateStart"
+                                [ngModelOptions]="{standalone : true}" type="date" value="" size="45"
+                                aria-required="true" style="background-color:#fcf7f1;" required="">
+                        </p>
+                    </div>
+                    <div class="row" class="col-md-6">
+                        <h6>Date End :</h6>
+                        <p class="comment-form-author">
+                            <input placeholder="End" size="45" [(ngModel)]="list.dateEnd"
+                                [ngModelOptions]="{standalone : true}" type="date" value="" size="45"
+                                aria-required="true" style="background-color:#fcf7f1;" required="">
+                        </p>
+                    </div>
+                    <div>
+                        <p class="comment-form-author">
+                            <input type="text" placeholder="Price" size="45" [(ngModel)]="list.prix"
+                                [ngModelOptions]="{standalone : true}">
+                        </p>
+                    </div>
+                    <div>
+                        <p class="comment-form-author">
+                            <input type="text" placeholder="Total of Participants" size="45"
+                                [(ngModel)]="list.totalParticipant" [ngModelOptions]="{standalone : true}">
+                        </p>
+                    </div>
+                    <div>
+                        <p class="comment-form-author">
+                            <input type="text" placeholder="idSector" size="45" [(ngModel)]="list.idSector"
+                                [ngModelOptions]="{standalone : true}">
+                        </p>
+                    </div>
+                    <div>
+                        <p class="comment-form-author">
+                            <input type="text" placeholder="idLocal" size="45" [(ngModel)]="list.idLocal"
+                                [ngModelOptions]="{standalone : true}">
+                        </p>
+                    </div>
+                    <div>
+                        <p class="comment-form-comment">
+                            <textarea placeholder="Description" cols="45" rows="8" aria-required="true"
+                                [(ngModel)]="list.description" [ngModelOptions]="{standalone : true}"></textarea>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
+                <button (click)="editTraining(list, list.idTraining)"
+                    (click)="modal.close('Save click')">Validate</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

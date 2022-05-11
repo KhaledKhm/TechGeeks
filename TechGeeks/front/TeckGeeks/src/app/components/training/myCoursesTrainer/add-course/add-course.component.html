@@ -1,0 +1,87 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add new Course</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div>
+            <p class="comment-form-author">
+            <input type="text" placeholder="Name" size="45" [(ngModel)]="training.name"
+                [ngModelOptions]="{standalone : true}">
+            </p>
+        </div>
+        <div class="row" class="col-md-6">
+            Date Start :
+            <p class="comment-form-author">
+                  
+                <input placeholder="Start" size="45"
+                    [(ngModel)]="training.dateStart"
+                    [ngModelOptions]="{standalone : true}"
+                    type="date" value="" size="45"
+                    aria-required="true" style="background-color:#fcf7f1;"
+                    required="">
+            </p>
+        </div>
+        <div class="row" class="col-md-6">
+            Date End :
+            <p class="comment-form-author"> 
+                <input placeholder="End" size="45"
+                    [(ngModel)]="training.dateEnd"
+                    [ngModelOptions]="{standalone : true}"
+                    type="date" value="" size="45"
+                    aria-required="true" style="background-color:#fcf7f1;"
+                    required="">
+            </p>
+        </div>
+
+        <div>
+            <p class="comment-form-author">
+            <input type="text" placeholder="Price" size="45" [(ngModel)]="training.prix"
+                [ngModelOptions]="{standalone : true}">
+</p>
+
+        </div>
+
+        <div>
+            <p class="comment-form-author">
+            <input type="text" placeholder="Total of Participants" size="45" [(ngModel)]="training.totalParticipant"
+                [ngModelOptions]="{standalone : true}">
+</p>
+
+        </div>
+        <div>
+            <p class="comment-form-author">
+            <input type="text" placeholder="idSector" size="45" [(ngModel)]="training.idSector"
+                [ngModelOptions]="{standalone : true}">
+
+</p>
+
+        </div>
+
+        <div>
+            <p class="comment-form-author">
+            <input type="text" placeholder="idLocal" size="45" [(ngModel)]="training.idLocal"
+                [ngModelOptions]="{standalone : true}">
+</p>
+
+
+        </div>
+
+        <div>
+            <p class="comment-form-author">
+            <textarea placeholder="Description" cols="45" rows="8" aria-required="true"
+                [(ngModel)]="training.description" [ngModelOptions]="{standalone : true}"></textarea>
+            </p>
+        </div>
+
+        <br>
+    </div>
+</div>
+<div class="modal-footer">
+    <button 
+        (click)="addTraining(training,training.id,training.idSector)">Save</button>
+    <button  (click)="modal.close('Close click')">Close</button>
+</div>

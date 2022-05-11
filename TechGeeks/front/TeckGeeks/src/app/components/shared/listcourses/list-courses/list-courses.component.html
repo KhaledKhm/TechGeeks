@@ -1,0 +1,37 @@
+<!-- All products -->
+<ul class="products">
+    <!-- product -->
+    <li
+        class="post-206 product type-product status-publish has-post-thumbnail product_cat-all product_cat-magazines product_tag-novel column-1_3 first instock shipping-taxable purchasable product-type-simple">
+        <div class="post_item_wrap">
+            <div class="post_content">
+                <div>
+                    <a [routerLink]="['/detailCourse/',l.idTraining]">
+                        <tr>
+                            <td>{{l.dateStart | date : 'd MMMM y'}}</td>
+                            <td>{{l.dateEnd | date : 'd MMMM y'}}</td>
+                        </tr>
+                        <br>
+                        <br>
+                        <br>
+                        <div>
+                            <span class="price">
+                                <span class="woocommerce-Price-amount amount">
+                                    <span
+                                        class="woocommerce-Price-currencySymbol">{{l.name}}
+                                        </span>
+                                </span>
+                            </span>
+                        </div>
+                        <span class="price">
+                            <span class="woocommerce-Price-amount amount">
+                                <span class="woocommerce-Price-currencySymbol">{{l.prix}} DT</span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+<!-- /All products -->

@@ -1,0 +1,190 @@
+<div
+    class="single single-product woocommerce woocommerce-page cloe_brooks_body body_style_wide body_transparent theme_skin_less article_style_stretch layout_single-standard template_single-standard scheme_original top_panel_show top_panel_above sidebar_hide sidebar_outer_hide">
+    <div class="body_wrap">
+
+        <div class="top_panel_title top_panel_style_3  title_present navi_present breadcrumbs_present scheme_dark ">
+            <div
+                class="top_panel_title_inner top_panel_inner_style_3  title_present_inner breadcrumbs_present_inner shop_single_top_panel">
+                <div class="content_wrap">
+                    <!-- breadcrumbs -->
+                    <div class="breadcrumbs">
+                        <a class="breadcrumbs_item home" href="index.html">Home</a>
+                        <span class="breadcrumbs_delimiter"></span>
+                        <a class="breadcrumbs_item all" [routerLink]="['/listCourses/']">Courses</a>
+                        <span class="breadcrumbs_delimiter"></span>
+                        <a class="breadcrumbs_item cat_post" href="#">{{list.name}}</a>
+                        <div>{{list.id}}</div>
+                    </div>
+                    <!-- /breadcrumbs -->
+                </div>
+            </div>
+        </div>
+        <div class="page_content_wrap page_paddings_yes">
+            <div class="content_wrap">
+                <div class="content">
+                    <!-- post content -->
+                    <div class="post_item post_item_single post_item_product">
+                        <div
+                            class="product type-product has-post-thumbnail product_cat-all product_cat-magazines first instock shipping-taxable purchasable product-type-simple">
+                            <div class="images">
+                                <a href="http://placehold.it/1200x800" class="woocommerce-main-image zoom" title=""
+                                    data-rel="prettyPhoto">
+                                    <img src="http://placehold.it/549x549"
+                                        class="attachment-shop_single size-shop_single" alt="product-12"
+                                        title="product-12" />
+                                </a>
+                            </div>
+                            <!-- entry-summary -->
+                            <div class="summary entry-summary">
+                                <h1 class="product_title entry-title">{{list.name}}</h1>
+                                <div>
+                                    <p class="price">
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol"></span>{{list.prix}} DT
+                                        </span>
+                                    </p>
+                                </div>
+                                <div>
+                                    {{list.dateStart | date : 'd MMMM y'}} - {{list.dateEnd | date : 'd MMMM y'}}
+                                </div>
+                                <div>
+                                    Available for : {{list.nbrParticipant}} Participant(s)
+                                </div>
+                                <div>
+                                    {{list.idLocal}}
+                                </div>
+
+                                <form class="cart" method="post" action="#">
+                                    <input type="hidden" name="add-to-cart" value="215" />
+                                    <button type="submit" class="single_add_to_cart_button button alt"
+                                        (click)="addCertificate(list,list.idTraining)"> Participate
+                                    </button>
+                                </form>
+
+                                <!-- product_meta -->
+                                <div class="product_meta">
+                                    <span class="posted_in">Category:
+                                        {{list.idSector}}
+                                    </span>
+
+                                </div>
+                                <!-- /product_meta -->
+                            </div>
+                            <!-- /entry-summary -->
+
+                            <!-- woocommerce-tabs -->
+                            <div class="woocommerce-tabs wc-tabs-wrapper trx-stretch-width woocommerce-tabs1">
+                                <ul class="tabs wc-tabs">
+                                    <li class="description_tab ">
+                                        <a href="#tab-description">Description</a>
+                                    </li>
+                                </ul>
+                                <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab"
+                                    id="tab-description">
+                                    <h2>Course Description</h2>
+                                    <p>{{list.description}}</p>
+                                </div>
+                                <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab"
+                                    id="tab-reviews">
+                                    <div id="reviews" class="woocommerce-Reviews">
+                                        <div id="comments">
+                                            <h2 class="woocommerce-Reviews-title">Reviews</h2>
+                                            <p class="woocommerce-noreviews">There are no reviews yet.</p>
+                                        </div>
+                                        <div id="review_form_wrapper">
+                                            <div id="review_form">
+                                                <div id="respond" class="comment-respond">
+                                                    <form action="#" method="post" id="commentform"
+                                                        class="comment-form">
+                                                        <div class="social-login-widget">
+                                                            <div class="social-login-connect-with">Connect with:</div>
+                                                            <div class="social-login-provider-list">
+                                                                <a rel="nofollow" href="#" title="Connect with Facebook"
+                                                                    class="social-login-provider wp-social-login-provider-facebook"
+                                                                    data-provider="Facebook">
+                                                                    <img alt="Facebook" title="Connect with Facebook"
+                                                                        src="images/facebook.png">
+                                                                </a>
+                                                                <a rel="nofollow" href="#" title="Connect with Google"
+                                                                    class="social-login-provider wp-social-login-provider-google"
+                                                                    data-provider="Google">
+                                                                    <img alt="Google" title="Connect with Google"
+                                                                        src="images/google.png">
+                                                                </a>
+                                                                <a rel="nofollow" href="#" title="Connect with Twitter"
+                                                                    class="social-login-provider wp-social-login-provider-twitter"
+                                                                    data-provider="Twitter">
+                                                                    <img alt="Twitter" title="Connect with Twitter"
+                                                                        src="images/twitter.png">
+                                                                </a>
+                                                            </div>
+                                                            <div class="wp-social-login-widget-clearing"></div>
+                                                        </div>
+                                                        <p class="comment-notes">
+                                                            <span id="email-notes">
+                                                                Your email address will not be published.
+                                                            </span>
+                                                            Required fields are marked
+                                                            <span class="required">*</span>
+                                                        </p>
+                                                        <label for="rating">Your Rating</label>
+                                                        <select name="rating" id="rating" aria-required="true">
+                                                            <option value="">Rate…</option>
+                                                            <option value="5">Perfect</option>
+                                                            <option value="4">Good</option>
+                                                            <option value="3">Average</option>
+                                                            <option value="2">Not that bad</option>
+                                                            <option value="1">Very Poor</option>
+                                                        </select>
+                                                        <p class="comment-form-comment">
+                                                            <label for="comment">
+                                                                Your Review
+                                                                <span class="required">*</span>
+                                                            </label>
+                                                            <textarea id="comment" name="comment" cols="45" rows="8"
+                                                                aria-required="true"></textarea>
+                                                        </p>
+                                                        <p class="comment-form-author">
+                                                            <label for="author">
+                                                                Name
+                                                                <span class="required">*</span>
+                                                            </label>
+                                                            <input id="author" name="author" type="text" value=""
+                                                                size="30" aria-required="true" required="">
+                                                        </p>
+                                                        <p class="comment-form-email">
+                                                            <label for="email">
+                                                                Email
+                                                                <span class="required">*</span>
+                                                            </label>
+                                                            <input id="email" name="email" type="email" value=""
+                                                                size="30" aria-required="true" required="">
+                                                        </p>
+                                                        <p class="form-submit">
+                                                            <input name="submit" type="submit" id="submit"
+                                                                class="submit" value="Submit">
+                                                            <input type="hidden" name="comment_post_ID" value="215"
+                                                                id="comment_post_ID">
+                                                            <input type="hidden" name="comment_parent"
+                                                                id="comment_parent" value="0">
+                                                        </p>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /woocommerce-tabs -->
+                        </div>
+                    </div>
+                    <!-- /post content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

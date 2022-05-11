@@ -1,0 +1,130 @@
+<div
+    class="shop archive post-type-archive post-type-archive-product woocommerce woocommerce-page cloe_brooks_body body_style_wide body_transparent theme_skin_less article_style_stretch layout_excerpt template_excerpt scheme_original top_panel_show top_panel_above sidebar_show sidebar_left sidebar_outer_hide">
+    <div class="body_wrap">
+        <!-- page_content_wrap -->
+        <div class="content_wrap">
+            <div class="page_content_wrap page_paddings_yes">
+                <div class="content_wrap">
+                    <div class="content">
+                        <!-- list_products -->
+                        <div class="list_products shop_mode_thumbs">
+                            <h1 class="page-title">
+                                Courses
+                            </h1>
+                            <table>
+                            <button  (click)="open(content)">Add New Course</button>
+                            <ng-template #content let-modal>
+                                <div class="modal-body">
+                                  <app-add-course [modal]="modal"
+                                  (submit)="addTraining($event)"
+                                  ></app-add-course>
+                                </div>
+                              </ng-template>
+                            </table>
+                            <!-- ordering -->
+                            <form class="woocommerce-ordering" method="get">
+                                <select name="orderby" class="orderby">
+                                    <option value="menu_order" selected="selected">Default sorting</option>
+                                    <option value="popularity">Sort by popularity</option>
+                                    <option value="rating">Sort by average rating</option>
+                                    <option value="date">Sort by newness</option>
+                                    <option value="price">Sort by price: low to high</option>
+                                    <option value="price-desc">Sort by price: high to low</option>
+                                </select>
+                                <input type="hidden" name="q" value="/shop/">
+                            </form>
+                            <!-- /ordering -->
+                            <div>
+                                <!-- All products -->
+                                <ul class="products">
+                                    <!-- product -->
+                                    <li *ngFor='let l of list'
+                                        class="post-206 product type-product status-publish has-post-thumbnail product_cat-all product_cat-magazines product_tag-novel column-1_3 first instock shipping-taxable purchasable product-type-simple">
+                                        <div class="post_item_wrap">
+                                            <div class="post_content">
+                                                <div>
+                                                    <a [routerLink]="['/detailCourseT/',l.idTraining]">
+                                                        <tr>
+                                                            <td>{{l.dateStart | date : 'd MMMM y'}}</td>
+                                                            <td>{{l.dateEnd | date : 'd MMMM y'}}</td>
+                                                        </tr>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <div>
+                                                            <span class="price">
+                                                                <span class="woocommerce-Price-amount amount">
+                                                                    <span
+                                                                        class="woocommerce-Price-currencySymbol">{{l.name}}
+                                                                        </span>
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                        
+                                                          
+                                                        
+                                                        <span class="price">
+                                                            <span class="woocommerce-Price-amount amount">
+                                                                <span
+                                                                    class="woocommerce-Price-currencySymbol">{{l.prix}}
+                                                                    DT</span>
+                                                            </span>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- /product -->
+                                </ul>
+                                <!-- /All products -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar widget_area scheme_dark" role="complementary">
+                        <div class="sidebar_inner widget_area_inner">
+                            <!-- woocommerce_product_categories -->
+                            <aside class="widget_number_1 widget woocommerce widget_product_categories">
+                                <h5 class="widget_title">
+                                    Categories
+                                </h5>
+                                <div *ngFor='let s of sec'>
+                                    <app-category [s]="s"></app-category>
+                                </div>
+                            </aside>
+                            <!-- /woocommerce_product_categories -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!--
+<ng-template #mymodal1 let-modal1>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add new Course</h4>
+        <button type="button" class="close" aria-label="Close"
+            (click)="modal1.dismiss('Cross click')">
+            <span aria-hidden="true" (click)="cancel()">×</span>
+        </button>
+    </div>
+    <div class="center">
+        <form>
+            <app-add-course></app-add-course>
+            <button type="button" class="btn btn-info"
+                (click)="modal1.close('Save click')">Cancel</button>
+        </form>
+    </div>
+</ng-template>
+
+
+-->
