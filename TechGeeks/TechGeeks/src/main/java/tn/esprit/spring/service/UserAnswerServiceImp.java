@@ -35,7 +35,7 @@ public class UserAnswerServiceImp implements IUserAnswerService {
 		Question q = questionRepository.findById(idQuestion).get();
 		Certificate c = certificateRepository.findById(idCertificate).orElse(null);
 		Answer a = answerRepository.getAnswerByQuestionAndStatus(idQuestion, true);
-		if (c.getTraining().getIdTraining() == q.getQuiz().getTraining().getIdTraining()){
+		if (c.getTraining().getIdTraining() ==q.getQuiz().getTraining().getIdTraining()){
 		Uanswer.setCertificate(c);
 		Uanswer.setQuestion(q);
 		Uanswer.setAnswer(a);
@@ -65,7 +65,6 @@ public class UserAnswerServiceImp implements IUserAnswerService {
 			{
 				c.setComment("Training not validated!! Thank you for your presence, we invite you to participate in other trainings");
 				c.setTitle("Presence certificate in "+ c.getTraining().getSector().getName()+ " training");
-				c.setQuiz(q);
 				c.setDescription("HER WAY has the honor ti give a certificate of success in "
 				+c.getTraining().getSector().getName()+ " training to Mr/MM " 
 						+c.getUser().getFirstName()+" "+c.getUser().getLastName()+ 
@@ -77,7 +76,6 @@ public class UserAnswerServiceImp implements IUserAnswerService {
 			{
 				c.setComment("Training validated with quite well");
 				c.setTitle("Certificate in "+ c.getTraining().getSector().getName());
-				c.setQuiz(q);
 				c.setDescription("HER WAY has the honor ti give a certificate of success in "
 						+c.getTraining().getSector().getName()+ " training to Mr/MM " 
 								+c.getUser().getFirstName()+" "+c.getUser().getLastName()+ 
@@ -89,7 +87,6 @@ public class UserAnswerServiceImp implements IUserAnswerService {
 			{
 				c.setComment("Training validated with well");
 				c.setTitle("Certificate in "+ c.getTraining().getSector().getName());
-				c.setQuiz(q);
 				c.setDescription("HER WAY has the honor ti give a certificate of success in "
 						+c.getTraining().getSector().getName()+ " training to Mr/MM " 
 								+c.getUser().getFirstName()+" "+c.getUser().getLastName()+ 
@@ -101,7 +98,6 @@ public class UserAnswerServiceImp implements IUserAnswerService {
 			{
 				c.setComment("Training validated with very well");
 				c.setTitle("Certificate in "+ c.getTraining().getSector().getName());
-				c.setQuiz(q);
 				c.setDescription("HER WAY has the honor ti give a certificate of success in "
 						+c.getTraining().getSector().getName()+ " training to Mr/MM " 
 								+c.getUser().getFirstName()+" "+c.getUser().getLastName()+ 
@@ -113,7 +109,6 @@ public class UserAnswerServiceImp implements IUserAnswerService {
 			{
 				c.setComment("Training validated with excelent");
 				c.setTitle("Certificate in "+ c.getTraining().getSector().getName());
-				c.setQuiz(q);
 				c.setDescription("HER WAY has the honor ti give a certificate of success in "
 						+c.getTraining().getSector().getName()+ " training to Mr/MM " 
 								+c.getUser().getFirstName()+" "+c.getUser().getLastName()+ 

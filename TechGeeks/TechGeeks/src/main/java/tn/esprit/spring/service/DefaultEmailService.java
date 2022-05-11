@@ -13,11 +13,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
-
 @Service
 public class DefaultEmailService implements EmailService {
-
-	 @Autowired
+	@Autowired
 	 public JavaMailSender emailSender;
 
 	 @Override
@@ -30,5 +28,7 @@ public class DefaultEmailService implements EmailService {
 	  emailSender.send(simpleMailMessage);
 	 }
 
+	 
+	
 
 }

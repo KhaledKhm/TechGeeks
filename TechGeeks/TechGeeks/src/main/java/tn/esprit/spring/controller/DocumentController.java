@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tn.esprit.spring.entities.Document;
 import tn.esprit.spring.service.IDocumentService;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class DocumentController {
 	@Autowired
@@ -34,14 +35,6 @@ public class DocumentController {
 	public void addDocument(@RequestBody Document document) {
 		documentService.addDocument(document);
 	}
-
-	
-	@GetMapping("/alldocument")
-	public String get(Model model){
-		List<Document> documents = documentService.getAllDocuments();
-		model.addAttribute("documents", documents);
-		return "document";
-	}
 	
 	@PostMapping("/addDocument/{idTraining}/{description}")
 	@ResponseBody
@@ -49,7 +42,7 @@ public class DocumentController {
 		for (MultipartFile file : files){
 			documentService.addDocumentByTraining(idTraining,description,file);
 		}
-		return "redirect:/";
+		return null ;
 	}
 	
 	@PutMapping("/updateDocument")

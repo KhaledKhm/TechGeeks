@@ -1,6 +1,5 @@
 package tn.esprit.spring.entities;
 
-import java.awt.TrayIcon.MessageType;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -12,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -41,16 +38,13 @@ public class Chat implements Serializable{
 	private int idChat;
 	@NotNull
 	private String text;
-	
-
+	@JsonIgnore
 	@OneToMany(mappedBy="chat")
-	@JsonIgnore
 	private Set<User> receivers;
-
-	@ManyToOne 
 	@JsonIgnore
+	@ManyToOne 
 	private User sender;
 	
-	
+	private MessageType type;
 
 }

@@ -35,7 +35,6 @@ public class Answer implements Serializable{
 	private boolean status ;
 	
 	@ManyToOne
-	@JsonIgnore
 	private Question question;
 	
 	

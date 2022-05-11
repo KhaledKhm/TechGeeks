@@ -37,6 +37,8 @@ public class Quiz implements Serializable{
 	
 	private double mark;
 	
+	private int time;
+	
 
 	@OneToMany(mappedBy="quiz")
 	@JsonIgnore

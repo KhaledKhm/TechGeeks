@@ -15,9 +15,9 @@ public interface ITrainingService {
 	public void addTrainingByAdmin(Training training,int idLocal,int idTarining);
 	public void addTrainingByTrainer(Training training, int idUser, int idSector);
 	public String addTrainingByTrainer2(Training training, int idUser, int idSector, Date dateStart, Date dateEnd);
-	public String addTrainingByWomen(Training training,int idTraining,int idUser);
+	public String addTrainingByWomen(Certificate c ,int idTraining,int idUser);
 	
-	public Training updateTraining(Training training);
+	public Training updateTraining(Training training,int idTraining);
 	
 	public void deleteAllTrainings();
 	public void deleteTrainingById(int idTraining);
@@ -25,6 +25,8 @@ public interface ITrainingService {
 	public List<Training> getAllTrainings();
 	public Optional<Training> getTrainingById(int idTraining);
 	public List<Training> getTrainingBySector(String nameSector);
+	public List<Training> getTrainingByUser(int idUser);
+	public List<Training> getTrainingByUserStatus(int idUser);
 	
 	public List<Training> sortAllTrainingDESC(String attribut);
 	public List<Training> sortAllTrainingASC(String attribut);

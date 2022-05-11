@@ -1,6 +1,6 @@
 package tn.esprit.spring.service;
 
-import tn.esprit.spring.entities.Training;
+
 import tn.esprit.spring.entities.TrainingFeedback;
 
 public interface ITrainingFeedback {

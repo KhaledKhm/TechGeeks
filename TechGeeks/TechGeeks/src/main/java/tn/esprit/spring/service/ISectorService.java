@@ -8,6 +8,7 @@ import tn.esprit.spring.entities.Sector;
 public interface ISectorService {
 	public void addSector(Sector sector);
 	public Sector updateSector(Sector sector);
+	public Sector updateSectorName(Sector sector, int idSector);
 	public void deleteAllSectors();
 	public Sector deleteSectorByName(String name);
 	public void deleteSectorById(int idSector);

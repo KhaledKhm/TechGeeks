@@ -2,8 +2,10 @@ package tn.esprit.spring.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Answer;
+import tn.esprit.spring.entities.Question;
 import tn.esprit.spring.service.IAnswerService;
 import tn.esprit.spring.service.IQuestionService;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class AnswerController {
 	@Autowired
@@ -31,10 +34,11 @@ public class AnswerController {
 		answerService.addAnswer(answer);
 	}
 	
-	@PostMapping("/addAnswerByQuestion/{idQuestion}")
+
+	@PostMapping("/addAnswerByQuestion/{question}")
 	@ResponseBody
-	public void addAnswerByQuestion(@RequestBody Answer answer, @PathVariable("idQuestion") int idQuestion) {
-		answerService.addAnswerByQuestion(answer,idQuestion);
+	public void addAnswerByQuestion(@RequestBody Answer answer, @PathVariable("question") Question question) {
+		answerService.addAnswerByQuestion(answer,question);
 	}
 	
 	@PutMapping("/updateAnswer")
@@ -77,6 +81,18 @@ public class AnswerController {
 	@ResponseBody
 	public Optional <Answer> getAnswerById(@PathVariable("idAnswer") int idAnswer) {
 		return answerService.getAnswerById(idAnswer);
+	}
+	
+	@GetMapping("/getAnswerByQuestion/{idQuestion}")
+	@ResponseBody
+	public List <Answer> getAnswerByQuestion(@PathVariable("idQuestion") int idQuestion) {
+		return answerService.getAnswerByQuestion(idQuestion);
+	}
+	
+	@PostMapping("/addAnswersByQuestion/{question}")
+	@ResponseBody
+	public void addAnswersByQuestion(@RequestBody Set<Answer> answers, @PathVariable("idQuestion") Question question) {
+		answerService.addAnswersByQuestion(answers,question);
 	}
 	
 }

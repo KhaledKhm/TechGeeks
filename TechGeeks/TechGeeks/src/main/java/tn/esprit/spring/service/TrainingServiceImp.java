@@ -1,5 +1,7 @@
 package tn.esprit.spring.service;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +34,6 @@ import tn.esprit.spring.repository.TrainingRepository;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.repository.SectorRepository;
 
-
 @Service
 public class TrainingServiceImp implements ITrainingService {
 	@Autowired
@@ -56,14 +57,13 @@ public class TrainingServiceImp implements ITrainingService {
 	@Autowired
 	RoleRepository roleRepository;
 
-
 	@Override
 	public void addTrainingByTrainer(Training training, int idUser, int idSector) {
 		User u = userRepository.findById(idUser).orElse(null);
 		Role role = roleRepository.findByRole(RoleName.ROLE_FORMER);
 		Set<Role> roles = u.getRoles();
 		for (Role r : roles) {
-			if (r.getIdRole() == role.getIdRole()) {
+			if (r.getId() == role.getId()) {
 				Sector s = sectorRepository.findById(idSector).orElse(null);
 				training.setUser(u);
 				training.setSector(s);
@@ -83,8 +83,8 @@ public class TrainingServiceImp implements ITrainingService {
 	}
 
 	@Override
-	public Training updateTraining(Training training) {
-		Training t = trainingRepository.findById(training.getIdTraining()).orElse(null);
+	public Training updateTraining(Training training, int idTraining) {
+		Training t = trainingRepository.findById(idTraining).orElse(null);
 		t.setDescription(training.getDescription());
 		t.setDateStart(training.getDateStart());
 		t.setDateEnd(training.getDateEnd());
@@ -121,29 +121,37 @@ public class TrainingServiceImp implements ITrainingService {
 	@Override
 	public void deleteTrainingById(int idTraining) {
 		Training training = trainingRepository.findById(idTraining).get();
-		List<Quiz> quizs = quizRepository.findAll();
-		List<Question> questions = questionRepository.findAll();
-		List<Answer> answers = answerRepository.findAll();
-		quizs.forEach(quiz -> {
-			if (training.getIdTraining() == quiz.getTraining().getIdTraining()) {
-				questions.forEach(q -> {
-					if (quiz.getIdQuiz() == q.getQuiz().getIdQuiz()) {
-						answers.forEach(a -> {
-							if (q.getIdQuestion() == a.getQuestion().getIdQuestion()) {
-								answerRepository.delete(a);
-							}
-						});
-						questionRepository.delete(q);
-					}
-				});
-			}
-		});
-		trainingRepository.deleteById(idTraining);
+		if (training.getQuiz() != null) {
+			List<Quiz> quizs = quizRepository.findAll();
+			List<Question> questions = questionRepository.findAll();
+			List<Answer> answers = answerRepository.findAll();
+			quizs.forEach(quiz -> {
+				if (training.getIdTraining() == quiz.getTraining().getIdTraining()) {
+					questions.forEach(q -> {
+						if (quiz.getIdQuiz() == q.getQuiz().getIdQuiz()) {
+							answers.forEach(a -> {
+								if (q.getIdQuestion() == a.getQuestion().getIdQuestion()) {
+									answerRepository.delete(a);
+
+								}
+							});
+							questionRepository.delete(q);
+						}
+					});
+					quizRepository.delete(quiz);
+				}
+			});
+			trainingRepository.delete(training);
+		} else {
+			trainingRepository.delete(training);
+		}
+
 	}
 
 	@Override
+	
 	public List<Training> getAllTrainings() {
-		return trainingRepository.findAll();
+	return trainingRepository.findAll();
 	}
 
 	@Override
@@ -173,6 +181,23 @@ public class TrainingServiceImp implements ITrainingService {
 	}
 
 	@Override
+	public List<Training> getTrainingByUser(int idUser) {
+		return trainingRepository.FindTrainingByUser(idUser);
+	}
+	
+	@Override
+	public List<Training> getTrainingByUserStatus(int idUser) {
+		List<Training> ts = trainingRepository.FindTrainingByUser(idUser);
+		Status s = null ;
+		for (Training t : ts){
+			if (t.getStatus() == s.Waiting || t.getStatus() == s.Refused ){
+				return ts;
+			}
+		}
+		return null;
+	}
+	
+	@Override
 	public String addTrainingByTrainer2(Training training, int idUser, int idSector, Date dateStart, Date dateEnd) {
 		List<Training> trainings = trainingRepository.findAll();
 		User u = userRepository.findById(idUser).orElse(null);
@@ -183,7 +208,7 @@ public class TrainingServiceImp implements ITrainingService {
 		System.out.println(dateStart);
 		Set<Role> roles = u.getRoles();
 		for (Role r : roles) {
-			if (r.getIdRole() == role.getIdRole()) {
+			if (r.getId() == role.getId()) {
 				System.out.println("2");
 				int nb = 0;
 				for (Training t : trainings) {
@@ -245,7 +270,7 @@ public class TrainingServiceImp implements ITrainingService {
 						System.out.println("25");
 						if (1 < nb) {
 							System.out.println("26");
-							return "Former Cant have more than 2 courses in the same period";
+							return "Former Can't have more than 2 courses in the same period";
 						} else {
 							training.setDateStart(dateStart);
 							training.setDateEnd(dateEnd);
@@ -265,22 +290,21 @@ public class TrainingServiceImp implements ITrainingService {
 	}
 
 	@Override
-	public String addTrainingByWomen(Training training, int idTraining, int idUser) {
+	public String addTrainingByWomen( Certificate c ,int idTraining, int idUser) {
 		User u = userRepository.findById(idUser).orElse(null);
 		List<Certificate> certificates = certificateRepository.findAll();
-		Certificate c = new Certificate();
+		c = new Certificate();
 		Role role = roleRepository.findByRole(RoleName.ROLE_WOMEN);
-		training = trainingRepository.findById(idTraining).get();
+		Training training = trainingRepository.findById(idTraining).get();
 		Set<Role> roles = u.getRoles();
 		for (Role r : roles) {
-			if (r.getIdRole() == role.getIdRole()) {
+			if (r.getId() == role.getId()) {
 				for (Certificate certif : certificates)
-					if (u.getId() != certif.getUser().getId()) {
+					if (u.getId() != certif.getUser().getId() || certif == null) {
 						if (training.getNbrParticipant() < training.getTotalParticipant()) {
 							training.setNbrParticipant(training.getNbrParticipant() + 1);
 							c.setUser(u);
 							c.setTraining(training);
-							c.setTitle("Certficate in "+training.getSector().getName());
 							certificateRepository.save(c);
 							emailService.sendSimpleEmail(u.getEmail(), "Courses Her Way ",
 									"Thank you for assisting 5 days before the date of the course and for paying and confirming your registration. ");
@@ -304,18 +328,23 @@ public class TrainingServiceImp implements ITrainingService {
 		t.setStatus(training.getStatus());
 		return trainingRepository.save(t);
 	}
-	
+
 	@Override
-	public List<Local> getAllLocal(Date dateStart, Date dateEnd ) {
+	public List<Local> getAllLocal(Date dateStart, Date dateEnd) {
 		List<Local> locals = localRepository.findAll();
-		for(Local l : locals){
-			if (l.getDateStart() == dateStart && l.getDateEnd() == dateEnd){
-				return null;
+		System.out.println(dateStart.toString());
+		for (Local l : locals) {
+			if(dateEnd.before(l.getDateStart())||(dateStart.after(l.getDateEnd()))){
+				System.out.println("1loca"+l.getDateStart());
+				System.out.println("############### starter"+dateStart);
 			}
-			else {
-				return localRepository.findAll();
+			else{
+				System.out.println("else");
 			}
+		
 		}
+		
 		return null;
 	}
+	
 }

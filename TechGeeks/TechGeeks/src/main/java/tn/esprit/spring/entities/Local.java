@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,8 +33,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Local implements Serializable{
 
-
-
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idLocal;
@@ -50,6 +47,7 @@ public class Local implements Serializable{
 	
 	private String name;
 	
+	private int maxNumber;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateStart;
@@ -57,15 +55,16 @@ public class Local implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateEnd;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
-	@OneToMany
 	private Set<Event> events;
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy="local")
+	@JsonIgnore
 	private Set<Training> trainings;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy="localUser")
+	@JsonIgnore
 	private Set<User> users;
 }

@@ -36,11 +36,9 @@ public class Question implements Serializable{
 	private double mark;
 	
 	@OneToMany(cascade = CascadeType.REMOVE)
-	@JsonIgnore
 	private Set<Answer> answers;
 	
 	@ManyToOne
-	@JsonIgnore
 	private Quiz quiz;
 
 }

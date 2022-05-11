@@ -15,21 +15,21 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PUBLIC)
+//@FieldDefaults(level = AccessLevel.PUBLIC)
 public class Post implements Serializable{
-
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -39,9 +39,7 @@ public class Post implements Serializable{
 	
 	private String body;
 	
-	//@Lob
 	private String photo;
-	
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 	
@@ -49,10 +47,9 @@ public class Post implements Serializable{
 	@ManyToOne
 	private User userPost;
 	@JsonIgnore 
-	@OneToMany(mappedBy="postComments")
+	@OneToMany(mappedBy="post")
 	private Set<PostComment> postComments;
-	
 	@JsonIgnore
-	@OneToMany(mappedBy="postLikes")
+	@OneToMany(mappedBy="post")
 	private Set<PostLike> postLikes;
 }

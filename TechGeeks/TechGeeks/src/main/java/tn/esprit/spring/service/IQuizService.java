@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import tn.esprit.spring.entities.Certificate;
 import tn.esprit.spring.entities.Quiz;
+import tn.esprit.spring.entities.Training;
 
 public interface IQuizService {
 	public void addQuiz(Quiz quiz);
@@ -15,5 +16,6 @@ public interface IQuizService {
 	public Optional<Quiz> getQuizById(int idQuiz);
 	public void addQuizByTraining(Quiz quiz, int idTraining);
 	public List<Certificate> AffecterCertificate(int idQuiz, int idtraining);
+	public Quiz getQuizByTraining(int idTaining);
 
 }

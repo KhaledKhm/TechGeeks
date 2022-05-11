@@ -75,10 +75,16 @@ public class QuestionServiceImp implements IQuestionService{
 	}
 
 	@Override
-	public void addQuestionByQuiz(Question question, int idQuiz) {
+	public Question addQuestionByQuiz(Question question, int idQuiz) {
 		Quiz q = quizRepository.findById(idQuiz).orElse(null);
 		question.setQuiz(q);
 		questionRepository.save(question);	
+		return question ; 
+	}
+	
+	@Override
+	public List<Question> getQuestionByQuiz(int idQuiz){
+		return questionRepository.getQuestionByQuiz(idQuiz);
 	}
 
 }

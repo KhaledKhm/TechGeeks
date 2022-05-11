@@ -33,6 +33,7 @@ public class DocumentServiceImp implements IDocumentService{
 		Training t = trainingRepository.findById(idTraining).orElse(null);
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		try {	
+			
 			Document document = new Document (fileName,file.getContentType(),file.getBytes());
 			document.setTraining(t);
 			document.setDescription(description);

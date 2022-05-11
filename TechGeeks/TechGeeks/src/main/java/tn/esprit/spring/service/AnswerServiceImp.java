@@ -2,6 +2,7 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,11 @@ public class AnswerServiceImp implements IAnswerService{
 	public Optional<Answer> getAnswerById(int idAnswer) {
 		return answerRepository.findById(idAnswer);
 	}
+	
+	@Override
+	public List<Answer> getAnswerByQuestion(int idQuestion) {
+		return answerRepository.getAnswerByQuestion(idQuestion);
+	}
 
 	@Override
 	public Optional<Answer> getAnswerByAnswer(String answer) {
@@ -63,12 +69,28 @@ public class AnswerServiceImp implements IAnswerService{
 	}
 
 	@Override
-	public void addAnswerByQuestion(Answer answer, int idQuestion) {
-		Question q = questionRepository.findById(idQuestion).orElse(null);
-		answer.setQuestion(q);
-		answerRepository.save(answer);	
+	public void addAnswerByQuestion(Answer answer, Question question) {
+		List <Question> qs = questionRepository.findAll();
+		for(Question q : qs){
+			if(q == question){
+				answer.setQuestion(question);
+				answerRepository.save(answer);	
+			}
+		}
+		
 	}
-	
+
+	@Override
+	public void addAnswersByQuestion(Set<Answer> answers, Question question) {
+		Question q = questionRepository.save(question);
+		for(Answer a : answers){
+			a.setQuestion(q);
+			q.setAnswers(answers);
+		}
+		
+
+		
+	}
 
 
 }

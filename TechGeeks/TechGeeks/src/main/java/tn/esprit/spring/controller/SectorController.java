@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import tn.esprit.spring.entities.Sector;
+import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.service.ISectorService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class SectorController {
 	
@@ -32,6 +35,12 @@ public class SectorController {
 	@ResponseBody
 	public void updateSector(@RequestBody Sector sector) {
 		sectorService.updateSector(sector);
+	}
+	
+	@PutMapping("/updateSector/{idSector}/")
+	@ResponseBody
+	public Sector updateSectorName(@RequestBody Sector sector,@PathVariable("idSector") int idSector) {
+		return sectorService.updateSectorName(sector,idSector);
 	}
 	
 	@DeleteMapping("/deleteAllSectors")

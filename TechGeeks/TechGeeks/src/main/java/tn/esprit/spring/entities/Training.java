@@ -37,6 +37,8 @@ public class Training implements Serializable{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idTraining;
 	
+	private String name;
+	
 	private String description;
 	
 	@Temporal(TemporalType.DATE)
@@ -54,10 +56,12 @@ public class Training implements Serializable{
 	
 	private Float prix;
 	
-	@ManyToOne
+	@ManyToOne	
+	@JsonIgnore
 	private Sector sector;
 	
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 	
 	@OneToMany(mappedBy="training")
@@ -76,7 +80,7 @@ public class Training implements Serializable{
 	@JsonIgnore
 	private Set <TrainingFeedback> feedback;
 	
-	@OneToOne
+	@OneToOne 
 	@JsonIgnore
 	private Quiz quiz;
 }

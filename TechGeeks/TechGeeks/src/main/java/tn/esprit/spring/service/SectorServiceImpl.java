@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Sector;
+import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.repository.SectorRepository;
 
 @Service
@@ -63,6 +64,11 @@ public class SectorServiceImpl implements ISectorService {
 		sectorRepository.deleteById(idSector);
 		
 	}
-
+	@Override
+	public Sector updateSectorName(Sector sector, int idSector) {
+		Sector s = sectorRepository.findById(idSector).get();
+		s.setName(sector.getName());
+		return sectorRepository.save(s);
+	}
 
 }

@@ -9,29 +9,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
+
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+
 
 @Entity
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PUBLIC)
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PUBLIC)
+
 public class CommentLike implements Serializable{
 
-	
-	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idCommentLike;
 	
 	private int commentLike;
 	@ManyToOne
-	private PostComment postCommentLike;
+	private PostComment postComment;
 
 }

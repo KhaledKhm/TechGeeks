@@ -85,7 +85,12 @@ public class QuizServiceImp implements IQuizService{
 	public List<Quiz> getAllQuizs() {
 		return quizRepository.findAll();
 	}
-
+	
+	@Override
+	public Quiz getQuizByTraining(int idTaining){
+		return quizRepository.getQuizByTraining(idTaining);
+	}
+	
 	@Override
 	public Optional<Quiz> getQuizById(int idQuiz) {
 		return quizRepository.findById(idQuiz);
@@ -103,12 +108,16 @@ public class QuizServiceImp implements IQuizService{
 		return certificateRepository.saveAll(certificates);
 	}
 	
+	
+	
+
 	@Override
 	public void addQuizByTraining(Quiz quiz, int idTraining) {
-		quiz = new Quiz(); 
 		Training t = trainingRepository.findById(idTraining).orElse(null);
+		quiz.setTraining(t);
 		t.setQuiz(quiz);
-		quizRepository.save(quiz);	
+		quizRepository.save(quiz);
+		
+		
 	}
-
 }

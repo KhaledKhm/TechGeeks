@@ -1,18 +1,13 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -34,16 +29,11 @@ public class Complaint implements Serializable{
 	private int idComplaint;
 	
 	private String title;
-	private String response;
 	
-	@Enumerated(EnumType.STRING)
-	private Type type;
 	private String description;
 	
+	private Type type;
+	
 	@ManyToOne
-	@JsonIgnore
 	private User userComplaint;
-	@ManyToOne
-	@JsonIgnore
-	private User exper;
 }

@@ -3,45 +3,34 @@ package tn.esprit.spring.entities;
 
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class User implements Serializable{
-
-	public User() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int id;
-
-	private String username;
-	
+	private Integer id;
+	private String userName;
 	private String Password;
 	
 	private String firstName;
@@ -54,6 +43,8 @@ public class User implements Serializable{
 	
 	private int num;
 	
+	private Date birthDate;
+	
 	private String city;
 	
 	private String governorate;
@@ -62,51 +53,37 @@ public class User implements Serializable{
 	
 	private String address;
 	
-	private String Vcode;
-	
 	private String photo; //a revoir
-	private Boolean etat;
-	@Enumerated(EnumType.STRING)
-    private Provider provider;
+	private Boolean active;
 	
+
+
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch= FetchType.EAGER)
 	private Set<Role> roles;
 
-	/**
-	 * @param username
-	 * @param password
-	 * @param firstName
-	 * @param email
-	 */
-	public User(String username, String password, String firstName, String email) {
-		super();
-		this.username = username;
-		Password = password;
-		this.firstName = firstName;
-		this.email = email;
-	}
 
 	private ExpertRole expertRole;
 		
-
 	private String document;
+	@Enumerated(EnumType.STRING)
+    private Provider provider;
 	
-//	@JsonIgnore
-//	@OneToMany(mappedBy="donationUser")
-//	private Set<Donation> donations;
+	@OneToMany
+	@JsonIgnore
+	private Set<Donation> donations;
 	
-//	@ManyToMany
-//	private Set<Event> events;
-
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Set<Event> events;
+	
 	
 	@OneToMany
 	@JsonIgnore
 	private Set<Offre> offres;
-
+	
+	@ManyToOne
 	@JsonIgnore
-	@OneToMany(mappedBy="users")
-	private Set<Postulant> postulants;
-
+	private Postulant postulantUser;
 	
 	@OneToMany(mappedBy="userAdvertising")
 	@JsonIgnore
@@ -115,22 +92,18 @@ public class User implements Serializable{
 	@OneToMany(mappedBy="userComplaint")
 	@JsonIgnore
 	private Set<Complaint> complaints;
-	@OneToMany(mappedBy="exper")
-	@JsonIgnore
-	private Set<Complaint> complaintss;
-	@OneToMany(mappedBy="userPost")
-	@JsonIgnore
-	private Set<Post> posts;
 	
-	@OneToOne(mappedBy="user")
-	@JsonIgnore
-	private PostComment postComment;
+//	@OneToMany(mappedBy="userPost")
+//	@JsonIgnore
+//	private Set<Post> posts;
 	
-
-	@OneToMany(mappedBy="women")
+//	@OneToOne(mappedBy="user")
+//	@JsonIgnore
+//	private PostComment postComment;
+	
+	@ManyToOne
 	@JsonIgnore
-	private Set<Appointment> appointmentss;
-
+	private Appointment appointment;
 	
 	@OneToMany(mappedBy="expert")
 	@JsonIgnore
@@ -144,7 +117,11 @@ public class User implements Serializable{
 	@JsonIgnore
 	private Chat chat;
 	
-	@ManyToOne
+	@OneToMany(mappedBy="user")
 	@JsonIgnore
-	private Certificate userCertificate;
+	private Set<Certificate> certificates;
+	
+	@OneToMany(mappedBy="user")
+	@JsonIgnore
+	private Set<Training> trainings;
 }
