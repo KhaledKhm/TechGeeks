@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Event {
     idEvent:any;	
 	libelle:any;	
@@ -5,4 +7,5 @@ export class Event {
 	dateEnd:any;	
 	sum:any;
 	price:any;
+	users:any;
 }

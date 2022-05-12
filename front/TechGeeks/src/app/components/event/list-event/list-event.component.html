@@ -1,34 +1,41 @@
-    <div class="row">
+
+<div class="row">
+    <!-- product and new customar start -->
+    <div class="col-xl-4 col-md-6">
+        <div class="card new-cust-card">
+            <div class="card-header">
+                <h3>New Customers</h3>
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                        <li><i class="ik ik-chevron-left action-toggle"></i></li>
+                        <li><i class="ik ik-minus minimize-card"></i></li>
+                        <li><i class="ik ik-x close-card"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block" *ng>
+                <div class="align-middle mb-25">
+                    <img src="../img/users/1.jpg" alt="user image" class="rounded-circle img-40 align-top mr-15">
+                    <div class="d-inline-block">
+                        <a href="#!"><h6>Alex Thompson</h6></a>
+                        <p class="text-muted mb-0">Cheers!</p>
+                        <span class="status active"></span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    
+  
+            
+        </div>
+    </div>
+    <!-- product and new customar end -->
+<!--    <div class="row">
         <div class="col-md-12">
             <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)">Add new Event</button>
             <ng-template #mymodal1 let-modal1>
                 <app-add-event></app-add-event>
-             <!--   <div class="card">
-                    <h4 class="modal-title" id="modal-basic-title" (click)="open(mymodal1)">Add new donation</h4>
-                    <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
-                        <span aria-hidden="true" (click)="cancel()">×</span>
-                    </button>
-                    
-                </div>
-                <div class="center">
-               <form>
-                    <div class="row" class="col-md-6">
-                        <input type="text" placeholder="Product Name" [(ngModel)]="donation.dateDonation"
-                            [ngModelOptions]="{standalone : true}">
-                    </div>
-                    <div class="row" class="col-md-6">
-                        <input type="number" placeholder="Price" [(ngModel)]="donation.sum"
-                            [ngModelOptions]="{standalone : true}">
-                    </div>
-                    <div class="row" class="col-md-6">
-                        <input type="number" placeholder="Quantity" [(ngModel)]="donation.bankAccount"
-                            [ngModelOptions]="{standalone : true}">
-                    </div>
-                    <br>
-                    <button routerLink="" type="button" class="btn btn-success" (click)="addDonation(donation)" (click)="modal1.close('Save click')">Add</button> 
-                    <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>
-                </form>
-            </div>-->
             </ng-template>
             <div class="row">
                 <div class="card" class="text-center">
@@ -98,11 +105,16 @@
                                     </ng-template>
                                     <button type="button" class="btn btn-outline-danger"
                                     (click)="deleteEvent(p.idEvent)">delete</button>
-                                </td>
+                                    <!--<button class="btn btn-success" 
+                                    (click)="open(assignToLocalModal)">Assign to Local</button>
+                                    <ng-template #assignToLocalModal let-modal1>
+                                        <app-assign-local-to-event [event]='p'></app-assign-local-to-event>
+                                    </ng-template>    -->  
+             <!--                   </td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                <app-sort-most-participating-users></app-sort-most-participating-users> </div>
             </div>
         </div>
-    </div>
+    </div>-->

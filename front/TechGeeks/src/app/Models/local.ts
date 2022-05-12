@@ -1,3 +1,5 @@
+import { Event } from "./event";
+
 export class Local {
     idLocal:any;	
 	city:any;	
@@ -7,4 +9,5 @@ export class Local {
 	name:any;		
 	dateStart:any;	
 	dateEnd:any;
+	//events:Set<Event>;
 }

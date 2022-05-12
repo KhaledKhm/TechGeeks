@@ -22,6 +22,9 @@ import { ListLocalComponent } from './components/local/list-local/list-local.com
 import { AddLocalComponent } from './components/local/add-local/add-local.component';
 import { MyDonationsComponent } from './components/donation/my-donations/my-donations.component';
 import { AddMyDonationComponent } from './components/donation/add-my-donation/add-my-donation.component';
+import { AssignLocalToEventComponent } from './components/local/assign-local-to-event/assign-local-to-event.component';
+import { SortMostParticipatingUsersComponent } from './components/event/sort-most-participating-users/sort-most-participating-users.component';
+import { PutMoneyComponent } from './components/event/put-money/put-money.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { AddMyDonationComponent } from './components/donation/add-my-donation/ad
     ListLocalComponent,
     AddLocalComponent,
     MyDonationsComponent,
-    AddMyDonationComponent
+    AddMyDonationComponent,
+    AssignLocalToEventComponent,
+    SortMostParticipatingUsersComponent,
+    PutMoneyComponent
   ],
   imports: [
     BrowserModule,

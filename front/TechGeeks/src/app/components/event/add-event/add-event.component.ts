@@ -23,6 +23,11 @@ export class AddEventComponent implements OnInit {
       dateEnd: null,
       sum:null,
       price:null,
+      users:{
+        id:null,
+        firstName:null,
+        lastName:null,
+      },
    }
   }
 

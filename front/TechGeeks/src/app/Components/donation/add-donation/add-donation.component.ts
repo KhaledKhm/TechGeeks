@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Donation } from 'src/app/models/donation';
 import { Pot } from 'src/app/models/pot';
+import { User } from 'src/app/models/user';
 import { DonationService } from 'src/app/services/donation.service';
 
 @Component({
@@ -21,6 +22,7 @@ export class AddDonationComponent implements OnInit {
    closeResult! : string;
    myDate = new Date();
    pott!: Pot;
+   userr!:User;
   ngOnInit(): void {
   //  this.getAllDonations();
 
@@ -30,7 +32,7 @@ export class AddDonationComponent implements OnInit {
     sum: null,
    bankAccount: null,
    pot:this.pott,
-   user: null,
+   user: this.userr,
  }
 
   }

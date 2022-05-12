@@ -59,5 +59,11 @@ public class PotController {
 		potService.takeMoney(idPot,money);
 	}
 	
+	@PutMapping("/put-money-pot/{idPot}/{idEvent}/{money}")
+	void putMoney(@PathVariable("idPot") int idPot, @PathVariable("idEvent") int idEvent, @PathVariable("money") float money){	
 
+		potService.putMoney(idPot,idEvent,money);
+	}
+	
+	
 }

@@ -1,4 +1,5 @@
 import { Pot } from "./pot";
+import { User } from "./user";
 
 export class Donation {
     idDonation: any;
@@ -6,5 +7,5 @@ export class Donation {
 	sum: any;
     bankAccount: any;
     pot: Pot;
-    user: any;
+    user: User;
 }

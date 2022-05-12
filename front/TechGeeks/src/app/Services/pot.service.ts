@@ -33,4 +33,8 @@ export class PotService {
   takeMoneyFromPot(idPot:any, money:any){	
     return this.httpClient.put(`${this.API_URL}/take-money-pot/{idPot}/{money}`,event)
 	}
+
+	putMoney(idPot:any,idEvent:any, money:any){	
+		return this.httpClient.put(`${this.API_URL}/put-money-pot/${idPot}/${idEvent}/${money}`,event)
+		}
 }

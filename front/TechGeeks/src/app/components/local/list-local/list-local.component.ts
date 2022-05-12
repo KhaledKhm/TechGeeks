@@ -26,7 +26,15 @@ export class ListLocalComponent implements OnInit {
       name:null,			
       dateStart:null,		
       dateEnd:null,	
-      
+   /*   events:{
+        idEvent: null,
+      libelle: null,
+    	dateStart: null,
+      dateEnd: null,
+      sum:null,
+      price:null,
+      }
+     */ 
    }
   }
 

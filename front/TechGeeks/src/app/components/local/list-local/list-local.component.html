@@ -3,32 +3,6 @@
         <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)">Add new Local</button>
         <ng-template #mymodal1 let-modal1>
             <app-add-local></app-add-local>
-         <!--   <div class="card">
-                <h4 class="modal-title" id="modal-basic-title" (click)="open(mymodal1)">Add new donation</h4>
-                <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
-                    <span aria-hidden="true" (click)="cancel()">×</span>
-                </button>
-                
-            </div>
-            <div class="center">
-           <form>
-                <div class="row" class="col-md-6">
-                    <input type="text" placeholder="Product Name" [(ngModel)]="donation.dateDonation"
-                        [ngModelOptions]="{standalone : true}">
-                </div>
-                <div class="row" class="col-md-6">
-                    <input type="number" placeholder="Price" [(ngModel)]="donation.sum"
-                        [ngModelOptions]="{standalone : true}">
-                </div>
-                <div class="row" class="col-md-6">
-                    <input type="number" placeholder="Quantity" [(ngModel)]="donation.bankAccount"
-                        [ngModelOptions]="{standalone : true}">
-                </div>
-                <br>
-                <button routerLink="" type="button" class="btn btn-success" (click)="addDonation(donation)" (click)="modal1.close('Save click')">Add</button> 
-                <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>
-            </form>
-        </div>-->
         </ng-template>
         <div class="row">
             <div class="card" class="text-center">
@@ -110,6 +84,12 @@
                                 </ng-template>
                                 <button type="button" class="btn btn-outline-danger"
                                 (click)="deleteLocal(p.idLocal)">delete</button>
+                                <button class="btn btn-round btn-sm btn-success" 
+                                (click)="open(modalAddEvent)">Add new event</button>
+                                <ng-template #modalAddEvent let-modal1>
+                                    <app-assign-local-to-event [local]='p'></app-assign-local-to-event>
+                                </ng-template>
+                          
                             </td>
                         </tr>
                     </tbody>

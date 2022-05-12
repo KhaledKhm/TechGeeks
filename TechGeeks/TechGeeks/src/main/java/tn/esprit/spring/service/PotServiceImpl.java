@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Pot;
 import tn.esprit.spring.repository.PotRepository;
 
@@ -22,6 +23,8 @@ public class PotServiceImpl implements IPotService{
 
 	@Autowired
 	PotRepository potRepository;
+	@Autowired
+	IEventService eventService;
 	
 	@Override
 	public List<Pot> retrieveAllPots() {
@@ -80,6 +83,49 @@ public class PotServiceImpl implements IPotService{
 			float sum;
 			sum=p.getSum();
 			sum-=money;
+			p.setSum(sum);
+			System.out.println("Money taken from "+p.getIdPot()+"-"+p.getLibelle()+": "+money+" new sum: "+p.getSum());
+			potRepository.save(p);
+		}
+		
+		
+	}
+	
+	@Override
+	@Transactional
+	public void putMoney(int idPot, int idEvent,float money) {
+		if(money <=0){
+			System.out.println("You cant delete money equals or less than 0");
+			return;
+		}else{
+			Pot p=retrievePot(idPot);
+			Event e=eventService.retrieveEvent(idEvent);
+			float sum;
+			float sumEvent;
+			sumEvent=e.getSum();
+			sumEvent+=money;
+			e.setSum(sumEvent);
+			sum=p.getSum();
+			sum-=money;
+			p.setSum(sum);
+			System.out.println("Money taken from "+p.getIdPot()+"-"+p.getLibelle()+": "+money+" new sum: "+p.getSum());
+			potRepository.save(p);
+		}
+		
+		
+	}
+	
+	@Override
+	@Transactional
+	public void addMoney(int idPot, float money) {
+		if(money <=0){
+			System.out.println("You cant delete money equals or less than 0");
+			return;
+		}else{
+			Pot p=retrievePot(idPot);
+			float sum;
+			sum=p.getSum();
+			sum+=money;
 			p.setSum(sum);
 			System.out.println("Money taken from "+p.getIdPot()+"-"+p.getLibelle()+": "+money+" new sum: "+p.getSum());
 			potRepository.save(p);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Event } from 'src/app/models/event';
+import { User } from 'src/app/models/user';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class ListEventComponent implements OnInit {
   listEvents:any; 
   form:boolean=false;
    event!:Event
+   users:Set<User>
    closeResult!:string;
   constructor(private eventService: EventService, private modalService: NgbModal) { }
 
@@ -25,6 +27,11 @@ export class ListEventComponent implements OnInit {
       dateEnd: null,
       sum:null,
       price:null,
+      users:{
+        id:null,
+        firstName:null,
+        lastName:null,
+      },
       
    }
   }
