@@ -45,32 +45,22 @@
                     <div class="input-group">
                         <input type="text" size="89" placeholder="Answer" [(ngModel)]="answer1.answer"
                             [ngModelOptions]="{standalone : true}">
-                        <button (click)="correct">True</button>
-                        <button (click)="wrong">False</button>
                     </div>
                     <br>
-
-
                 </li>
                 <li>
                     <div class="input-group">
                         <input type="text" size="89" placeholder="Answer" [(ngModel)]="answer2.answer"
                             [ngModelOptions]="{standalone : true}">
-                        <button>+</button>
                     </div>
                     <br>
-
-
                 </li>
                 <li>
                     <div class="input-group">
                         <input type="text" size="89" placeholder="Answer" [(ngModel)]="answer3.answer"
                             [ngModelOptions]="{standalone : true}">
-                        <button>+</button>
                     </div>
                     <br>
-
-
                 </li>
 
             </ol>
@@ -80,29 +70,6 @@
             <button (click)="redirect()">Save </button>
            
         </div>
-
-        
-
     </div>
 </div>
 <br>
-
-
-
-<!--
-                   <div style="overflow-y: auto; height: 350px;">
-                        <div *ngFor="let a of ann" class="m-3">
-                            <div  class="p-2 shadow border">
-                                <div  class="input-group row ps-3">
-                                    <div class="col-md-10 ">
-                                       {{a.answer}}
-                                    </div>
-                                    <button class="col me-1">e</button>
-                                    <button (click)="deleteAnswer(a.idAnswer)"class="col" style="border-color: #EDB39B ;">x</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-               -->

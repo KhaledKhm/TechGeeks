@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import tn.esprit.spring.entities.Answer;
 import tn.esprit.spring.entities.Question;
 import tn.esprit.spring.entities.Quiz;
+import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.repository.QuizRepository;
 import tn.esprit.spring.repository.AnswerRepository;
 import tn.esprit.spring.repository.QuestionRepository;
@@ -87,4 +88,11 @@ public class QuestionServiceImp implements IQuestionService{
 		return questionRepository.getQuestionByQuiz(idQuiz);
 	}
 
+	@Override
+	public Question updateQuestionByid ( Question question,int idQuestion){
+		Question q = questionRepository.findById(idQuestion).orElse(null);
+		q.setQuestion(question.getQuestion());
+		q.setMark(question.getMark());
+		return questionRepository.save(q);
+	}
 }

@@ -3,6 +3,9 @@ package tn.esprit.spring.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import tn.esprit.spring.entities.Question;
 
 public interface IQuestionService {
@@ -15,4 +18,5 @@ public interface IQuestionService {
 	public Optional<Question> getQuestionById(int idQuestion);
 	//public void deleteQuestionWithAnswer(int idQuestion);
 	public List <Question> getQuestionByQuiz(int idQuiz);
+	public Question updateQuestionByid (  Question question, int idQuestion);
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.Answer;
 import tn.esprit.spring.entities.Question;
+import tn.esprit.spring.entities.Training;
 import tn.esprit.spring.repository.AnswerRepository;
 import tn.esprit.spring.repository.QuestionRepository;
 import tn.esprit.spring.service.IAnswerService;
@@ -79,5 +80,10 @@ public class QuestionController {
 	public List <Question> getQuestionByQuiz(@PathVariable("idQuiz") int idQuiz) {
 		return questionService.getQuestionByQuiz(idQuiz);
 	}
-
+	
+	@PutMapping("/updateQuestionByid/{idQuestion}/")
+	@ResponseBody
+	public Question updateQuestionByid(@RequestBody Question question, @PathVariable("idQuestion") int idQuestion) {
+		return questionService.updateQuestionByid(question, idQuestion);
+	}
 }

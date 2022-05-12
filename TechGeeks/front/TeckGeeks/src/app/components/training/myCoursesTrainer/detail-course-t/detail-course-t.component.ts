@@ -127,12 +127,23 @@ export class DetailCourseTComponent implements OnInit {
     );
   }
 
-
+  editQuestion(question: Question, idQuestion: any) {
+    this.squest.editQuestion(question, idQuestion).subscribe();
+  }
 
   //////////////////   Quiz   /////////////////////////////
 
 
+  deleteQuestion(idTraining: any) {
+    this.idTraining = this.ac.snapshot.params['idTraining'];
+      this.sq.getQuizBytraining(this.idTraining).subscribe(
+        (res) => {
+          this.q = res;
+          console.log(res);
 
+          this.squest.deleteQuestion(this.q.idQuiz).subscribe()
+  });
+}
 
 
 

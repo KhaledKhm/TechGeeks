@@ -22,4 +22,11 @@ export class QuestionService {
     return this.httpClient.post(`${this.API_URL}/addQuestion`,Question)
   }
 
+  editQuestion(question : any, idQuestion : any){
+    return this.httpClient.put(`${this.API_URL}/updateQuestionByid/${idQuestion}`,question)
+  }
+
+  deleteQuestion(idQuestion : any){
+    return  this.httpClient.delete(`${this.API_URL}/deleteQuestionById/${idQuestion}`)
+  }
 }
