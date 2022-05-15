@@ -1,0 +1,14 @@
+<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;" *ngFor='let p of listEvents'>
+    <div class="card-header">Event name: {{p.libelle}}</div>
+    <div class="card-body">
+      <h5 class="card-title">Secondary card title</h5>
+        <p class="card-text">
+              {{p.dateStart}} 
+        </p>
+        <p class="card-text">
+            {{p.dateEnd}}
+        </p>
+        <button type="button" class="btn btn-outline-danger"
+        (click)="assignEventToLocal(local.idLocal,p.idEvent)" (click)="closeMod()">Assign</button>
+    </div>
+  </div>

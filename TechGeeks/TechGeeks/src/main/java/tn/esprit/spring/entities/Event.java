@@ -52,7 +52,7 @@ public class Event implements Serializable{
 //	@ManyToOne
 //	private Local localEvent;
 	
-	@JsonIgnore
+
 	@ManyToMany
 	private Set<User> eventUsers;
 	

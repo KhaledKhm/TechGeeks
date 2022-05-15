@@ -3,7 +3,7 @@ package tn.esprit.spring.payload.response;
 import java.util.List;
 
 public class JwtResponse {
-  private String token;
+ /* private String token;
   private String type = "Bearer";
   private Integer id;
   private String username;
@@ -60,5 +60,5 @@ public class JwtResponse {
 
   public List<String> getRoles() {
     return roles;
-  }
+  }*/
 }

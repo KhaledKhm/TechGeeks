@@ -17,5 +17,7 @@ public interface DonationRepository extends JpaRepository<Donation,Integer>{
 	//@Query("Select SUM(sum) FROM Donation d INNER JOIN User ON d.user.idUser = User.idUser")
 	@Query(value= "Select SUM(sum) FROM Donation d INNER JOIN User ON d.donation_user_id = User.id WHERE d.donation_user_id = :idUser", nativeQuery = true) 
 	float sumDonations(@Param("idUser") int idUser);
-	//List<Donation> findByUserDonations(int idUseR);
+	List<Donation> findByDonationUserId(int idUser);
+	//@Query("Select * FROM Donation d where d.donationUser = :idUser")
+	//List<Donation> myDonations(@Param("idUser")int idUser);
 }

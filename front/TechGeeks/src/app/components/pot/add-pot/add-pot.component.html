@@ -1,0 +1,23 @@
+<div class="center">
+    <form>
+        <div class="row" class="col-md-6">
+            <label>Title</label><br>
+            <input type="text" placeholder="Title" [(ngModel)]="pot.libelle"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <label>Sum</label><br>
+            <input type="number" placeholder="Sum" [(ngModel)]="pot.sum"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <label>Bank Account</label><br>
+            <input type="number" placeholder="Bank Account" [(ngModel)]="pot.bankAccount"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+     
+        <br>
+        <button type="button" class="btn btn-success" (click)="addPot(pot)" >Add</button> 
+      <!--  <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>-->
+    </form>
+</div>

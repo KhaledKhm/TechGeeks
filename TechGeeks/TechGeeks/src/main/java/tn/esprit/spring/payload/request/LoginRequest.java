@@ -3,7 +3,7 @@ package tn.esprit.spring.payload.request;
 import javax.validation.constraints.NotBlank;
 
 public class LoginRequest {
-	@NotBlank
+	/*@NotBlank
   private String email;
 
 	@NotBlank
@@ -23,5 +23,5 @@ public class LoginRequest {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
+	}*/
 }

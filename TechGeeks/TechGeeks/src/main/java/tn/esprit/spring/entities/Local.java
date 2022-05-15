@@ -57,7 +57,7 @@ public class Local implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateEnd;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany
 	private Set<Event> events;
 	

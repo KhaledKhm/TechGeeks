@@ -30,6 +30,8 @@ public class DonationServiceImpl implements IDonationService{
 	PotRepository potRepository;
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	IPotService potService;
 
 
 	@Override
@@ -109,6 +111,7 @@ public class DonationServiceImpl implements IDonationService{
 	public Donation addDonationAndAssignPot(Donation d, int idPot) {
 		Pot p=potRepository.findById(idPot).orElse(null);
 		d.setPot(p);
+		potService. takeMoney(idPot, d.getSum());
 		donationRepository.save(d);
 		return d;
 		
@@ -127,6 +130,15 @@ public class DonationServiceImpl implements IDonationService{
 		//System.out.println("test");
 		//System.out.println(sum+=donationRepository.sumDonations(idUser));
 	
+	}
+
+	@Override
+	public List<Donation> retrieveMyDonations(int idUser) {
+		List<Donation> donationList = donationRepository.findByDonationUserId(idUser);
+		for (Donation donation : donationList){
+			log.info(" Donation: " +donation);
+		}
+		return donationList;
 	}
 
 	

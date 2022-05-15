@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import tn.esprit.spring.entities.Pot;
 import tn.esprit.spring.service.EventServiceImpl;
 import tn.esprit.spring.service.IPotService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Slf4j
 public class PotController {
@@ -51,11 +53,17 @@ public class PotController {
 		
 	}
 	
-	@PutMapping("take-money-pot/{idPot}/{money}")
+	@PutMapping("/take-money-pot/{idPot}/{money}")
 	void takeMoneyFromPot(@PathVariable("idPot") int idPot, @PathVariable("money") float money){	
 
 		potService.takeMoney(idPot,money);
 	}
 	
+	@PutMapping("/put-money-pot/{idPot}/{idEvent}/{money}")
+	void putMoney(@PathVariable("idPot") int idPot, @PathVariable("idEvent") int idEvent, @PathVariable("money") float money){	
 
+		potService.putMoney(idPot,idEvent,money);
+	}
+	
+	
 }

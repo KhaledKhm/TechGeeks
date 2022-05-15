@@ -12,4 +12,6 @@ public interface IPotService {
 	void deletePot(int id);
 	void monthlyPotSum();
 	void takeMoney(int idPot, float money);
+	void addMoney(int idPot, float money);
+	void putMoney(int idPot, int idEvent,float money);
 }

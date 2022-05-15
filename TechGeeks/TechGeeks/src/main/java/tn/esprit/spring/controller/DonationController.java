@@ -3,6 +3,8 @@ package tn.esprit.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import org.springframework.mail.javamail.JavaMailSender;*/
 import tn.esprit.spring.entities.Donation;
 import tn.esprit.spring.service.IDonationService;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class DonationController {
 
@@ -45,6 +48,13 @@ public class DonationController {
 		
 		return donationService.retrieveAllDonations();
 	}
+	
+	@GetMapping("/retrieve-myDonations/{idUser}")
+	List<Donation> retrieveMyDonations(@PathVariable("idUser")int idUser){
+		
+		return  donationService.retrieveMyDonations(idUser);
+	}
+	
 	
 	@GetMapping("/get-Donation/{idDonation}")
 	Donation getDonationById(@PathVariable("idDonation") int idDonation){

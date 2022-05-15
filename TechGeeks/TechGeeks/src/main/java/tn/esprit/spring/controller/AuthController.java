@@ -6,16 +6,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.mail.MessagingException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,34 +38,34 @@ import tn.esprit.spring.service.ServiceUser;
 
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+//@RequestMapping("/api/auth")
 public class AuthController {
-  @Autowired
-  AuthenticationManager authenticationManager;
+//  @Autowired
+//  AuthenticationManager authenticationManager;
 
-  @Autowired
-  ServiceUser ServiceUser;
-  @Autowired
-  UserRepository userRepository;
+//  @Autowired
+//  ServiceUser ServiceUser;
+//  @Autowired
+//  UserRepository userRepository;
   
 
-  @Autowired
-  RoleRepository roleRepository;
+//  @Autowired
+//  RoleRepository roleRepository;
 
-  @Autowired
-	EmailControllers  EmailController;
+//  @Autowired
+//	EmailControllers  EmailController;
 
  
 
-  @Autowired
-  JwtUtils jwtUtils;
+ // @Autowired
+ // JwtUtils jwtUtils;
   
 //	@Autowired
 //	IUserService userservice;
 	
-	@PostMapping("/AffecterCertificate/{idUser}/{certficates}")
+/*	@PostMapping("/AffecterCertificate/{idUser}/{certficates}")
 	public void AffecterCertificate(@RequestBody User user,@PathVariable("idUser") int idUser,@PathVariable("certficates") List<Certificate> certficates) {
 		ServiceUser.AffecterCertificat(idUser,certficates);
 	}
@@ -151,5 +148,5 @@ public class AuthController {
 	 userRepository.save(u);
 	  return null ; 
 	  
-  }
+  }*/
 }

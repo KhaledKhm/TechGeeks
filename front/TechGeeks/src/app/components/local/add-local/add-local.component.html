@@ -1,0 +1,42 @@
+<div class="center">
+    <form>
+        <div class="row" class="col-md-6">
+            <label>city</label><br>
+            <input type="text" placeholder="city" [(ngModel)]="local.city"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <label>Governorate</label><br>
+            <input type="text" placeholder="Governorate" [(ngModel)]="local.governorate"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <label>Postal Code</label><br>
+            <input type="number" placeholder="Postal Code" [(ngModel)]="local.postalCode"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <label>Address</label><br>
+            <input type="text" placeholder="Address" [(ngModel)]="local.address"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <label>Name</label><br>
+            <input type="text" placeholder="Name" [(ngModel)]="local.name"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <br><label>Date Start</label><br><br>
+            <input type="date" placeholder="dateStart" [(ngModel)]="local.dateStart"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <div class="row" class="col-md-6">
+            <br><label>Date End</label><br><br>
+            <input type="date" placeholder="dateEnd" [(ngModel)]="local.dateEnd"
+                [ngModelOptions]="{standalone : true}">
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" (click)="addLocal(local)" >Add</button> 
+      <!--  <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>-->
+    </form>
+</div>

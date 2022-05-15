@@ -7,26 +7,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
+
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.utility.RandomString;
 import tn.esprit.spring.entities.Certificate;
-import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Provider;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.RoleName;
 import tn.esprit.spring.entities.User;
-import tn.esprit.spring.mail.EmailControllers;
 import tn.esprit.spring.repository.CertificateRepository;
 import tn.esprit.spring.repository.RoleRepository;
 import tn.esprit.spring.repository.UserRepository;
@@ -39,10 +34,10 @@ public class ServiceUser implements userService{
 	RoleRepository  roleRepository;
 	@Autowired
 	CertificateRepository certificateRepository;
-	@Autowired
-	EmailControllers  EmailController;
+//	@Autowired
+//	EmailControllers  EmailController;
 	
-	@Override
+/*	@Override
 	public void AffecterCertificat(int idUser, List<Certificate> certificates) {
 		certificateRepository.saveAll(certificates);
 		User u =userRepository.findById(idUser).orElse(null);
@@ -66,16 +61,16 @@ public class ServiceUser implements userService{
 		userRepository.findAll().forEach(users::add);
 		return users;
 	}
-
+*/
 	@Override
-	public User addUser(User user) throws MessagingException  {
-		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		user.setPassword(encoder.encode(user.getPassword()));
+	public User addUser(User user) /*throws MessagingException */ {
+	//	PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+/*		user.setPassword(encoder.encode(user.getPassword()));
 		user.setVcode(EmailController.verificationCode());
 		user.setEtat(false);
 		userRepository.save(user);
-		User u = retrieveUserById(user.getId());
-		EmailController.send(u.getId(), user.getVcode());
+		User u = retrieveUserById(user.getId());*/
+	//	EmailController.send(u.getId(), user.getVcode());
 		return user;
 	}
 
@@ -90,8 +85,8 @@ public class ServiceUser implements userService{
 		return userName ;
 	}
 
-	public  void processOAuthPostLogin(DefaultOidcUser username,User hamza) {
-		String usern = username.getAttribute("email");
+//	public  void processOAuthPostLogin(DefaultOidcUser username,User hamza) {
+		/*String usern = username.getAttribute("email");
 		System.out.println(""+username.getAttribute("email"));
 		System.out.println(""+hamza);
         if (hamza == null){
@@ -113,31 +108,31 @@ public class ServiceUser implements userService{
             u.setRoles(Role);
             userRepository.save(u); 
             
-        }
-	}
+        }*/
+//	}
 
 	public User findUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		return userRepository.findByEmail(email);
 	}
 	
-	@Autowired
-    private JavaMailSender mailSender;
+//	@Autowired
+ //   private JavaMailSender mailSender;
  
      
  
     public void register(User user, String siteURL)
-            throws UnsupportedEncodingException, MessagingException {
+         /*   throws UnsupportedEncodingException, MessagingException*/ {
     	/*PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);*/
          
-        String randomCode = RandomString.make(64);
+//        String randomCode = RandomString.make(64);
          
-        sendVerificationEmail(user, siteURL);
+  //      sendVerificationEmail(user, siteURL);
     }
      
-    private void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException {
+  /*  private void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException {
         String toAddress = "olfa.selmi@esprit.tn";
         String fromAddress = "hamza.krid@esprit.tn";
         String senderName = "HerWay";
@@ -163,9 +158,9 @@ public class ServiceUser implements userService{
          
         helper.setText(content, true);
          
-        mailSender.send(message);
+ //       mailSender.send(message);
          
-    }
+    }*/
 
 	@Override
 	public User retrieveUserById(Integer iduser) {
@@ -179,6 +174,15 @@ public class ServiceUser implements userService{
 			log.info(" User: " +user);
 		}
 		return userList;
+	}
+
+
+
+
+	@Override
+	public Set<User> retrieveAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

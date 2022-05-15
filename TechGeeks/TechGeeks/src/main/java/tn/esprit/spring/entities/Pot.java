@@ -36,6 +36,8 @@ public class Pot implements Serializable{
 
 	private String libelle;
 	
+	private String decription;
+	
 	private float sum;
 	
 	@Column(length=8/*, message="bank account should only have 8 numbers"*/)
